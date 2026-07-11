@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ameze Skin Elements — Medical Spa &amp; Skincare Clinic, Houston TX</title>
+<meta name="description" content="RN-led medical spa in Houston, Texas. Botox®, Dysport®, DAXXIFY®, lip filler, exosome microneedling, BioRePeel and clinical facials. Book on Vagaro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6F2;
+    --ink:#231C19;
+    --muted:#5C5147;
+    --rose:#9C6875;          /* brand signal on light */
+    --rose-deep:#7E4E5B;
+    --blush:#F2E7E1;         /* type on dark */
+    --rose-lt:#C98D96;       /* brand signal on dark */
+    --gold:#D8A98A;
+    --plum:#241820;          /* dark stage */
+    --plum-2:#180F14;
+    --line:rgba(35,28,25,.16);
+    --line-d:rgba(242,231,225,.16);
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  @property --a { syntax:"<angle>"; initial-value:0deg; inherits:false; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .hl>span{transform:none!important}
+    .rv,.prow{opacity:1!important;transform:none!important}
+  }
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:1.0625rem;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--rose);color:#fff}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:76rem;margin-inline:auto;padding-inline:clamp(1.25rem,4vw,3rem)}
+  h1,h2,h3{font-family:var(--serif);font-weight:640;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
+  .mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+  .mono-num{font-family:var(--mono);font-feature-settings:"tnum"}
+  .lede{text-wrap:pretty}
+
+  /* shimmer gradient text */
+  .shimmer{
+    background:linear-gradient(100deg,var(--rose-lt) 12%,#F2D9C6 38%,var(--gold) 52%,var(--rose-lt) 78%);
+    background-size:230% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:sheen 5.5s ease-in-out infinite;
+  }
+  @keyframes sheen{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .45s ease-out,transform .45s ease-out}
+  .rv.in{opacity:1;transform:none}
+
+  /* ───────── nav (dark) ───────── */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb,var(--plum) 88%,transparent);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line-d);
+    color:var(--blush);
+  }
+  .nav{display:flex;align-items:center;gap:1.5rem;padding-block:.8rem}
+  .brand{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+  .brand img{width:2.4rem;height:auto;filter:drop-shadow(0 0 8px rgba(216,169,138,.35))}
+  .brand span{font-family:var(--serif);font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+  .nav-links{display:flex;gap:1.4rem;margin-left:auto}
+  .nav-links a{text-decoration:none;font-size:.9rem;color:rgba(242,231,225,.72);position:relative}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--gold);transition:width .2s ease-out}
+  .nav-links a:hover{color:var(--blush)}
+  .nav-links a:hover::after{width:100%}
+  .nav-stamp{display:none}
+  .btn{
+    display:inline-block;text-decoration:none;border:1px solid transparent;
+    background:linear-gradient(100deg,var(--rose-lt),var(--gold),#E8C6CE,var(--rose-lt));
+    background-size:220% 100%;background-position:0% 0;
+    color:var(--plum-2);padding:.7rem 1.5rem;
+    font-size:.9rem;font-weight:600;white-space:nowrap;
+    transition:background-position .5s ease,transform .2s,box-shadow .3s;
+  }
+  .btn:hover{background-position:95% 0;transform:translateY(-2px);box-shadow:0 6px 26px rgba(201,141,150,.45)}
+  .btn-ink{background:var(--ink);color:var(--paper)}
+  .btn-ink:hover{background:linear-gradient(100deg,var(--rose-deep),var(--rose));box-shadow:0 6px 22px rgba(126,78,91,.4)}
+  .btn-ghost{background:transparent;color:inherit;border-color:currentColor}
+  .btn-ghost:hover{background:linear-gradient(100deg,rgba(201,141,150,.16),rgba(216,169,138,.16));border-color:var(--gold);box-shadow:0 6px 22px rgba(201,141,150,.22)}
+
+  .btn-glow{animation:ctaglow 4s ease-in-out infinite}
+  @keyframes ctaglow{
+    0%,100%{box-shadow:0 0 22px rgba(201,141,150,.35)}
+    50%{box-shadow:0 0 42px rgba(216,169,138,.55)}
+  }
+  /* gradient-text hover utility */
+  .gtx-h:hover{background:linear-gradient(90deg,var(--rose-deep),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  @media(min-width:900px){.nav-stamp{display:block;margin-left:auto;color:rgba(242,231,225,.7)}.nav-links{margin-left:auto}}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  /* ───────── hero (dark stage) ───────── */
+  .stage{background:radial-gradient(120% 90% at 70% 0%,#33222B 0%,var(--plum) 45%,var(--plum-2) 100%);color:var(--blush);position:relative}
+  .hero{
+    display:flex;align-items:center;
+    min-height:min(calc(100svh - 3.6rem),58rem);
+    padding-block:clamp(4rem,8vw,6rem);
+    position:relative;overflow:clip;
+  }
+  .hero .grid{display:grid;grid-template-columns:1fr;gap:1rem;position:relative;z-index:3;width:100%}
+  .hero .grid>*{min-width:0}
+  .hero-main{grid-column:1/-1}
+  .hero-eyebrow{color:var(--rose-lt);margin-bottom:1.7rem;display:flex;align-items:center;gap:.9rem}
+  .hero-eyebrow::before{content:"";width:2.6rem;height:1px;background:linear-gradient(90deg,var(--rose-lt),transparent)}
+  h1{font-size:clamp(3.1rem,9.6vw,7.6rem);font-weight:700;letter-spacing:-.045em;color:#FBF3EE;
+     text-shadow:0 0 70px rgba(201,141,150,.4)}
+  h1 em{font-style:italic;font-weight:420}
+  .hl{display:block;overflow:hidden;padding-bottom:.09em;margin-bottom:-.09em}
+  .hl>span{display:inline-block;transform:translateY(115%);animation:rise .8s cubic-bezier(.19,.7,.22,1) forwards}
+  .hl:nth-child(2)>span{animation-delay:.14s}
+  @keyframes rise{to{transform:none}}
+  .hero-lede{max-width:34rem;margin-top:1.9rem;font-size:1.14rem;color:rgba(242,231,225,.72)}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:2.4rem}
+  .hero-stamp{margin-top:3.5rem;color:rgba(242,231,225,.72);display:flex;flex-wrap:wrap;gap:.4rem 1.75rem}
+  .hero-main>.rv{transition-duration:.55s}
+  .hero-main>.rv:nth-child(1){transition-delay:.05s}
+  .hero-main>.rv:nth-child(3){transition-delay:.34s}
+  .hero-main>.rv:nth-child(4){transition-delay:.48s}
+  .hero-main>.rv:nth-child(5){transition-delay:.62s}
+
+  /* aurora + grain + sparkles */
+  .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .blob{position:absolute;border-radius:50%;filter:blur(70px)}
+  .b1{width:56vw;height:56vw;min-width:26rem;min-height:26rem;right:-12%;top:-24%;
+      background:radial-gradient(circle,rgba(201,141,150,.42),transparent 66%);
+      animation:drift1 21s ease-in-out infinite alternate}
+  .b2{width:42vw;height:42vw;min-width:19rem;min-height:19rem;left:-14%;bottom:-30%;
+      background:radial-gradient(circle,rgba(216,169,138,.32),transparent 66%);
+      animation:drift2 27s ease-in-out infinite alternate}
+  .b3{width:28vw;height:28vw;min-width:14rem;min-height:14rem;left:34%;top:20%;
+      background:radial-gradient(circle,rgba(126,78,91,.46),transparent 66%);
+      animation:drift3 17s ease-in-out infinite alternate}
+  @keyframes drift1{to{transform:translate(-9%,16%) scale(1.16)}}
+  @keyframes drift2{to{transform:translate(12%,-14%) scale(1.12)}}
+  @keyframes drift3{to{transform:translate(16%,12%) scale(.86)}}
+  .hero-bg::after{
+    content:"";position:absolute;inset:0;opacity:.5;mix-blend-mode:soft-light;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  }
+  .spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#F2D9C6;
+    box-shadow:0 0 8px 2px rgba(242,217,198,.7);opacity:0;animation:twinkle 4.2s ease-in-out infinite}
+  .spark:nth-of-type(4){left:18%;top:24%;animation-delay:.4s}
+  .spark:nth-of-type(5){left:64%;top:14%;animation-delay:1.5s}
+  .spark:nth-of-type(6){left:82%;top:58%;animation-delay:2.6s;width:4px;height:4px}
+  .spark:nth-of-type(7){left:38%;top:74%;animation-delay:3.4s}
+  .spark:nth-of-type(8){left:52%;top:38%;animation-delay:2s;width:2px;height:2px}
+  @keyframes twinkle{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:1;transform:scale(1.25)}}
+
+  /* rotating brand ring */
+  .hero-orb{position:absolute;z-index:2;right:clamp(-10rem,-8vw,-4rem);top:50%;transform:translateY(-50%);
+    width:clamp(21rem,37vw,36rem);aspect-ratio:1;display:none;pointer-events:none}
+  .hero-orb .ring{position:absolute;inset:0;width:100%;height:100%;animation:spin 70s linear infinite}
+  .hero-orb .ring text{font-family:var(--mono);font-size:10.2px;letter-spacing:.4em;text-transform:uppercase;fill:rgba(201,141,150,.85)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hero-orb .halo{position:absolute;inset:12%;border-radius:50%;border:1px solid rgba(216,169,138,.3);
+    box-shadow:0 0 60px rgba(201,141,150,.28) inset,0 0 80px rgba(201,141,150,.22);
+    animation:glowpulse 5s ease-in-out infinite}
+  @keyframes glowpulse{
+    0%,100%{box-shadow:0 0 60px rgba(201,141,150,.28) inset,0 0 80px rgba(201,141,150,.22)}
+    50%{box-shadow:0 0 90px rgba(216,169,138,.42) inset,0 0 120px rgba(201,141,150,.35)}
+  }
+  .hero-orb img{position:absolute;inset:32%;width:36%;height:auto;margin:auto;
+    filter:drop-shadow(0 0 22px rgba(216,169,138,.45))}
+  @media(min-width:900px){.hero-orb{display:block}}
+
+  /* ───────── marquee (dark, closes the stage) ───────── */
+  .marquee{border-block:1px solid var(--line-d);overflow:hidden;white-space:nowrap;padding-block:1rem;position:relative;z-index:3}
+  .marquee-track{display:inline-block;animation:tick 34s linear infinite}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .marquee span{font-family:var(--mono);font-size:.84rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(242,231,225,.75);padding-inline:1.7rem}
+  .marquee b{color:var(--gold);font-weight:500}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ───────── numbers ───────── */
+  .numbers{padding-block:clamp(3.5rem,7vw,6rem)}
+  .numbers .grid{display:grid;grid-template-columns:1fr 1fr;border-left:1px solid var(--line)}
+  .num{padding:2rem 1.5rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .25s}
+  .num:hover{background:linear-gradient(160deg,rgba(201,141,150,.1),rgba(216,169,138,.12))}
+  .num:hover .n{background:linear-gradient(120deg,var(--rose-deep) 30%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .num:hover .n sup{color:var(--gold)}
+  .num .n{font-family:var(--serif);font-size:clamp(3rem,6.4vw,5.6rem);font-weight:590;letter-spacing:-.015em;line-height:1;font-variation-settings:"opsz" 30}
+  .num .n sup{font-size:.35em;font-weight:430;color:var(--rose)}
+  .num .l{margin-top:.9rem;color:var(--muted);text-transform:none;font-size:.84rem;letter-spacing:.015em;line-height:1.6}
+  @media(min-width:900px){.numbers .grid{grid-template-columns:repeat(4,1fr)}}
+
+  /* ───────── section headers ───────── */
+  section{scroll-margin-top:5rem}
+  .sec-head{display:grid;grid-template-columns:1fr;gap:1rem;align-items:end;padding-block:clamp(3rem,6vw,5rem) 2rem}
+  .sec-head>*{min-width:0}
+  .sec-no{font-family:var(--serif);font-size:clamp(3.8rem,8vw,7rem);font-weight:300;font-style:italic;line-height:.9;
+    background:linear-gradient(160deg,var(--rose) 20%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.7}
+  .sec-title{font-size:clamp(2.1rem,4.6vw,3.6rem)}
+  .sec-note{color:var(--muted);max-width:30rem}
+  @media(min-width:900px){
+    .sec-head{grid-template-columns:repeat(12,1fr)}
+    .sec-no{grid-column:1/3}
+    .sec-title-wrap{grid-column:3/9}
+    .sec-note{grid-column:9/13;justify-self:end;text-align:right}
+  }
+
+  /* ───────── animated pricing menu ───────── */
+  .tabs{display:flex;gap:.25rem;position:relative;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    appearance:none;border:0;background:none;cursor:pointer;white-space:nowrap;
+    font-family:var(--mono);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--muted);padding:.9rem 1.1rem;transition:color .2s;
+  }
+  .tab:hover{background:linear-gradient(90deg,var(--rose-deep),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tab.on{color:var(--rose-deep)}
+  .tab-ind{position:absolute;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold));
+    box-shadow:0 0 14px rgba(201,141,150,.65),0 2px 8px rgba(216,169,138,.4);
+    transition:transform .35s cubic-bezier(.4,0,.2,1),width .35s cubic-bezier(.4,0,.2,1);will-change:transform,width}
+  .panel{display:none;padding-top:.4rem}
+  .panel.on{display:block}
+  .panel-note{padding:1.1rem 0 .4rem;color:var(--muted);font-size:.95rem;max-width:44rem;text-wrap:pretty}
+  .prow{
+    display:block;text-decoration:none;padding:1.15rem .9rem;border-bottom:1px solid var(--line);
+    opacity:0;transform:translateY(16px);
+    transition:opacity .5s ease-out,transform .5s ease-out,background .2s,box-shadow .2s;
+  }
+  .prow.in{opacity:1;transform:none}
+  .prow:hover{background:linear-gradient(90deg,rgba(201,141,150,.12),rgba(216,169,138,.07) 60%,transparent);
+    box-shadow:inset 3px 0 0 var(--rose),0 10px 32px rgba(156,104,117,.22)}
+  .prow:hover .p{text-shadow:0 0 20px rgba(201,141,150,.55)}
+  .prow:hover .t{background:linear-gradient(90deg,var(--rose-deep),var(--gold) 130%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .prow:hover .lead{border-bottom-color:var(--rose)}
+  .prow-line{display:flex;align-items:baseline;gap:.9rem}
+  .prow .t{font-family:var(--serif);font-size:clamp(1.2rem,2.4vw,1.5rem);font-weight:560;letter-spacing:-.005em;font-variation-settings:"opsz" 22}
+  .prow .lead{flex:1;border-bottom:1px dotted rgba(35,28,25,.4);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1) .25s;min-width:2rem;position:relative;top:-.25em}
+  .prow.in .lead{transform:none}
+  .prow .p{font-family:var(--mono);font-size:1.08rem;font-weight:500;white-space:nowrap;font-feature-settings:"tnum";color:var(--ink);transition:transform .2s,color .2s}
+  .prow:hover .p{transform:scale(1.05);color:var(--rose-deep)}
+  .prow .d{display:block;color:var(--muted);font-size:.92rem;max-width:44rem;margin-top:.3rem;text-wrap:pretty}
+  .menu-foot{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem;color:var(--muted)}
+  .menu-foot b{color:var(--rose-deep);font-weight:500}
+
+  /* ───────── offers / clippings ───────── */
+  .offers{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+  @media(min-width:560px){.offers{grid-template-columns:1fr 1fr}}
+  @media(min-width:900px){.offers{grid-template-columns:repeat(4,1fr)}}
+  .offer{background:var(--paper);padding:1.1rem;text-decoration:none;transition:background .2s;position:relative;overflow:hidden}
+  .offer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--rose),var(--gold),#E8C6CE);
+    transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+  .offer:hover{background:#fff}
+  .offer:hover::before{transform:none}
+  .offer:hover .c b{background:linear-gradient(90deg,var(--rose-deep),var(--gold) 140%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .offer .imgw{overflow:hidden;display:block}
+  .offer img{width:100%;height:15rem;object-fit:cover;object-position:top;filter:saturate(.95);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .offer:hover img{transform:scale(1.045)}
+  .offer .c{display:flex;justify-content:space-between;gap:1rem;margin-top:.95rem;align-items:baseline}
+  .offer .c b{font-family:var(--serif);font-weight:580;font-size:1.05rem;letter-spacing:-.01em}
+  .offer .c span{font-family:var(--mono);font-size:.84rem;white-space:nowrap;font-feature-settings:"tnum";color:var(--rose-deep)}
+  .offer .mono{display:block;margin-top:.3rem;color:var(--muted)}
+  @media(min-width:900px){.offer img{height:13.5rem}}
+
+  /* ───────── edge word divider ───────── */
+  .edgeword{overflow:hidden;padding-block:clamp(1.5rem,4vw,3rem);margin-top:clamp(3rem,7vw,5.5rem)}
+  .ew-track{white-space:nowrap;display:inline-block;animation:tick 70s linear infinite}
+  .ew-track span{
+    font-family:var(--serif);font-style:italic;font-weight:340;
+    font-size:clamp(4rem,10vw,8.5rem);letter-spacing:-.02em;line-height:1;
+    color:transparent;-webkit-text-stroke:1.2px rgba(156,104,117,.5);padding-inline:1.5rem;
+  }
+
+  /* ───────── trust block ───────── */
+  .trust{background:radial-gradient(110% 130% at 20% 0%,#33222B 0%,var(--plum) 55%,var(--plum-2) 100%);color:var(--blush);padding-block:clamp(4rem,9vw,7.5rem);position:relative;overflow:clip}
+  .trust .mono{color:var(--rose-lt)}
+  .trust-quote{
+    font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.02em;
+    font-size:clamp(1.7rem,4.1vw,3.15rem);line-height:1.2;max-width:56rem;
+    margin-top:2rem;text-wrap:balance;
+  }
+  .trust-attr{margin-top:1.75rem;color:rgba(242,231,225,.72)}
+  .trust-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-top:4rem;padding-top:2.75rem;border-top:1px solid var(--line-d)}
+  .trust-grid blockquote{font-size:.96rem;color:rgba(242,231,225,.78);text-wrap:pretty}
+  .trust-grid .who{margin-top:1rem;color:var(--rose-lt)}
+  .trust-scores{display:flex;flex-wrap:wrap;gap:.4rem 2rem;margin-top:3.5rem;color:rgba(242,231,225,.68)}
+  .trust .b2{opacity:.6}
+  @media(min-width:900px){.trust-grid{grid-template-columns:1fr 1fr;gap:4rem}}
+
+  /* ───────── membership / pricing ───────── */
+  .plans{display:grid;grid-template-columns:1fr;gap:1.25rem;align-items:stretch}
+  .plan-glow{padding:1.5px;background:conic-gradient(from var(--a),var(--rose),var(--gold),#E8C6CE,var(--rose));animation:rot 5s linear infinite;display:flex}
+  @keyframes rot{to{--a:360deg}}
+  .plan{border:1px solid var(--line);padding:2rem 1.75rem;display:flex;flex-direction:column;background:var(--paper);transition:transform .25s,border-color .25s,box-shadow .3s}
+  .plan:hover{transform:translateY(-3px);border-color:var(--rose);box-shadow:0 12px 34px rgba(156,104,117,.18)}
+  .plan:hover .price{background:linear-gradient(90deg,var(--rose-deep),var(--gold) 130%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .plan.feature{border:0;background:#fff;flex:1}
+  .plan h3{font-size:1.5rem}
+  .plan .price{font-family:var(--mono);font-size:2rem;margin-top:1.4rem;font-feature-settings:"tnum"}
+  .plan .price small{font-size:.8rem;color:var(--muted)}
+  .plan ul{list-style:none;margin-top:1.4rem;flex:1}
+  .plan li{padding-block:.55rem;border-top:1px solid var(--line);font-size:.92rem;color:var(--muted)}
+  .plan li b{color:var(--ink);font-weight:500}
+  .plan .btn,.plan .btn-ink{margin-top:1.75rem;text-align:center}
+  .plan .tag{color:var(--rose-deep)}
+  @media(min-width:900px){
+    .plans{grid-template-columns:repeat(3,1fr)}
+    .plan-glow{transform:translateY(-6px)}
+  }
+
+  /* ───────── protocol ───────── */
+  .proto{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--line)}
+  .proto-col{padding:1.9rem 1.6rem}
+  .proto-col+.proto-col{border-top:1px solid var(--line)}
+  .proto ol{list-style:none;counter-reset:p;margin-top:1.3rem}
+  .proto li{
+    counter-increment:p;display:grid;grid-template-columns:2.4rem 1fr;gap:1rem;
+    padding-block:.7rem;border-top:1px solid var(--line);
+    font-size:.92rem;color:var(--muted);text-wrap:pretty;
+  }
+  .proto li::before{
+    content:counter(p,decimal-leading-zero);
+    font-family:var(--mono);font-size:.75rem;color:var(--rose-deep);padding-top:.2rem;
+  }
+  @media(min-width:900px){
+    .proto{grid-template-columns:1fr 1fr}
+    .proto-col+.proto-col{border-top:0;border-left:1px solid var(--line)}
+  }
+
+  /* ───────── visit ───────── */
+  .locs{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+  .loc{background:var(--paper);padding:2rem 1.75rem;transition:background .25s}
+  .loc:hover{background:#fff}
+  .loc h3{font-size:1.5rem}
+  .loc .addr{margin-top:.9rem;color:var(--muted)}
+  .loc table{width:100%;border-collapse:collapse;margin-top:1.5rem}
+  .loc td{font-family:var(--mono);font-size:.8rem;padding-block:.5rem;border-top:1px solid var(--line);font-feature-settings:"tnum"}
+  .loc td:last-child{text-align:right}
+  .loc .dir{display:inline-block;margin-top:1.5rem;font-size:.9rem;color:var(--rose-deep);text-decoration:none;
+    border-bottom:1px solid var(--rose);transition:transform .2s,border-color .2s}
+  .loc .dir:hover{transform:translateX(4px);border-bottom-color:var(--gold);
+    background:linear-gradient(90deg,var(--rose-deep),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .loc:hover{box-shadow:inset 0 3px 0 var(--rose)}
+  @media(min-width:900px){.locs{grid-template-columns:1fr 1fr}}
+
+  /* ───────── final cta (dark stage reprise) ───────── */
+  .fin{background:radial-gradient(120% 120% at 50% 110%,#33222B 0%,var(--plum) 55%,var(--plum-2) 100%);color:var(--blush);
+    padding-block:clamp(5rem,11vw,9rem);margin-top:clamp(3.5rem,8vw,6.5rem);position:relative;overflow:clip}
+  .fin h2{font-size:clamp(2.8rem,7.6vw,6.2rem);color:#FBF3EE}
+  .fin h2 em{font-style:italic;font-weight:420}
+  .fin .hero-cta{margin-top:2.6rem}
+  .fin .b1{opacity:.5}
+
+  /* ───────── footer colophon ───────── */
+  footer{border-top:1px solid var(--line);padding-block:3rem 3.5rem;background:#F4EEE8}
+  .colo{display:grid;grid-template-columns:1fr;gap:2.5rem}
+  .colo .brandline img{width:3rem}
+  .colo p{font-family:var(--mono);font-size:.76rem;line-height:1.85;letter-spacing:.02em;color:var(--muted);max-width:46rem}
+  .colo nav{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem}
+  .colo nav a{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+  .colo nav a:hover{background:linear-gradient(90deg,var(--rose-deep),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  @media(min-width:900px){.colo{grid-template-columns:auto 1fr;gap:4rem}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <img src="img/logo.png" alt="Ameze Skin Elements logo — rose gold 'ase' monogram" width="48" height="37">
+      <span>Ameze Skin Elements</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#menu">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#membership">Membership</a>
+      <a href="#protocol">Aftercare</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <span class="mono nav-stamp">Houston · Richmond TX</span>
+    <a class="btn" href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Book now</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- DARK STAGE: HERO -->
+  <div class="stage">
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+        <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+      </div>
+      <div class="hero-orb" aria-hidden="true">
+        <span class="halo"></span>
+        <svg class="ring" viewBox="0 0 200 200">
+          <defs><path id="circ" d="M100,100 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0"/></defs>
+          <text><textPath href="#circ">Ameze Skin Elements · Houston Texas · Medical Spa · Est. on W Gray St ·&#160;</textPath></text>
+        </svg>
+        <img src="img/logo.png" alt="">
+      </div>
+      <div class="wrap grid">
+        <div class="hero-main">
+          <p class="mono hero-eyebrow rv">RN-led medical spa — Houston, Texas</p>
+          <h1><span class="hl"><span>Good skin isn’t luck.</span></span><span class="hl"><span>It’s <em class="shimmer">protocol.</em></span></span></h1>
+          <p class="hero-lede lede rv">Injectables, exosome microneedling and clinical skincare — every treatment begins with a facial exam, and every result gets a follow-up. Natural-looking work by an injector who wants to see you back, not redone.</p>
+          <div class="hero-cta rv">
+            <a class="btn btn-glow" href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Book an appointment</a>
+            <a class="btn btn-ghost" href="#menu">View the menu</a>
+          </div>
+          <p class="mono hero-stamp rv"><span>Wed–Sat by appointment</span><span>Booking via Vagaro</span><span class="mono-num">(832) 775-6965</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDENTIAL MARQUEE -->
+    <div class="marquee" aria-label="Products and partners">
+      <div class="marquee-track">
+        <span><b>Botox®</b> Cosmetic</span><span><b>Dysport®</b></span><span><b>DAXXIFY®</b> — results up to 9 months</span><span><b>BioRePeelCl3®</b> Blue</span><span><b>Pro-XO</b> Exosome Therapy</span><span><b>PDRN</b> Polynucleotides</span><span>Allē Rewards accepted</span><span>Cherry payment plans</span><span>CareCredit accepted</span>
+        <span><b>Botox®</b> Cosmetic</span><span><b>Dysport®</b></span><span><b>DAXXIFY®</b> — results up to 9 months</span><span><b>BioRePeelCl3®</b> Blue</span><span><b>Pro-XO</b> Exosome Therapy</span><span><b>PDRN</b> Polynucleotides</span><span>Allē Rewards accepted</span><span>Cherry payment plans</span><span>CareCredit accepted</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NUMBERS -->
+  <section class="numbers wrap">
+    <div class="grid">
+      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="5.0" data-decimals="1">5.0</span><sup>/5</sup></div><p class="mono l">Client rating — every published Vagaro review</p></div>
+      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="9.49" data-decimals="2" data-prefix="$">$9.49</span></div><p class="mono l">Per unit of Botox® on current member offer</p></div>
+      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="9">9</span><sup>mo</sup></div><p class="mono l">DAXXIFY® corrections last up to nine months</p></div>
+      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="2">2</span></div><p class="mono l">Studios — W Gray St Houston &amp; Richmond TX</p></div>
+    </div>
+  </section>
+
+  <!-- ANIMATED PRICING MENU -->
+  <section id="menu" class="wrap">
+    <div class="sec-head">
+      <div class="sec-no rv" aria-hidden="true">01</div>
+      <div class="sec-title-wrap rv"><h2 class="sec-title">The treatment menu</h2></div>
+      <p class="sec-note rv">Live pricing from our booking system. Injectables are dosed per treatment plan — your exam decides the exact quote.</p>
+    </div>
+
+    <div class="menu rv">
+      <div class="tabs" role="tablist" aria-label="Service categories">
+        <button class="tab on" role="tab" aria-selected="true" data-panel="p-inj">Injectables</button>
+        <button class="tab" role="tab" aria-selected="false" data-panel="p-lip">Lip Filler</button>
+        <button class="tab" role="tab" aria-selected="false" data-panel="p-micro">Microneedling &amp; Peels</button>
+        <button class="tab" role="tab" aria-selected="false" data-panel="p-facial">Facials — Richmond</button>
+        <span class="tab-ind" aria-hidden="true"></span>
+      </div>
+
+      <div class="panel on" id="p-inj" role="tabpanel">
+        <p class="panel-note">Neurotoxin artistry for the face, jaw and neck. Good-faith exam $39, credited toward treatment.</p>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Botox® Cosmetic</span><span class="lead"></span><span class="p">from $300</span></span><span class="d">Smooths frown lines, forehead and crow's feet. Dosed to your anatomy after exam.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">DAXXIFY®</span><span class="lead"></span><span class="p">from $289</span></span><span class="d">Peptide-powered toxin. Visible in days, corrections lasting up to nine months.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Dysport®</span><span class="lead"></span><span class="p">$219</span></span><span class="d">Fast-onset smoothing for moderate to severe lines.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Lip Flip</span><span class="lead"></span><span class="p">$199</span></span><span class="d">Fuller-looking lips without added volume.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Brow Lift</span><span class="lead"></span><span class="p">$60</span></span><span class="d">Non-surgical lift that opens the eyes and softens frown lines.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Masseter Slimming</span><span class="lead"></span><span class="p">$599</span></span><span class="d">Relaxes overactive jaw muscles for a slimmer, defined profile.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Refinements</span><span class="lead"></span><span class="p">$29–$384</span></span><span class="d">DAO · chin · jowl · bunny lines · nose tip · platysma — targeted micro-doses for the lower face and neck.</span></a>
+      </div>
+
+      <div class="panel" id="p-lip" role="tabpanel">
+        <p class="panel-note">Premium hyaluronic-acid fillers, placed for shape first and volume second.</p>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Lip Filler — full syringe</span><span class="lead"></span><span class="p">$599</span></span><span class="d">Customized volume and definition with a natural finish.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Mini Lip Filler — half syringe</span><span class="lead"></span><span class="p">$399</span></span><span class="d">Subtle enhancement that complements your features.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Filler Dissolving — hyaluronidase</span><span class="lead"></span><span class="p">$200</span></span><span class="d">Safe, precise correction or removal of previous filler.</span></a>
+      </div>
+
+      <div class="panel" id="p-micro" role="tabpanel">
+        <p class="panel-note">Collagen induction, exosome biologics and medical-grade resurfacing.</p>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Microneedling + HA</span><span class="lead"></span><span class="p">$299</span></span><span class="d">Micro-channels plus hyaluronic acid for deep hydration and texture repair.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Pro-XO Premium Exosome Microneedling — skin</span><span class="lead"></span><span class="p">$599</span></span><span class="d">16 billion exosomes / 200&nbsp;mcg protein to accelerate renewal and collagen.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Pro-XO Exosome Microneedling — hair restoration</span><span class="lead"></span><span class="p">$749</span></span><span class="d">Stimulates follicles and scalp health with exosomes and copper peptides.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Microneedling Glass Facial</span><span class="lead"></span><span class="p">$679</span></span><span class="d">The luminous “glass skin” finish — microneedling with a tailored infusion.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">PDRN Under-Eye Treatment</span><span class="lead"></span><span class="p">$249</span></span><span class="d">Polynucleotides + HA to brighten and repair the delicate under-eye.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">BioRePeelCl3® Blue</span><span class="lead"></span><span class="p">$149</span></span><span class="d">Biphasic TCA peel — exfoliation, biostimulation and hydration, minimal downtime.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">BioRePeel Blue + Microneedling</span><span class="lead"></span><span class="p">$399</span></span><span class="d">Our collagen-renewal pairing; also in a 3-treatment series at 20% off.</span></a>
+      </div>
+
+      <div class="panel" id="p-facial" role="tabpanel">
+        <p class="panel-note">Esthetician services at the FM 723 studio, Fridays.</p>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Signature Facial</span><span class="lead"></span><span class="p">$110</span></span><span class="d">Balancing, skin-tone-enhancing treatment tailored to you. With extractions $120.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Hydro Glow Facial</span><span class="lead"></span><span class="p">$199</span></span><span class="d">Suction-based cleanse, extraction and medical-grade serum infusion. Event-ready glow.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Advanced Exfoliation Peels</span><span class="lead"></span><span class="p">$110</span></span><span class="d">Peptide · lactic · glycolic · vitamin C · hydrating — professional resurfacing, matched to your skin.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Microdermabrasion</span><span class="lead"></span><span class="p">$130</span></span><span class="d">Crystal exfoliation for texture and radiance. Back facial $120.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">LED Light Therapy</span><span class="lead"></span><span class="p">$100</span></span><span class="d">Wavelength therapy for fine lines, tone and collagen.</span></a>
+        <a class="prow" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Bridal Glow Menu</span><span class="lead"></span><span class="p">from $399</span></span><span class="d">A curated pre-wedding program — BioRePeel Glow, Hydro Facial and package options.</span></a>
+      </div>
+    </div>
+    <p class="mono menu-foot rv"><span><b>Summer promo</b> — 10% off most services, applied at booking</span><span>Consultation $75 · GFE exam $39</span><span>Complimentary 2-week follow-up on injectables</span></p>
+  </section>
+
+  <!-- OFFERS -->
+  <section id="offers" class="wrap">
+    <div class="sec-head">
+      <div class="sec-no rv" aria-hidden="true">02</div>
+      <div class="sec-title-wrap rv"><h2 class="sec-title">This month at Ameze</h2></div>
+      <p class="sec-note rv">Limited-run specials, straight from the studio. Prices hold while the offer runs.</p>
+    </div>
+    <div class="offers">
+      <a class="offer rv" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener">
+        <span class="imgw"><img src="img/july-special.jpg" alt="Fourth of July special — Botox and Daxxify offer flyer"></span>
+        <span class="c"><b>Summer Toxin Special</b><span>$299</span></span>
+        <span class="mono">40u Botox® — or 70u DAXXIFY® $375</span>
+      </a>
+      <a class="offer rv" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener">
+        <span class="imgw"><img src="img/lip-special.jpg" alt="Luxury lip enhancement special flyer showing lips"></span>
+        <span class="c"><b>Luxury Lip Enhancement</b><span>from $399</span></span>
+        <span class="mono">Combo: full syringe + 40u DAXXIFY® $698</span>
+      </a>
+      <a class="offer rv" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener">
+        <span class="imgw"><img src="img/facial-month.png" alt="Pineapple honey facial of the month flyer"></span>
+        <span class="c"><b>Facial of the Month</b><span>$89</span></span>
+        <span class="mono">Pineapple enzyme + golden honey mask</span>
+      </a>
+      <a class="offer rv" href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener">
+        <span class="imgw"><img src="img/bridal.jpg" alt="Bridal Glow menu flyer with bride"></span>
+        <span class="c"><b>Bridal Glow Menu</b><span>from $129</span></span>
+        <span class="mono">Wedding-day skin, planned like the wedding</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- EDGE WORD -->
+  <div class="edgeword" aria-hidden="true">
+    <div class="ew-track">
+      <span>Ameze Skin Elements</span><span>·</span><span>Houston</span><span>·</span><span>Ameze Skin Elements</span><span>·</span><span>Houston</span><span>·</span>
+      <span>Ameze Skin Elements</span><span>·</span><span>Houston</span><span>·</span><span>Ameze Skin Elements</span><span>·</span><span>Houston</span><span>·</span>
+    </div>
+  </div>
+
+  <!-- TRUST / REVIEWS -->
+  <section id="reviews" class="trust">
+    <div class="hero-bg" aria-hidden="true"><span class="blob b2"></span></div>
+    <div class="wrap" style="position:relative;z-index:2">
+      <p class="mono rv">03 — What clients say · verified Vagaro appointments</p>
+      <blockquote class="trust-quote rv">“I’ve had several injectors and she is definitely my new go-to. The follow-up is what I appreciate most — she always wants to make sure her clients are <em class="shimmer">satisfied with their results.</em>”</blockquote>
+      <p class="mono trust-attr rv">Sarah J — Botox® with Brenda Uhunmwagho · 5.0 / 5.0</p>
+      <div class="trust-grid">
+        <div class="rv">
+          <blockquote>“As a first-timer I had a great experience. I had reservations about trying Botox and now I’m returning for my second visit. She is detailed at finding the right treatment and explains the process clearly before and after.”</blockquote>
+          <p class="mono who">Andrew D — first-time Botox® client</p>
+        </div>
+        <div class="rv">
+          <blockquote>“Customer service was great. She was detailed about what she was doing and gives great advice on how to keep up. A very relaxing environment — I am most definitely going back.”</blockquote>
+          <p class="mono who">Miriam A — verified client</p>
+        </div>
+      </div>
+      <p class="mono trust-scores rv mono-num"><span>Service 5.0</span><span>Punctuality 5.0</span><span>Value 5.0</span><span>Venue 5.0</span><span>Source: Vagaro published reviews</span></p>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP -->
+  <section id="membership" class="wrap">
+    <div class="sec-head">
+      <div class="sec-no rv" aria-hidden="true">04</div>
+      <div class="sec-title-wrap rv"><h2 class="sec-title">Membership &amp; ways to pay</h2></div>
+      <p class="sec-note rv">Consistent skin needs a consistent plan. Bank your treatments monthly, or split any visit over time.</p>
+    </div>
+    <div class="plans">
+      <div class="plan-glow rv">
+        <div class="plan feature">
+          <span class="mono tag">Botox Bank™ Membership</span>
+          <h3>Bank it monthly</h3>
+          <p class="price">$99<small> /month</small></p>
+          <ul>
+            <li><b>$10 per unit</b> member Botox® pricing — vs $12–15 typical</li>
+            <li>Payments accumulate as <b>treatment credit</b> — ~$297 banked every 3 months</li>
+            <li><b>10% off</b> additional units and filler treatments</li>
+            <li>Auto-billed, cancel-friendly, credits never rush you</li>
+          </ul>
+          <a class="btn" href="https://www.vagaro.com/amezeskinelements/memberships" target="_blank" rel="noopener">Join the Bank</a>
+        </div>
+      </div>
+      <div class="plan rv">
+        <span class="mono tag">Cherry</span>
+        <h3>Split it over time</h3>
+        <p class="price">$100–$30k<small> financed</small></p>
+        <ul>
+          <li>Apply in ~60 seconds, <b>no hard credit check</b> to see your offer</li>
+          <li>Plans sized to the treatment — from a peel to a full plan</li>
+          <li>Use it same-day at checkout</li>
+        </ul>
+        <a class="btn btn-ink" href="https://www.amezeskinelements.com/cherry" target="_blank" rel="noopener">Check your rate</a>
+      </div>
+      <div class="plan rv">
+        <span class="mono tag">CareCredit</span>
+        <h3>Health-care credit</h3>
+        <p class="price">0%<small> promo financing available*</small></p>
+        <ul>
+          <li>The health &amp; wellness credit card, accepted here</li>
+          <li>Works alongside Allē Rewards points on Botox®</li>
+          <li>*Subject to credit approval; terms apply</li>
+        </ul>
+        <a class="btn btn-ink" href="https://www.amezeskinelements.com/payment-plan-carecredit" target="_blank" rel="noopener">Learn more</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTOCOL -->
+  <section id="protocol" class="wrap">
+    <div class="sec-head">
+      <div class="sec-no rv" aria-hidden="true">05</div>
+      <div class="sec-title-wrap rv"><h2 class="sec-title">The protocol</h2></div>
+      <p class="sec-note rv">Great results are prepared, not improvised. The essentials below — your full instructions arrive with your booking.</p>
+    </div>
+    <div class="proto rv">
+      <div class="proto-col">
+        <span class="mono" style="color:var(--rose-deep)">Before your appointment</span>
+        <ol>
+          <li>Book at least 4 weeks ahead of any big event — results settle, bruising fades.</li>
+          <li>Skip blood thinners &amp; NSAIDs (aspirin, ibuprofen, fish oil, vitamin E) for 2 weeks if you can.</li>
+          <li>No alcohol for 24 hours and no smoking for 48 hours before treatment.</li>
+          <li>Pause Retin-A two days before and after. No dental work within 4 weeks.</li>
+          <li>Eat a good breakfast and arrive with a clean, makeup-free face.</li>
+        </ol>
+      </div>
+      <div class="proto-col">
+        <span class="mono" style="color:var(--rose-deep)">After your treatment</span>
+        <ol>
+          <li>No workouts, yoga or massage for 24 hours — keep the product where we placed it.</li>
+          <li>No alcohol for 24 hours, no smoking for 48; both slow healing and invite bruising.</li>
+          <li>Prone to bruising? Arnica cream at the injection site helps.</li>
+          <li>Cleanse gently — no harsh scrubs or aggressive rubbing.</li>
+          <li>We see you again in 2 weeks. The follow-up is part of the treatment, and it's free.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visit" class="wrap">
+    <div class="sec-head">
+      <div class="sec-no rv" aria-hidden="true">06</div>
+      <div class="sec-title-wrap rv"><h2 class="sec-title">Two studios, one standard</h2></div>
+      <p class="sec-note rv">Injectables in Houston, Wednesday through Saturday. Clinical facials in Richmond on Fridays.</p>
+    </div>
+    <div class="locs rv">
+      <div class="loc">
+        <span class="mono" style="color:var(--rose-deep)">Houston — Flagship</span>
+        <h3>919 W Gray St</h3>
+        <p class="addr">Houston, TX 77019 · <a href="tel:+18327756965" class="mono-num" style="color:var(--ink)">(832) 775-6965</a></p>
+        <table>
+          <tr><td>WED — FRI</td><td>10:00 — 17:00</td></tr>
+          <tr><td>SAT</td><td>09:00 — 16:00</td></tr>
+          <tr><td>SUN — TUE</td><td>BY APPOINTMENT</td></tr>
+        </table>
+        <a class="dir" href="https://maps.google.com/?q=919+W+Gray+St,+Houston,+TX+77019" target="_blank" rel="noopener">Get directions ↗</a>
+      </div>
+      <div class="loc">
+        <span class="mono" style="color:var(--rose-deep)">Richmond — Fridays</span>
+        <h3>9107 FM 723, Suite 200</h3>
+        <p class="addr">Richmond, TX 77406 · Clinical facials &amp; esthetics</p>
+        <table>
+          <tr><td>FRI</td><td>BY APPOINTMENT</td></tr>
+          <tr><td>SAT — THU</td><td>SEE HOUSTON STUDIO</td></tr>
+        </table>
+        <a class="dir" href="https://maps.google.com/?q=9107+FM+723+Suite+200,+Richmond,+TX+77406" target="_blank" rel="noopener">Get directions ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA (dark reprise) -->
+  <section class="fin">
+    <div class="hero-bg" aria-hidden="true">
+      <span class="blob b1"></span>
+      <span class="spark" style="left:22%;top:30%"></span><span class="spark" style="left:70%;top:22%;animation-delay:1.8s"></span><span class="spark" style="left:56%;top:66%;animation-delay:3s"></span>
+    </div>
+    <div class="wrap" style="position:relative;z-index:2">
+      <h2 class="rv">Your skin already knows.<br><em class="shimmer">Book the exam.</em></h2>
+      <div class="hero-cta rv">
+        <a class="btn" href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Book on Vagaro</a>
+        <a class="btn btn-ghost mono-num" href="tel:+18327756965">Call (832) 775-6965</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- COLOPHON -->
+<footer>
+  <div class="wrap colo">
+    <div class="brandline">
+      <img src="img/logo.png" alt="Ameze Skin Elements monogram">
+    </div>
+    <div>
+      <nav aria-label="Footer">
+        <a href="#menu">Services</a><a href="#offers">Offers</a><a href="#reviews">Reviews</a><a href="#membership">Membership</a><a href="#protocol">Aftercare</a><a href="#visit">Locations</a><a href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Book</a>
+      </nav>
+      <p style="margin-top:1.5rem">© 2026 Ameze Skin Elements, LLC · Houston &amp; Richmond, Texas · (832) 775-6965<br>
+      Booking &amp; scheduling powered by Vagaro. Financing by Cherry Technologies and Synchrony (CareCredit), subject to approval.<br>
+      Botox® is a registered trademark of Allergan Aesthetics. Dysport® is a registered trademark of Ipsen Biopharm. DAXXIFY® is a registered trademark of Revance Therapeutics. BioRePeelCl3® is a registered trademark of CMed Aesthetics.<br>
+      Individual results vary. All injectable treatments require a good-faith exam and are performed under medical protocols. Pregnant or breastfeeding clients are not candidates for neurotoxin treatment.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── tabs: animated indicator + cascading rows ── */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var ind = document.querySelector('.tab-ind');
+  function stagger(panel){
+    var rows = panel.querySelectorAll('.prow');
+    rows.forEach(function(r,i){
+      r.classList.remove('in');
+      r.style.transitionDelay = reduce ? '0ms' : Math.min(i*60,420)+'ms';
+    });
+    if (reduce) { rows.forEach(function(r){ r.classList.add('in'); }); return; }
+    void panel.offsetWidth; /* force reflow so the transition restarts */
+    rows.forEach(function(r){ r.classList.add('in'); });
+  }
+  function moveInd(tab){
+    if(!ind) return;
+    ind.style.width = tab.offsetWidth+'px';
+    ind.style.transform = 'translateX('+tab.offsetLeft+'px)';
+  }
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('on'); t.setAttribute('aria-selected','false'); });
+      tab.classList.add('on'); tab.setAttribute('aria-selected','true');
+      moveInd(tab);
+      document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('on'); });
+      var panel = document.getElementById(tab.dataset.panel);
+      panel.classList.add('on');
+      stagger(panel);
+    });
+  });
+  window.addEventListener('resize', function(){ var on=document.querySelector('.tab.on'); if(on) moveInd(on); });
+  var first = document.querySelector('.tab.on');
+  if (first) { moveInd(first); }
+
+  /* ── count-up stats ── */
+  function countUp(el){
+    var target = parseFloat(el.dataset.target),
+        dec = parseInt(el.dataset.decimals||'0',10),
+        pre = el.dataset.prefix||'';
+    if (reduce) { el.textContent = pre + target.toFixed(dec); return; }
+    var t0 = null, dur = 1100;
+    function step(t){
+      if (t0===null) t0 = t;
+      var p = Math.min(1,(t-t0)/dur); p = 1-Math.pow(1-p,3);
+      el.textContent = pre + (target*p).toFixed(dec);
+      if (p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── scroll reveals (+ trigger row cascade & counters on first view) ── */
+  var els = document.querySelectorAll('.rv');
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('in'); });
+    document.querySelectorAll('.prow').forEach(function(r){ r.classList.add('in'); });
+    return;
+  }
+  // stagger sibling groups
+  [['.numbers .num',90],['.offers .offer',80],['.plans > *',110]].forEach(function(cfg){
+    document.querySelectorAll(cfg[0]).forEach(function(el,i){
+      el.style.transitionDelay = Math.min(i*cfg[1],500)+'ms';
+    });
+  });
+  var counted = false, cascaded = false;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      en.target.classList.add('in');
+      if (!counted && en.target.closest('.numbers')) {
+        counted = true;
+        document.querySelectorAll('.cnt').forEach(countUp);
+      }
+      if (!cascaded && en.target.classList.contains('menu')) {
+        cascaded = true;
+        stagger(document.querySelector('.panel.on'));
+      }
+      io.unobserve(en.target);
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -4% 0px'});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>
