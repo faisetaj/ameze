@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Summer Toxin Special",
+    "price": "$299",
+    "note": "40u Botox® — or 70u DAXXIFY® $375",
+    "img": "img/july-special.jpg",
+    "alt": "Fourth of July special — Botox and Daxxify offer flyer",
+    "href": "https://www.vagaro.com/amezeskinelements/services"
+  },
+  {
+    "title": "Luxury Lip Enhancement",
+    "price": "from $399",
+    "note": "Combo: full syringe + 40u DAXXIFY® $698",
+    "img": "img/lip-special.jpg",
+    "alt": "Luxury lip enhancement special flyer",
+    "href": "https://www.vagaro.com/amezeskinelements/services"
+  },
+  {
+    "title": "Facial of the Month",
+    "price": "$89",
+    "note": "Pineapple enzyme + golden honey mask",
+    "img": "img/facial-month.png",
+    "alt": "Pineapple honey facial of the month flyer",
+    "href": "https://www.vagaro.com/amezeskinelements/services"
+  },
+  {
+    "title": "Bridal Glow Menu",
+    "price": "from $129",
+    "note": "Wedding-day skin, planned like the wedding",
+    "img": "img/bridal.jpg",
+    "alt": "Bridal Glow menu flyer",
+    "href": "https://www.vagaro.com/amezeskinelements/services"
+  }
+]

@@ -12,12 +12,19 @@ Change requests arrive as GitHub issues labeled `site-update`, filed from the /u
 4. If a request is ambiguous, contradictory, or out of scope, do NOT guess. Comment on the
    issue asking a specific clarifying question, and stop.
 
+## Weekly specials — the most common request
+
+The "This month at Ameze" section renders from **`content/specials.json`** at page load.
+To add/swap/remove a special: edit that JSON file ONLY (title, price, note, img, alt, href).
+Client-uploaded flyer images land in `img/uploads/` — reference them there, or copy to
+`img/` with a sensible name. Also update the matching static fallback cards inside
+`index.html` (`#offers-grid`) so no-JS visitors see the same specials.
+
 ## What you may edit
 
-- Content inside `index.html`: prices, service names/descriptions, specials, hours,
+- `content/specials.json` (see above).
+- Content inside `index.html`: prices, service names/descriptions, hours,
   membership copy, protocol lists, review quotes (only if the issue provides new ones).
-- The "This month at Ameze" offers section, including swapping in images the client
-  uploaded (they land in `img/uploads/`). Copy them to `img/` with a sensible name if used.
 - Blog-style announcements: if asked for a "blog post", add it as a new section or a new
   HTML page matching the site's design tokens, and link it from the footer nav.
 
