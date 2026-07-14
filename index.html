@@ -32,6 +32,8 @@
     --btn-grad:linear-gradient(100deg,#C97B88,#DDAF92,#E9C4CB,#C97B88);
     --btn-ink:#FFFFFF; --edge-stroke:rgba(176,93,106,.42);
     --veil:linear-gradient(160deg,rgba(176,93,106,.18),rgba(216,169,138,.08) 55%,transparent);
+    --hero-veil:linear-gradient(180deg,rgba(255,255,255,.4) 0%,transparent 32%,transparent 72%,rgba(255,255,255,.92) 100%),
+                linear-gradient(100deg,rgba(255,255,255,.97) 6%,rgba(255,251,251,.88) 38%,rgba(255,246,247,.5) 70%,rgba(255,255,255,.22) 100%);
     --serif:"Fraunces",Georgia,"Times New Roman",serif;
     --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
@@ -52,6 +54,8 @@
     --btn-grad:linear-gradient(100deg,#C98D96,#D8A98A,#E8C6CE,#C98D96);
     --btn-ink:#180F14; --edge-stroke:rgba(156,104,117,.5);
     --veil:linear-gradient(160deg,rgba(36,24,32,.35),rgba(126,78,91,.15) 55%,transparent);
+    --hero-veil:linear-gradient(180deg,rgba(24,15,20,.55) 0%,rgba(24,15,20,.25) 32%,rgba(24,15,20,.35) 72%,rgba(24,15,20,.97) 100%),
+                linear-gradient(100deg,rgba(24,15,20,.96) 6%,rgba(30,20,26,.86) 38%,rgba(26,17,22,.55) 70%,rgba(24,15,20,.35) 100%);
   }
   [data-theme="porcelain"]{
     --paper:#FDF7F7; --paper-2:#FFFFFF;
@@ -69,6 +73,8 @@
     --btn-grad:linear-gradient(100deg,#C4707E,#DFB59A,#F0CDD3,#C4707E);
     --btn-ink:#FFFFFF; --edge-stroke:rgba(196,112,126,.45);
     --veil:linear-gradient(160deg,rgba(196,112,126,.2),rgba(223,181,154,.1) 55%,transparent);
+    --hero-veil:linear-gradient(180deg,rgba(253,240,241,.45) 0%,transparent 32%,transparent 72%,rgba(253,247,247,.95) 100%),
+                linear-gradient(100deg,rgba(253,244,245,.97) 6%,rgba(252,238,240,.87) 38%,rgba(251,235,238,.5) 70%,rgba(253,244,245,.25) 100%);
   }
 
   @property --a { syntax:"<angle>"; initial-value:0deg; inherits:false; }
@@ -132,7 +138,9 @@
     font-family:var(--sans);font-size:.9rem;font-weight:600;white-space:nowrap;
     transition:background-position .5s ease,transform .2s,box-shadow .3s;
   }
-  .btn:hover{background-position:95% 0;transform:translateY(-2px);box-shadow:0 6px 26px rgba(176,93,106,.4)}
+  .btn{transform:translate(var(--tx,0),var(--ty,0)) scale(var(--ts,1))}
+  .btn:hover{background-position:95% 0;box-shadow:0 6px 26px rgba(176,93,106,.4)}
+  .btn:active{--ts:.97}
   .btn-glow{animation:ctaglow 4s ease-in-out infinite}
   @keyframes ctaglow{
     0%,100%{box-shadow:0 0 22px rgba(196,121,134,.35)}
@@ -173,16 +181,13 @@
   .hero-main>.rv:nth-child(4){transition-delay:.48s}
   .hero-main>.rv:nth-child(5){transition-delay:.62s}
 
-  /* video media panel */
-  .hero-media{position:relative;aspect-ratio:4/4.6;max-height:34rem;width:100%}
-  .hero-media::before{ /* offset frame */
-    content:"";position:absolute;inset:0;transform:translate(14px,14px);
-    border:1px solid var(--rose);opacity:.55;pointer-events:none;transition:transform .4s ease}
-  .hero-media:hover::before{transform:translate(9px,9px)}
-  .hero-media .vwrap{position:absolute;inset:0;overflow:hidden;background:var(--paper-2)}
-  .hero-media video,.hero-media .vwrap img{width:100%;height:100%;object-fit:cover}
-  .hero-media .vwrap::after{content:"";position:absolute;inset:0;background:var(--veil);pointer-events:none}
-  .hero-badge{position:absolute;left:-3.4rem;bottom:-3.4rem;width:8.8rem;aspect-ratio:1;pointer-events:none;filter:drop-shadow(0 6px 18px rgba(23,19,20,.18))}
+  /* full-bleed subtle background video */
+  .hero-video{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .hero-video video{width:100%;height:100%;object-fit:cover}
+  .hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:var(--hero-veil)}
+  .hero .hero-bg{z-index:2;opacity:.5}
+  .hero-badge{position:absolute;z-index:3;right:clamp(1.5rem,5vw,4.5rem);bottom:clamp(1.5rem,5vw,3.5rem);
+    width:8.8rem;aspect-ratio:1;pointer-events:none;filter:drop-shadow(0 6px 18px rgba(23,19,20,.22))}
   .hero-badge .ring{position:absolute;inset:0;width:100%;height:100%;animation:spin 40s linear infinite}
   .hero-badge .ring text{font-family:var(--mono);font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;fill:var(--stage-accent-2)}
   @keyframes spin{to{transform:rotate(360deg)}}
@@ -190,9 +195,8 @@
   @media(min-width:900px){
     .hero .grid{grid-template-columns:repeat(12,1fr)}
     .hero-main{grid-column:1/8}
-    .hero-media{grid-column:8/13}
   }
-  @media(max-width:899px){.hero-media{max-height:24rem}.hero-badge{left:auto;right:-1.2rem;bottom:-2.2rem;width:7rem}}
+  @media(max-width:719px){.hero-badge{display:none}}
 
   /* aurora + grain + sparkles */
   .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
@@ -279,7 +283,8 @@
     transition:opacity .5s ease-out,transform .5s ease-out,background .2s,box-shadow .2s;
   }
   .prow.in{opacity:1;transform:none}
-  .prow:hover{background:linear-gradient(90deg,rgba(196,121,134,.12),rgba(216,169,138,.07) 60%,transparent);
+  .prow:hover{background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(216,169,138,.22),transparent 70%),
+    linear-gradient(90deg,rgba(196,121,134,.12),rgba(216,169,138,.07) 60%,transparent);
     box-shadow:inset 3px 0 0 var(--rose),0 10px 32px rgba(143,69,82,.18)}
   .prow:hover .p{text-shadow:0 0 20px rgba(196,121,134,.55)}
   .prow-line{display:flex;align-items:baseline;gap:.9rem}
@@ -293,6 +298,32 @@
   .prow .d{display:block;color:var(--muted);font-size:.92rem;max-width:44rem;margin-top:.3rem;text-wrap:pretty}
   .menu-foot{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem;color:var(--muted)}
   .menu-foot b{color:var(--rose-deep);font-weight:500}
+
+  /* tab-synced imagery column */
+  .menu-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:start}
+  .menu-grid>*{min-width:0}
+  .menu-vis{display:none;position:sticky;top:5.5rem;height:min(calc(100vh - 11rem),34rem)}
+  .menu-vis::before{content:"";position:absolute;inset:0;transform:translate(14px,14px);
+    border:1px solid var(--rose);opacity:.5;pointer-events:none}
+  .menu-vis .frame{position:absolute;inset:0;overflow:hidden;background:var(--paper-2)}
+  .menu-vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:0;transform:scale(1.06);filter:saturate(.9);
+    transition:opacity .5s cubic-bezier(.22,1,.36,1),transform 1.2s cubic-bezier(.22,1,.36,1)}
+  .menu-vis img.on{opacity:1;transform:none}
+  .menu-vis .frame::after{content:"";position:absolute;inset:0;background:var(--veil);opacity:.55;pointer-events:none}
+  .menu-vis .cap{position:absolute;left:0;bottom:0;z-index:2;background:color-mix(in srgb,var(--paper) 88%,transparent);
+    backdrop-filter:blur(6px);padding:.55rem 1rem;font-family:var(--mono);font-size:.72rem;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--rose-deep);transition:opacity .3s}
+  @media(min-width:1000px){
+    .menu-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem}
+    .menu-vis{display:block}
+  }
+
+  /* image wipe reveal — visible by default; animation plays on first view */
+  .imgrv.in{animation:wipe 1s cubic-bezier(.22,1,.36,1) both}
+  .imgrv.in img{animation:unzoom 1.3s cubic-bezier(.22,1,.36,1) both}
+  @keyframes wipe{from{clip-path:inset(0 94% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  @keyframes unzoom{from{transform:scale(1.07)}to{transform:none}}
 
   /* ───────── offers ───────── */
   .offers{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
@@ -348,6 +379,21 @@
   .trust-grid blockquote{font-size:.96rem;color:var(--dark-muted);text-wrap:pretty}
   .trust-grid .who{margin-top:1rem;color:var(--dark-accent)}
   .trust-scores{display:flex;flex-wrap:wrap;gap:.4rem 2rem;margin-top:3.5rem;color:var(--dark-muted)}
+  .trust-inner{display:grid;grid-template-columns:1fr;gap:3rem;align-items:start}
+  .trust-photo{position:relative;display:none;height:100%;min-height:30rem}
+  .trust-photo::before{content:"";position:absolute;inset:0;transform:translate(14px,14px);
+    border:1px solid var(--dark-accent);opacity:.4;pointer-events:none}
+  .trust-photo .frame{position:absolute;inset:0;overflow:hidden}
+  .trust-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.72) brightness(.92)}
+  .trust-photo .frame::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 50%,rgba(15,12,13,.55));pointer-events:none}
+  .trust-photo .cap{position:absolute;left:0;bottom:0;z-index:2;background:rgba(15,12,13,.72);
+    backdrop-filter:blur(6px);padding:.55rem 1rem;font-family:var(--mono);font-size:.72rem;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--dark-accent)}
+  @media(min-width:1000px){
+    .trust-inner{grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:4rem}
+    .trust-photo{display:block}
+  }
   @media(min-width:900px){.trust-grid{grid-template-columns:1fr 1fr;gap:4rem}}
 
   /* ───────── membership ───────── */
@@ -408,6 +454,8 @@
   /* ───────── final cta ───────── */
   .fin{background:var(--dark-bg);color:var(--dark-ink);
     padding-block:clamp(5rem,11vw,9rem);margin-top:clamp(3.5rem,8vw,6.5rem);position:relative;overflow:clip}
+  .fin-video{position:absolute;inset:0;z-index:0;opacity:.18;pointer-events:none}
+  .fin-video video{width:100%;height:100%;object-fit:cover;filter:saturate(.7)}
   .fin h2{font-size:clamp(2.8rem,7.6vw,6.2rem);color:var(--dark-ink)}
   .fin h2 em{font-style:italic;font-weight:420}
   .fin .hero-cta{margin-top:2.6rem}
@@ -437,6 +485,12 @@
   .bm-close:hover{color:#8F4552}
   .bm iframe{flex:1;border:0;width:100%;background:#fff}
 
+  /* ───────── scroll progress + header state ───────── */
+  #sprog{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;pointer-events:none;
+    background:linear-gradient(90deg,var(--rose),var(--gold));transform-origin:left;transform:scaleX(0)}
+  header{transition:background .35s ease,box-shadow .3s ease}
+  header.scrolled{box-shadow:0 10px 34px rgba(23,19,20,.1)}
+
   /* ───────── theme switcher ───────── */
   .themer{position:fixed;right:1rem;bottom:1rem;z-index:90;display:flex;gap:.35rem;align-items:center;
     background:color-mix(in srgb,var(--paper) 80%,transparent);backdrop-filter:blur(8px);
@@ -451,6 +505,7 @@
 </style>
 </head>
 <body>
+<span id="sprog" aria-hidden="true"></span>
 
 <header>
   <div class="wrap nav">
@@ -479,6 +534,12 @@
         <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
         <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
       </div>
+      <div class="hero-video" aria-hidden="true">
+        <video autoplay muted loop playsinline poster="img/media/hero-bg-poster.jpg">
+          <source src="img/media/hero-bg.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-veil" aria-hidden="true"></div>
       <div class="wrap grid">
         <div class="hero-main">
           <p class="mono hero-eyebrow rv">RN-led medical spa — Houston, Texas</p>
@@ -490,21 +551,14 @@
           </div>
           <p class="mono hero-stamp rv"><span>Wed–Sat by appointment</span><span class="mono-num">(832) 775-6965</span></p>
         </div>
-        <div class="hero-media rv">
-          <span class="vwrap">
-            <video autoplay muted loop playsinline poster="img/media/hero-poster.jpg" aria-label="Treatments at Ameze Skin Elements">
-              <source src="img/media/hero.mp4" type="video/mp4">
-            </video>
-          </span>
-          <span class="hero-badge" aria-hidden="true">
-            <svg class="ring" viewBox="0 0 200 200">
-              <defs><path id="circ" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
-              <text><textPath href="#circ">Ameze Skin Elements · Houston TX · Est. W Gray St ·&#160;</textPath></text>
-            </svg>
-            <img src="img/logo.png" alt="">
-          </span>
-        </div>
       </div>
+      <span class="hero-badge" aria-hidden="true">
+        <svg class="ring" viewBox="0 0 200 200">
+          <defs><path id="circ" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+          <text><textPath href="#circ">Ameze Skin Elements · Houston TX · Est. W Gray St ·&#160;</textPath></text>
+        </svg>
+        <img src="img/logo.png" alt="">
+      </span>
     </section>
 
     <!-- CREDENTIAL MARQUEE -->
@@ -534,6 +588,7 @@
       <p class="sec-note rv">Live pricing from our booking system. Injectables are dosed per treatment plan — your exam decides the exact quote.</p>
     </div>
 
+    <div class="menu-grid">
     <div class="menu rv">
       <div class="tabs" role="tablist" aria-label="Service categories">
         <button class="tab on" role="tab" aria-selected="true" data-panel="p-inj">Injectables</button>
@@ -582,6 +637,16 @@
         <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Bridal Glow Menu</span><span class="lead"></span><span class="p">from $399</span></span><span class="d">A curated pre-wedding program — BioRePeel Glow, Hydro Facial and package options.</span></a>
       </div>
     </div>
+    <div class="menu-vis imgrv rv" aria-hidden="true">
+      <span class="frame">
+        <img data-for="p-inj" class="on" src="img/media/injectables.jpg" alt="" loading="lazy">
+        <img data-for="p-lip" src="img/media/routine.jpg" alt="" loading="lazy">
+        <img data-for="p-micro" src="img/media/treatment-still.jpg" alt="" loading="lazy">
+        <img data-for="p-facial" src="img/media/glow.jpg" alt="" loading="lazy">
+      </span>
+      <span class="cap" id="menu-vis-cap">The injectables suite</span>
+    </div>
+    </div>
     <p class="mono menu-foot rv"><span><b>Summer promo</b> — 10% off most services, applied at booking</span><span>Consultation $75 · GFE exam $39</span><span>Complimentary 2-week follow-up on injectables</span></p>
   </section>
 
@@ -624,9 +689,9 @@
       <p class="sec-note rv">Medical-grade treatments in a space that feels like self-care, not a clinic corridor.</p>
     </div>
     <div class="band rv">
-      <span class="shot"><img src="img/media/injectables.jpg" alt="Injector performing a Botox treatment" loading="lazy"><span class="cap">The injectables suite</span></span>
-      <span class="shot"><img src="img/media/facial.jpg" alt="Client receiving a clinical facial" loading="lazy"><span class="cap">Clinical facials</span></span>
-      <span class="shot"><img src="img/media/glow.jpg" alt="Woman using a skincare tool, glowing skin" loading="lazy"><span class="cap">The glow standard</span></span>
+      <span class="shot imgrv"><img src="img/media/injectables.jpg" alt="Injector performing a Botox treatment" loading="lazy"><span class="cap">The injectables suite</span></span>
+      <span class="shot imgrv"><img src="img/media/facial.jpg" alt="Client receiving a clinical facial" loading="lazy"><span class="cap">Clinical facials</span></span>
+      <span class="shot imgrv"><img src="img/media/glow.jpg" alt="Woman using a skincare tool, glowing skin" loading="lazy"><span class="cap">The glow standard</span></span>
     </div>
   </section>
 
@@ -642,20 +707,28 @@
   <section id="reviews" class="trust">
     <div class="hero-bg" aria-hidden="true"><span class="blob b2"></span></div>
     <div class="wrap" style="position:relative;z-index:2">
-      <p class="mono rv">04 — What clients say · verified Vagaro appointments</p>
-      <blockquote class="trust-quote rv">“I’ve had several injectors and she is definitely my new go-to. The follow-up is what I appreciate most — she always wants to make sure her clients are <em class="shimmer">satisfied with their results.</em>”</blockquote>
-      <p class="mono trust-attr rv">Sarah J — Botox® with Brenda Uhunmwagho · 5.0 / 5.0</p>
-      <div class="trust-grid">
-        <div class="rv">
-          <blockquote>“As a first-timer I had a great experience. I had reservations about trying Botox and now I’m returning for my second visit. She is detailed at finding the right treatment and explains the process clearly before and after.”</blockquote>
-          <p class="mono who">Andrew D — first-time Botox® client</p>
+      <div class="trust-inner">
+        <div>
+          <p class="mono rv">04 — What clients say · verified Vagaro appointments</p>
+          <blockquote class="trust-quote rv">“I’ve had several injectors and she is definitely my new go-to. The follow-up is what I appreciate most — she always wants to make sure her clients are <em class="shimmer">satisfied with their results.</em>”</blockquote>
+          <p class="mono trust-attr rv">Sarah J — Botox® with Brenda Uhunmwagho · 5.0 / 5.0</p>
+          <div class="trust-grid">
+            <div class="rv">
+              <blockquote>“As a first-timer I had a great experience. I had reservations about trying Botox and now I’m returning for my second visit. She is detailed at finding the right treatment and explains the process clearly before and after.”</blockquote>
+              <p class="mono who">Andrew D — first-time Botox® client</p>
+            </div>
+            <div class="rv">
+              <blockquote>“Customer service was great. She was detailed about what she was doing and gives great advice on how to keep up. A very relaxing environment — I am most definitely going back.”</blockquote>
+              <p class="mono who">Miriam A — verified client</p>
+            </div>
+          </div>
+          <p class="mono trust-scores rv mono-num"><span>Service 5.0</span><span>Punctuality 5.0</span><span>Value 5.0</span><span>Venue 5.0</span><span>Source: Vagaro published reviews</span></p>
         </div>
-        <div class="rv">
-          <blockquote>“Customer service was great. She was detailed about what she was doing and gives great advice on how to keep up. A very relaxing environment — I am most definitely going back.”</blockquote>
-          <p class="mono who">Miriam A — verified client</p>
+        <div class="trust-photo imgrv rv">
+          <span class="frame"><img src="img/media/facial.jpg" alt="Client mid-facial at the Ameze studio" loading="lazy"></span>
+          <span class="cap">Every face, examined first</span>
         </div>
       </div>
-      <p class="mono trust-scores rv mono-num"><span>Service 5.0</span><span>Punctuality 5.0</span><span>Value 5.0</span><span>Venue 5.0</span><span>Source: Vagaro published reviews</span></p>
     </div>
   </section>
 
@@ -771,6 +844,11 @@
 
   <!-- FINAL CTA -->
   <section class="fin">
+    <div class="fin-video" aria-hidden="true">
+      <video autoplay muted loop playsinline poster="img/media/hero-poster.jpg">
+        <source src="img/media/hero.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-bg" aria-hidden="true">
       <span class="blob b1"></span>
       <span class="spark" style="left:22%;top:30%"></span><span class="spark" style="left:70%;top:22%;animation-delay:1.8s"></span><span class="spark" style="left:56%;top:66%;animation-delay:3s"></span>
@@ -863,9 +941,50 @@
     });
   });
 
-  /* ── video: honor reduced motion ── */
-  var vid = document.querySelector('.hero-media video');
-  if (vid && reduce) { vid.removeAttribute('autoplay'); vid.pause(); }
+  /* ── videos: honor reduced motion ── */
+  document.querySelectorAll('video').forEach(function(v){
+    if (reduce) { v.removeAttribute('autoplay'); v.pause(); }
+  });
+
+  /* ── scroll progress + header state ── */
+  var sprog = document.getElementById('sprog'), hdr = document.querySelector('header');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      if (sprog) sprog.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+      if (hdr) hdr.classList.toggle('scrolled', h.scrollTop > 10);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* ── magnetic buttons (desktop, motion-safe) ── */
+  if (!reduce && matchMedia('(pointer:fine)').matches) {
+    document.querySelectorAll('.btn').forEach(function(b){
+      b.addEventListener('pointermove', function(e){
+        var r = b.getBoundingClientRect();
+        b.style.setProperty('--tx', ((e.clientX - r.left - r.width/2) / r.width * 8).toFixed(1) + 'px');
+        b.style.setProperty('--ty', ((e.clientY - r.top - r.height/2) / r.height * 6).toFixed(1) + 'px');
+      });
+      b.addEventListener('pointerleave', function(){
+        b.style.setProperty('--tx','0px'); b.style.setProperty('--ty','0px');
+      });
+    });
+  }
+
+  /* ── cursor glow on pricing rows ── */
+  if (!reduce && matchMedia('(pointer:fine)').matches) {
+    document.querySelectorAll('.prow').forEach(function(row){
+      row.addEventListener('pointermove', function(e){
+        var r = row.getBoundingClientRect();
+        row.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        row.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
 
   /* ── specials from content/specials.json ── */
   fetch('content/specials.json').then(function(r){ return r.ok ? r.json() : null; }).then(function(list){
@@ -900,6 +1019,14 @@
     ind.style.width = tab.offsetWidth+'px';
     ind.style.transform = 'translateX('+tab.offsetLeft+'px)';
   }
+  var visCaps = {'p-inj':'The injectables suite','p-lip':'Lips, done softly','p-micro':'Peels & microneedling','p-facial':'Clinical facials'};
+  function syncVis(panelId){
+    document.querySelectorAll('.menu-vis img').forEach(function(im){
+      im.classList.toggle('on', im.dataset.for === panelId);
+    });
+    var cap = document.getElementById('menu-vis-cap');
+    if (cap && visCaps[panelId]) cap.textContent = visCaps[panelId];
+  }
   tabs.forEach(function(tab){
     tab.addEventListener('click', function(){
       tabs.forEach(function(t){ t.classList.remove('on'); t.setAttribute('aria-selected','false'); });
@@ -909,6 +1036,7 @@
       var panel = document.getElementById(tab.dataset.panel);
       panel.classList.add('on');
       stagger(panel);
+      syncVis(tab.dataset.panel);
     });
   });
   window.addEventListener('resize', function(){ var on=document.querySelector('.tab.on'); if(on) moveInd(on); });
@@ -932,7 +1060,7 @@
   }
 
   /* ── scroll reveals ── */
-  var els = document.querySelectorAll('.rv');
+  var els = document.querySelectorAll('.rv, .imgrv');
   if (reduce || !('IntersectionObserver' in window)) {
     els.forEach(function(e){ e.classList.add('in'); });
     document.querySelectorAll('.prow').forEach(function(r){ r.classList.add('in'); });
