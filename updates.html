@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Request a Website Change — Ameze Skin Elements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6F2; --ink:#231C19; --muted:#5C5147;
+    --rose:#9C6875; --rose-deep:#7E4E5B; --rose-lt:#C98D96; --gold:#D8A98A;
+    --blush:#F2E7E1; --plum:#241820; --plum-2:#180F14;
+    --line:rgba(35,28,25,.16); --line-d:rgba(242,231,225,.16);
+    --serif:"Fraunces",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{overflow-x:clip}
+  body{background:radial-gradient(120% 90% at 70% 0%,#33222B 0%,var(--plum) 45%,var(--plum-2) 100%);
+    min-height:100svh;color:var(--blush);font-family:var(--sans);font-size:1rem;line-height:1.55;
+    -webkit-font-smoothing:antialiased;padding:clamp(1.25rem,4vw,3rem)}
+  .card{max-width:38rem;margin:clamp(1rem,5vh,4rem) auto;background:var(--paper);color:var(--ink);
+    padding:clamp(1.5rem,4vw,2.75rem);border-top:4px solid transparent;
+    border-image:linear-gradient(90deg,var(--rose),var(--gold)) 1}
+  .mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+  h1{font-family:var(--serif);font-weight:640;letter-spacing:-.03em;font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.1}
+  .sub{color:var(--muted);margin-top:.75rem;max-width:32rem}
+  .eyebrow{color:var(--rose-deep);margin-bottom:1rem;display:flex;align-items:center;gap:.7rem}
+  .eyebrow::before{content:"";width:2rem;height:1px;background:var(--rose)}
+  form{margin-top:2rem;display:grid;gap:1.25rem}
+  label{display:grid;gap:.45rem}
+  label>span{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-deep)}
+  input[type=text],input[type=email],select,textarea{
+    font-family:var(--sans);font-size:1rem;color:var(--ink);background:#fff;
+    border:1px solid var(--line);padding:.75rem .9rem;width:100%;border-radius:0;
+    transition:border-color .2s,box-shadow .2s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--rose);
+    box-shadow:0 0 0 3px rgba(156,104,117,.15)}
+  textarea{min-height:8rem;resize:vertical}
+  input[type=file]{font-size:.9rem;color:var(--muted)}
+  .hint{font-size:.8rem;color:var(--muted)}
+  button{font-family:var(--sans);font-size:1rem;font-weight:600;cursor:pointer;border:0;
+    background:linear-gradient(100deg,var(--rose-lt),var(--gold),#E8C6CE,var(--rose-lt));
+    background-size:220% 100%;color:var(--plum-2);padding:.9rem 1.6rem;
+    transition:background-position .5s,transform .2s,box-shadow .3s}
+  button:hover{background-position:95% 0;transform:translateY(-2px);box-shadow:0 6px 26px rgba(201,141,150,.45)}
+  .foot{margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--line);color:var(--muted);
+    font-family:var(--mono);font-size:.72rem;line-height:1.8;letter-spacing:.02em}
+  .brand{display:flex;align-items:center;gap:.6rem;margin-bottom:2rem}
+  .brand img{width:2.2rem}
+  .brand b{font-family:var(--serif);font-weight:600;font-size:1rem;color:var(--blush)}
+  .ok{max-width:38rem;margin:4rem auto;background:var(--paper);color:var(--ink);padding:2.5rem;display:none}
+  @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+  <div class="brand"><img src="img/logo.png" alt=""><b>Ameze Skin Elements — Website Care</b></div>
+
+  <div class="card" id="formcard">
+    <p class="mono eyebrow">Website change request</p>
+    <h1>Tell us what to change.<br>We'll handle the rest.</h1>
+    <p class="sub">Describe the update in plain words — a new price, this month's special, different hours, a blog post. You'll get a preview link to approve before anything goes live.</p>
+
+    <form name="site-update" method="POST" action="/updates.html?sent=1" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+      <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+      <input type="hidden" name="site" value="ameze">
+
+      <label><span>Your name</span>
+        <input type="text" name="name" required placeholder="Brenda">
+      </label>
+
+      <label><span>Email for the preview link</span>
+        <input type="email" name="email" required placeholder="you@example.com">
+      </label>
+
+      <label><span>What kind of change?</span>
+        <select name="category" required>
+          <option value="">Choose one…</option>
+          <option>Update a price</option>
+          <option>New monthly special / promotion</option>
+          <option>Change hours or location info</option>
+          <option>New blog post / announcement</option>
+          <option>Update text or wording</option>
+          <option>Something else</option>
+        </select>
+      </label>
+
+      <label><span>Which part of the site?</span>
+        <select name="section">
+          <option>Treatment menu / pricing</option>
+          <option>This month at Ameze (specials)</option>
+          <option>Hours &amp; locations</option>
+          <option>Reviews</option>
+          <option>Membership &amp; financing</option>
+          <option>Before &amp; aftercare</option>
+          <option>Not sure / other</option>
+        </select>
+      </label>
+
+      <label><span>Describe the change</span>
+        <textarea name="details" required placeholder="Example: The August special is 50 units of Botox for $425, and the Pineapple Honey facial is ending — please remove it."></textarea>
+      </label>
+
+      <label><span>Attach an image (optional)</span>
+        <input type="file" name="attachment" accept="image/*">
+        <span class="hint">New promo flyer, photo, logo update — up to 8&nbsp;MB.</span>
+      </label>
+
+      <label><span>When does this need to be live?</span>
+        <input type="text" name="deadline" placeholder="e.g. before Friday / no rush">
+      </label>
+
+      <button type="submit">Submit change request</button>
+    </form>
+
+    <p class="foot">Requests are reviewed and published by your web team, usually the same day.<br>Every change gets a preview before it goes live. Urgent? Call or text Faisel directly.</p>
+  </div>
+
+  <div class="ok card" id="okcard">
+    <p class="mono eyebrow">Request received</p>
+    <h1>Got it. ✨</h1>
+    <p class="sub">Your change request is in the queue. You'll receive a preview link by email — once you're happy with it, it goes live within minutes.</p>
+    <p class="foot"><a href="/updates" style="color:var(--rose-deep)">Submit another request</a> · <a href="/" style="color:var(--rose-deep)">Back to the site</a></p>
+  </div>
+
+  <script>
+    if (new URLSearchParams(location.search).get('sent')) {
+      document.getElementById('formcard').style.display = 'none';
+      var ok = document.getElementById('okcard'); ok.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

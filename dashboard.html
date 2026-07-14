@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Approvals — Ameze Website Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6F2; --ink:#231C19; --muted:#5C5147;
+    --rose:#9C6875; --rose-deep:#7E4E5B; --rose-lt:#C98D96; --gold:#D8A98A;
+    --blush:#F2E7E1; --plum:#241820; --plum-2:#180F14;
+    --line:rgba(35,28,25,.16); --line-d:rgba(242,231,225,.14);
+    --ok:#3E7A52; --bad:#9C3D3D;
+    --serif:"Fraunces",Georgia,serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:radial-gradient(120% 90% at 70% 0%,#33222B 0%,var(--plum) 45%,var(--plum-2) 100%);
+    min-height:100svh;color:var(--blush);font-family:var(--sans);line-height:1.5;
+    -webkit-font-smoothing:antialiased;padding:clamp(1rem,3vw,2.5rem)}
+  .mono{font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase}
+  header{display:flex;align-items:center;gap:.7rem;max-width:60rem;margin:0 auto 2rem}
+  header img{width:2.2rem}
+  header b{font-family:var(--serif);font-weight:600;font-size:1.05rem}
+  header .mono{margin-left:auto;color:rgba(242,231,225,.6)}
+  main{max-width:60rem;margin:0 auto;display:grid;gap:2rem}
+  h2{font-family:var(--serif);font-weight:600;letter-spacing:-.02em;font-size:1.35rem;
+    display:flex;align-items:baseline;gap:.6rem}
+  h2 .count{font-family:var(--mono);font-size:.8rem;color:var(--gold)}
+  .card{background:var(--paper);color:var(--ink);padding:1.3rem 1.4rem;border-left:3px solid var(--rose);
+    display:grid;gap:.55rem}
+  .card + .card{margin-top:.8rem}
+  .card .t{font-family:var(--serif);font-weight:580;font-size:1.08rem;letter-spacing:-.01em}
+  .card .meta{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.03em}
+  .card .body{font-size:.9rem;color:var(--muted);white-space:pre-wrap;max-height:9rem;overflow:auto;
+    border-top:1px solid var(--line);padding-top:.55rem}
+  .row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.4rem}
+  .btn{font-family:var(--sans);font-size:.86rem;font-weight:600;cursor:pointer;border:1px solid var(--line);
+    background:#fff;color:var(--ink);padding:.5rem 1rem;text-decoration:none;display:inline-block;
+    transition:transform .15s,box-shadow .2s,background .2s}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(35,28,25,.15)}
+  .btn.approve{background:linear-gradient(100deg,var(--rose-lt),var(--gold));border:0;color:var(--plum-2)}
+  .btn.approve:hover{box-shadow:0 6px 20px rgba(201,141,150,.5)}
+  .btn.reject{color:var(--bad);border-color:rgba(156,61,61,.4)}
+  .btn.link{color:var(--rose-deep)}
+  .empty{color:rgba(242,231,225,.55);font-size:.92rem;border:1px dashed var(--line-d);padding:1.2rem 1.4rem}
+  .done{border-left-color:var(--ok)}
+  .done-note{font-family:var(--mono);font-size:.78rem;color:var(--ok)}
+  /* login gate */
+  #gate{max-width:24rem;margin:18vh auto;background:var(--paper);color:var(--ink);padding:2.2rem;display:grid;gap:1rem}
+  #gate h1{font-family:var(--serif);font-weight:640;font-size:1.5rem;letter-spacing:-.02em}
+  #gate input{font-family:var(--mono);font-size:1rem;padding:.7rem .9rem;border:1px solid var(--line);width:100%}
+  #gate input:focus{outline:none;border-color:var(--rose);box-shadow:0 0 0 3px rgba(156,104,117,.15)}
+  #gate button{font-weight:600;cursor:pointer;border:0;padding:.8rem 1.2rem;
+    background:linear-gradient(100deg,var(--rose-lt),var(--gold));color:var(--plum-2)}
+  #gate .err{color:var(--bad);font-size:.85rem;display:none}
+  [hidden]{display:none!important}
+  .refresh{background:none;border:1px solid var(--line-d);color:rgba(242,231,225,.7);cursor:pointer;
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;padding:.45rem .9rem}
+  .refresh:hover{border-color:var(--gold);color:var(--gold)}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <h1>Approvals</h1>
+  <p style="color:var(--muted);font-size:.9rem">Enter your admin key to see pending website changes.</p>
+  <input id="key" type="password" placeholder="admin key" autocomplete="current-password">
+  <p class="err" id="err">That key was rejected.</p>
+  <button onclick="login()">Open dashboard</button>
+</div>
+
+<div id="app" hidden>
+  <header>
+    <img src="img/logo.png" alt=""><b>Website Care — Approvals</b>
+    <span class="mono" id="stamp"></span>
+    <button class="refresh" onclick="load()">Refresh</button>
+  </header>
+  <main>
+    <section>
+      <h2>Ready to approve <span class="count" id="prcount"></span></h2>
+      <div id="prs"></div>
+    </section>
+    <section>
+      <h2>Requests in progress <span class="count" id="isscount"></span></h2>
+      <div id="issues"></div>
+    </section>
+  </main>
+</div>
+
+<script>
+const API = "/.netlify/functions/dashboard-api";
+let KEY = localStorage.getItem("adminKey") || "";
+
+function esc(s){const d=document.createElement("div");d.textContent=s||"";return d.innerHTML}
+function fmt(iso){return new Date(iso).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}
+
+async function api(opts){
+  const r = await fetch(API, {headers:{"x-admin-key":KEY,"Content-Type":"application/json"}, ...opts});
+  if (r.status===401) throw new Error("unauthorized");
+  return r.json();
+}
+
+async function login(){
+  KEY = document.getElementById("key").value.trim();
+  try { await api(); localStorage.setItem("adminKey", KEY); boot(); }
+  catch(e){ document.getElementById("err").style.display="block"; }
+}
+
+function boot(){
+  document.getElementById("gate").hidden = true;
+  document.getElementById("app").hidden = false;
+  load();
+}
+
+async function load(){
+  const data = await api();
+  document.getElementById("stamp").textContent = "updated " + new Date().toLocaleTimeString();
+  const prs = document.getElementById("prs"), iss = document.getElementById("issues");
+  document.getElementById("prcount").textContent = data.prs.length || "";
+  document.getElementById("isscount").textContent = data.issues.length || "";
+
+  prs.innerHTML = data.prs.length ? data.prs.map(p => `
+    <div class="card" id="pr-${p.number}">
+      <div class="t">${esc(p.title)}</div>
+      <div class="meta">PR #${p.number} · ${esc(p.branch)} · ${fmt(p.created_at)}</div>
+      <div class="body">${esc(p.body.slice(0,600))}</div>
+      <div class="row">
+        ${p.preview ? `<a class="btn link" href="${p.preview}" target="_blank" rel="noopener">👁 Preview</a>` : ""}
+        <a class="btn link" href="${p.diff_url}" target="_blank" rel="noopener">Diff</a>
+        <button class="btn approve" onclick="approve(${p.number})">✓ Approve &amp; publish</button>
+        <button class="btn reject" onclick="reject(${p.number})">✕ Reject</button>
+      </div>
+    </div>`).join("") : `<div class="empty">Nothing waiting on you. ✨</div>`;
+
+  iss.innerHTML = data.issues.length ? data.issues.map(i => `
+    <div class="card" id="iss-${i.number}">
+      <div class="t">${esc(i.title)}</div>
+      <div class="meta">Issue #${i.number} · ${fmt(i.created_at)}</div>
+      <div class="body">${esc(i.body.split("---")[0].slice(0,600))}</div>
+      <div class="row">
+        <a class="btn link" href="${i.url}" target="_blank" rel="noopener">Open on GitHub</a>
+        <button class="btn reject" onclick="dismiss(${i.number})">Dismiss request</button>
+      </div>
+    </div>`).join("") : `<div class="empty">No open requests. The agent is caught up.</div>`;
+}
+
+async function approve(n){
+  const el = document.getElementById("pr-"+n);
+  el.style.opacity=.5;
+  const r = await api({method:"POST", body:JSON.stringify({op:"merge", number:n})});
+  if (r.merged){ el.classList.add("done"); el.style.opacity=1;
+    el.querySelector(".row").innerHTML = `<span class="done-note">✓ Merged — Netlify is deploying now</span>`;
+  } else { el.style.opacity=1; alert("Merge failed: " + (r.message||"unknown")); }
+}
+
+async function reject(n){
+  const note = prompt("Why is this rejected? (posted as a comment for the agent — leave blank to skip)");
+  const el = document.getElementById("pr-"+n); el.style.opacity=.5;
+  await api({method:"POST", body:JSON.stringify({op:"close", kind:"pr", number:n,
+    note: note ? "Rejected by reviewer: " + note + "\n\n@claude please revise per the note above." : ""})});
+  load();
+}
+
+async function dismiss(n){
+  const note = prompt("Optional closing note for the client record:");
+  await api({method:"POST", body:JSON.stringify({op:"close", kind:"issue", number:n, note: note||""})});
+  load();
+}
+
+if (KEY) { api().then(boot).catch(()=>{ localStorage.removeItem("adminKey"); }); }
+document.getElementById("key").addEventListener("keydown", e=>{ if(e.key==="Enter") login(); });
+</script>
+</body>
+</html>
