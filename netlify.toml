@@ -19,21 +19,33 @@
   status = 200
 
 # The site publishes the repo root, so source and docs would otherwise be fetchable.
-# These only affect the static path — the function itself lives at /.netlify/functions/.
+# force = true is required: without it Netlify serves the real file and ignores the
+# rule. These only affect the static path — the function itself lives at
+# /.netlify/functions/ and is matched by neither pattern.
 [[redirects]]
   from = "/netlify/*"
   to = "/404.html"
   status = 404
+  force = true
 
 [[redirects]]
   from = "/.github/*"
   to = "/404.html"
   status = 404
+  force = true
 
+# Listed explicitly rather than as /*.md — Netlify's splat does not match a suffix
 [[redirects]]
-  from = "/*.md"
+  from = "/SETUP.md"
   to = "/404.html"
   status = 404
+  force = true
+
+[[redirects]]
+  from = "/CLAUDE.md"
+  to = "/404.html"
+  status = 404
+  force = true
 
 # Specials are edited from /admin and must never be served stale
 [[headers]]
