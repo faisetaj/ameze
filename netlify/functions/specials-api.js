@@ -44,7 +44,16 @@ exports.handler = async (event) => {
   const repo = process.env.REPO;
   const token = process.env.GH_TOKEN;
   const branch = process.env.BRANCH || "main";
-  if (!repo || !token) return json(500, { error: "Missing REPO or GH_TOKEN env var" });
+  const missing = ["REPO", "GH_TOKEN"].filter((v) => !process.env[v]);
+  if (missing.length) {
+    return json(500, {
+      error:
+        `This site is missing ${missing.join(" and ")} in its Netlify environment variables. ` +
+        `REPO is the GitHub repo as "owner/name"; GH_TOKEN is the fine-grained token with ` +
+        `Contents: Read & write on it. Add ${missing.length > 1 ? "them" : "it"} under Site ` +
+        `configuration → Environment variables with Scopes including Functions, then redeploy.`,
+    });
+  }
 
   const gh = (path, opts = {}) =>
     fetch(`${GH_API}${path}`, {
