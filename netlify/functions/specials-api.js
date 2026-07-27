@@ -30,16 +30,26 @@ exports.handler = async (event) => {
   // anyone having to share a key or a token.
   const set = (v) => !!(process.env[v] || "").trim();
   if (event.httpMethod === "GET" && (event.queryStringParameters || {}).op === "health") {
-    // Does the token actually work? Report the status code only, never a value.
-    let github = "not checked";
+    // Does the token actually work? Status codes, the token's own account name, and
+    // whether the target repo is among the ones it can see. No values, no secrets.
+    let github = "not checked", tokenAccount = null, canSeeRepo = null, visibleRepos = null;
     if (set("REPO") && set("GH_TOKEN")) {
+      const auth = { Authorization: `Bearer ${process.env.GH_TOKEN.trim()}`,
+                     Accept: "application/vnd.github+json" };
+      const target = process.env.REPO.trim().toLowerCase();
       try {
-        const r = await fetch(
-          `${GH_API}/repos/${process.env.REPO.trim()}/contents/${JSON_PATH}`,
-          { headers: { Authorization: `Bearer ${process.env.GH_TOKEN.trim()}`,
-                       Accept: "application/vnd.github+json" } }
-        );
+        const r = await fetch(`${GH_API}/repos/${process.env.REPO.trim()}/contents/${JSON_PATH}`, { headers: auth });
         github = r.ok ? "ok" : `HTTP ${r.status} — ${(await r.json().catch(() => ({}))).message || r.statusText}`;
+
+        const who = await fetch(`${GH_API}/user`, { headers: auth });
+        tokenAccount = who.ok ? (await who.json()).login : `HTTP ${who.status}`;
+
+        const list = await fetch(`${GH_API}/user/repos?per_page=100`, { headers: auth });
+        if (list.ok) {
+          const repos = await list.json();
+          visibleRepos = repos.length;
+          canSeeRepo = repos.some((x) => (x.full_name || "").toLowerCase() === target);
+        }
       } catch (e) {
         github = "network error: " + e.message;
       }
@@ -53,6 +63,9 @@ exports.handler = async (event) => {
       repoLooksValid: /^[\w.-]+\/[\w.-]+$/.test((process.env.REPO || "").trim()),
       branch: process.env.BRANCH || "main",
       github,
+      tokenAccount,
+      canSeeRepo,
+      visibleRepos,
     });
   }
 
