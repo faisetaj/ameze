@@ -12,3 +12,14 @@
   from = "/dashboard"
   to = "/dashboard.html"
   status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+
+# Specials are edited from /admin and must never be served stale
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

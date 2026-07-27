@@ -34,6 +34,7 @@ Site settings → **Environment variables** → add:
 | `GH_TOKEN` | the fine-grained PAT from step 1.3 |
 | `REPO` | `faisetaj/ameze` |
 | `ADMIN_KEY` | a passphrase you invent — this is your /dashboard login |
+| `CMS_KEY` | a **different** passphrase — this is the client's /admin login. Give her this one, never `ADMIN_KEY` (if you skip it, /admin falls back to `ADMIN_KEY`) |
 | `SITE_NAME` | your Netlify site name, e.g. `ameze` if the site is `ameze.netlify.app` |
 | `NETLIFY_TOKEN` | *(optional)* a Netlify personal access token (User settings → Applications) — lets client image uploads get committed straight into the repo |
 
@@ -43,10 +44,44 @@ Netlify auto-detects the form on `updates.html` during that deploy.
 Also check: Site configuration → **Deploy previews** is set to "Any pull request"
 (default) — that's what powers the 👁 Preview button on the dashboard.
 
-## 3. Daily workflow
+## 3. The promotions editor (/admin)
 
-- Client submits at `https://<site>.netlify.app/updates` (bookmark it for her; it's
-  unlinked from the main site).
+The "This month at Ameze" cards are a small hybrid CMS: the site stays static HTML, but
+those four cards render from `content/specials.json`, and the client edits them herself at
+`https://<site>.netlify.app/admin` — no GitHub, no PR, no waiting on you.
+
+```
+She opens /admin  →  edits a price / drops in a new flyer / reorders
+  →  Publish  →  one commit to main (JSON + the no-JS fallback cards + the image)
+    →  Netlify deploys  →  live in ~60 seconds
+```
+
+What it does for her:
+
+- **Edit** name, price and small print in place; drag or tap to swap the flyer image.
+- **Reorder** with ↑ ↓, remove with ×, or tick *Hide this one for now* to park a special
+  without losing it (hidden ones drop out of the live grid but stay in the JSON).
+- **Preview** renders the real cards at real proportions before anything is committed.
+- **Earlier versions → Restore** puts any previous published set back — the undo button.
+
+Notes for you:
+
+- Uploads are downscaled to 1400px JPEG in the browser, so a phone photo lands as ~200 KB
+  and the page stays fast. They're committed to `img/uploads/<special-name>.jpg`.
+- Publishing writes `content/specials.json` **and** rewrites the static fallback cards
+  between the `<!-- specials:start -->` / `<!-- specials:end -->` markers in `index.html`,
+  in a single commit — so JS and no-JS visitors never drift apart. Don't delete those
+  markers.
+- Prices are copied verbatim, never reformatted. The API rejects empty names/prices,
+  non-https booking links, images outside `img/`, and more than 8 cards.
+- Bookmark `/admin` on her phone — the editor is built for it.
+
+## 4. Daily workflow
+
+- Specials and promotions: she does those herself at `/admin` (section 3) — they never
+  reach you.
+- Everything else: she submits at `https://<site>.netlify.app/updates` (bookmark it for
+  her; it's unlinked from the main site).
 - You get a GitHub notification when the PR opens (or just check the dashboard).
 - Open `https://<site>.netlify.app/dashboard`, enter your admin key once:
   - **👁 Preview** — the change on a live preview URL
@@ -63,7 +98,11 @@ Also check: Site configuration → **Deploy previews** is set to "Any pull reque
 ## Scaling to more clients
 
 Everything here is repo-local boilerplate: copy `updates.html`, `dashboard.html`,
-`netlify/`, `.github/workflows/claude.yml`, `netlify.toml`, and `CLAUDE.md` into each
-new client repo, set the same five env vars on that site, install the GitHub App on the
-repo, done. Each client gets their own portal on their own domain; all requests land in
-your GitHub notifications.
+`admin.html`, `netlify/`, `.github/workflows/claude.yml`, `netlify.toml`, and `CLAUDE.md`
+into each new client repo, set the same six env vars on that site, install the GitHub App
+on the repo, done. Each client gets their own portal on their own domain; all requests land
+in your GitHub notifications.
+
+To point the promotions editor at a different section on another site, the only
+site-specific pieces in `netlify/functions/specials-api.js` are the `JSON_PATH` /
+`PAGE_PATH` constants and the `fallbackCards()` markup — everything else is generic.

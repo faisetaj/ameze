@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ameze Skin Elements — Medical Spa &amp; Skincare Clinic, Houston TX</title>
-<meta name="description" content="RN-led medical spa in Houston, Texas. Botox®, Dysport®, DAXXIFY®, lip filler, exosome microneedling, BioRePeel and clinical facials. Book online.">
+<meta name="description" content="Medical esthetician–led medical spa in Houston, Texas. Botox®, Dysport®, DAXXIFY®, lip filler, exosome microneedling, BioRePeel and clinical facials. Book online.">
 <script>
   /* theme before first paint */
   try { var t = localStorage.getItem("ameze-theme"); if (t) document.documentElement.dataset.theme = t; } catch(e){}
@@ -542,7 +542,7 @@
       <div class="hero-veil" aria-hidden="true"></div>
       <div class="wrap grid">
         <div class="hero-main">
-          <p class="mono hero-eyebrow rv">RN-led medical spa — Houston, Texas</p>
+          <p class="mono hero-eyebrow rv">Medical esthetician &amp; cosmetic injector — Houston, Texas</p>
           <h1><span class="hl"><span>Good skin isn’t luck.</span></span><span class="hl"><span>It’s <em class="shimmer">protocol.</em></span></span></h1>
           <p class="hero-lede lede rv">Injectables, exosome microneedling and clinical skincare — every treatment begins with a facial exam, and every result gets a follow-up. Natural-looking work by an injector who wants to see you back, not redone.</p>
           <div class="hero-cta rv">
@@ -658,6 +658,7 @@
       <p class="sec-note rv">Limited-run specials, straight from the studio. Prices hold while the offer runs.</p>
     </div>
     <div class="offers" id="offers-grid">
+      <!-- specials:start -->
       <a class="offer rv" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener">
         <span class="imgw"><img src="img/july-special.jpg" alt="Fourth of July special — Botox and Daxxify offer flyer"></span>
         <span class="c"><b>Summer Toxin Special</b><span>$299</span></span>
@@ -678,6 +679,7 @@
         <span class="c"><b>Bridal Glow Menu</b><span>from $129</span></span>
         <span class="mono">Wedding-day skin, planned like the wedding</span>
       </a>
+      <!-- specials:end -->
     </div>
   </section>
 
@@ -986,15 +988,21 @@
     });
   }
 
-  /* ── specials from content/specials.json ── */
+  /* ── specials from content/specials.json (written by /admin) ── */
+  function escHtml(v){
+    return String(v == null ? '' : v)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
   fetch('content/specials.json').then(function(r){ return r.ok ? r.json() : null; }).then(function(list){
     if (!list || !list.length) return;
+    list = list.filter(function(s){ return s && !s.hidden; });
+    if (!list.length) return;
     var grid = document.getElementById('offers-grid');
     grid.innerHTML = list.map(function(s){
-      return '<a class="offer rv in" data-book href="'+s.href+'" target="_blank" rel="noopener">'
-        + '<span class="imgw"><img src="'+s.img+'" alt="'+(s.alt||s.title)+'" loading="lazy"></span>'
-        + '<span class="c"><b>'+s.title+'</b><span>'+s.price+'</span></span>'
-        + '<span class="mono">'+(s.note||'')+'</span></a>';
+      return '<a class="offer rv in" data-book href="'+escHtml(s.href)+'" target="_blank" rel="noopener">'
+        + '<span class="imgw"><img src="'+escHtml(s.img)+'" alt="'+escHtml(s.alt||s.title)+'" loading="lazy"></span>'
+        + '<span class="c"><b>'+escHtml(s.title)+'</b><span>'+escHtml(s.price)+'</span></span>'
+        + '<span class="mono">'+escHtml(s.note||'')+'</span></a>';
     }).join('');
     grid.querySelectorAll('[data-book]').forEach(function(a){
       a.addEventListener('click', function(e){ e.preventDefault(); openBook(a.getAttribute('href')); });

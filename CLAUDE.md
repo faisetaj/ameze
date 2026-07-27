@@ -12,13 +12,23 @@ Change requests arrive as GitHub issues labeled `site-update`, filed from the /u
 4. If a request is ambiguous, contradictory, or out of scope, do NOT guess. Comment on the
    issue asking a specific clarifying question, and stop.
 
-## Weekly specials — the most common request
+## Weekly specials — the client edits these herself
 
-The "This month at Ameze" section renders from **`content/specials.json`** at page load.
-To add/swap/remove a special: edit that JSON file ONLY (title, price, note, img, alt, href).
-Client-uploaded flyer images land in `img/uploads/` — reference them there, or copy to
-`img/` with a sensible name. Also update the matching static fallback cards inside
-`index.html` (`#offers-grid`) so no-JS visitors see the same specials.
+The "This month at Ameze" section is CMS-managed. The client publishes it from **`/admin`**,
+which commits `content/specials.json` and regenerates the static fallback cards in
+`index.html` in one commit. **Prefer to let her do it** — if an issue asks for a specials
+change, reply on the issue pointing her to `/admin` rather than opening a PR, unless she's
+explicitly asked you to do it for her.
+
+If you do edit specials by hand:
+
+- Edit `content/specials.json` (title, price, note, img, alt, href, optional `hidden: true`).
+- Mirror the change into the static fallback cards between the
+  `<!-- specials:start -->` / `<!-- specials:end -->` markers in `index.html` (`#offers-grid`)
+  so no-JS visitors see the same specials. **Never remove those marker comments** — `/admin`
+  needs them to find the block, and publishing breaks without them.
+- Client-uploaded flyer images land in `img/uploads/` — reference them there, or copy to
+  `img/` with a sensible name.
 
 ## What you may edit
 
@@ -34,7 +44,10 @@ Client-uploaded flyer images land in `img/uploads/` — reference them there, or
 - Legal/trademark text in the footer colophon.
 - The overall design system: fonts, color tokens, animations, layout structure.
 - Anything in `netlify/`, `.github/`, `netlify.toml`, `dashboard.html`, `updates.html`,
-  or this file. If an issue asks for that, comment that it needs the developer (Faisel).
+  `admin.html`, or this file. If an issue asks for that, comment that it needs the
+  developer (Faisel).
+- The credential line. She is a **medical esthetician and cosmetic injector** — not an RN,
+  not a nurse, not a physician. Never upgrade or invent a credential.
 
 ## Style rules for content edits
 

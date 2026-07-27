@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Promotions — Ameze Skin Elements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6F2; --paper-2:#F3EBE6; --ink:#231C19; --muted:#5C5147;
+    --rose:#9C6875; --rose-deep:#7E4E5B; --rose-lt:#C98D96; --gold:#D8A98A;
+    --blush:#F2E7E1; --plum:#241820; --plum-2:#180F14;
+    --line:rgba(35,28,25,.16); --line-d:rgba(242,231,225,.16);
+    --ok:#3E7A52; --bad:#9C3D3D;
+    --serif:"Fraunces",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:radial-gradient(120% 90% at 70% 0%,#33222B 0%,var(--plum) 45%,var(--plum-2) 100%);
+    min-height:100svh;color:var(--blush);font-family:var(--sans);line-height:1.55;
+    -webkit-font-smoothing:antialiased;padding:clamp(1rem,3vw,2.5rem)}
+  .mono{font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase}
+  [hidden]{display:none!important}
+
+  /* ── login gate ── */
+  #gate{max-width:24rem;margin:16vh auto;background:var(--paper);color:var(--ink);
+    padding:2.2rem;display:grid;gap:1rem;border-top:4px solid transparent;
+    border-image:linear-gradient(90deg,var(--rose),var(--gold)) 1}
+  #gate h1{font-family:var(--serif);font-weight:640;font-size:1.5rem;letter-spacing:-.02em}
+  #gate p{color:var(--muted);font-size:.9rem}
+  #gate input{font-family:var(--mono);font-size:1rem;padding:.75rem .9rem;border:1px solid var(--line);width:100%;background:#fff;color:var(--ink)}
+  #gate input:focus{outline:none;border-color:var(--rose);box-shadow:0 0 0 3px rgba(156,104,117,.15)}
+  #gate .err{color:var(--bad);font-size:.85rem;display:none}
+
+  /* ── shell ── */
+  header{display:flex;align-items:center;gap:.7rem;max-width:52rem;margin:0 auto 1.6rem;flex-wrap:wrap}
+  header img{width:2.2rem}
+  header b{font-family:var(--serif);font-weight:600;font-size:1.05rem}
+  header .spacer{margin-left:auto}
+  header a{color:rgba(242,231,225,.65);text-decoration:none}
+  header a:hover{color:var(--gold)}
+  main{max-width:52rem;margin:0 auto}
+  .lede{color:rgba(242,231,225,.7);font-size:.95rem;margin-bottom:1.6rem;max-width:38rem}
+
+  /* ── special editor cards ── */
+  .item{background:var(--paper);color:var(--ink);padding:1.1rem;margin-bottom:.9rem;
+    display:grid;grid-template-columns:9rem 1fr;gap:1.1rem;border-left:3px solid var(--rose)}
+  .item.is-hidden{border-left-color:var(--line);opacity:.62}
+  @media(max-width:600px){.item{grid-template-columns:1fr}}
+
+  .drop{position:relative;display:block;cursor:pointer;background:var(--paper-2);
+    border:1px dashed var(--line);aspect-ratio:3/4;overflow:hidden}
+  .drop img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+  .drop .ph{position:absolute;inset:0;display:grid;place-content:center;text-align:center;
+    padding:.6rem;color:var(--muted);font-family:var(--mono);font-size:.66rem;
+    letter-spacing:.05em;text-transform:uppercase;line-height:1.7}
+  .drop:hover,.drop.over{border-color:var(--rose);background:#fff}
+  .drop .swap{position:absolute;left:0;right:0;bottom:0;background:rgba(35,28,25,.72);color:#fff;
+    font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;
+    text-align:center;padding:.35rem;opacity:0;transition:opacity .2s}
+  .drop:hover .swap{opacity:1}
+
+  .fields{display:grid;gap:.7rem;align-content:start}
+  .fields .top{display:flex;gap:.6rem;align-items:center}
+  .fields .top .mono{color:var(--rose-deep);margin-right:auto}
+  label{display:grid;gap:.3rem}
+  label>span{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-deep)}
+  input[type=text]{font-family:var(--sans);font-size:.95rem;color:var(--ink);background:#fff;
+    border:1px solid var(--line);padding:.6rem .75rem;width:100%;transition:border-color .2s,box-shadow .2s}
+  input[type=text]:focus{outline:none;border-color:var(--rose);box-shadow:0 0 0 3px rgba(156,104,117,.15)}
+  .two{display:grid;grid-template-columns:1fr 10rem;gap:.7rem}
+  @media(max-width:520px){.two{grid-template-columns:1fr}}
+  details.more{border-top:1px solid var(--line);padding-top:.6rem}
+  details.more summary{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted);cursor:pointer}
+  details.more .inner{display:grid;gap:.7rem;margin-top:.7rem}
+  .check{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--muted);cursor:pointer}
+  .check input{accent-color:var(--rose)}
+
+  /* ── buttons ── */
+  .icon{border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;
+    width:1.9rem;height:1.9rem;font-size:.9rem;line-height:1;display:grid;place-content:center}
+  .icon:hover{border-color:var(--rose);color:var(--rose-deep)}
+  .icon.del:hover{border-color:var(--bad);color:var(--bad)}
+  .icon:disabled{opacity:.3;cursor:default}
+  .bar{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-top:1.2rem;
+    position:sticky;bottom:0;background:linear-gradient(180deg,transparent,var(--plum-2) 45%);
+    padding:1rem 0 .3rem}
+  .btn{font-family:var(--sans);font-size:.9rem;font-weight:600;cursor:pointer;
+    border:1px solid var(--line-d);background:transparent;color:var(--blush);padding:.65rem 1.15rem;
+    transition:border-color .2s,color .2s,transform .15s}
+  .btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-1px)}
+  .btn.primary{border:0;color:var(--plum-2);
+    background:linear-gradient(100deg,var(--rose-lt),var(--gold),#E8C6CE,var(--rose-lt));
+    background-size:220% 100%;transition:background-position .5s,transform .2s,box-shadow .3s}
+  .btn.primary:hover{background-position:95% 0;box-shadow:0 6px 24px rgba(201,141,150,.4)}
+  .btn:disabled{opacity:.45;cursor:default;transform:none;box-shadow:none}
+  .status{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;margin-left:auto}
+  .status.ok{color:#8FD6A6}
+  .status.bad{color:#E8A0A0}
+
+  /* ── preview (real card markup, real styles) ── */
+  /* break out of the 52rem editor column so the cards sit at real-site width */
+  #preview{background:#fff;color:var(--ink);padding:clamp(1rem,3vw,2rem);margin-top:.6rem;
+    position:relative;left:50%;transform:translateX(-50%);width:min(94vw,1200px)}
+  #preview .pv-head{font-family:var(--serif);font-weight:640;font-size:1.6rem;
+    letter-spacing:-.03em;margin-bottom:1.2rem}
+  .offers{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  @media(min-width:900px){.offers{grid-template-columns:repeat(4,1fr)}}
+  @media(max-width:520px){.offers{grid-template-columns:1fr}}
+  .offer{background:#fff;padding:1.1rem;text-decoration:none;color:var(--ink);display:block}
+  .offer .imgw{overflow:hidden;display:block}
+  .offer img{width:100%;height:11rem;object-fit:cover;object-position:top;filter:saturate(.95)}
+  .offer .c{display:flex;justify-content:space-between;gap:1rem;margin-top:.95rem;align-items:baseline}
+  .offer .c b{font-family:var(--serif);font-weight:580;font-size:1.05rem;letter-spacing:-.01em}
+  .offer .c span{font-family:var(--mono);font-size:.84rem;white-space:nowrap;color:var(--rose-deep)}
+  .offer .mono{display:block;margin-top:.3rem;color:var(--muted)}
+
+  /* ── history ── */
+  .history{margin-top:2.2rem;border-top:1px solid var(--line-d);padding-top:1rem}
+  .history summary{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;
+    text-transform:uppercase;color:rgba(242,231,225,.6);cursor:pointer}
+  .history ul{list-style:none;margin-top:.9rem;display:grid;gap:.5rem}
+  .history li{display:flex;gap:.8rem;align-items:center;font-size:.85rem;
+    color:rgba(242,231,225,.75);border:1px solid var(--line-d);padding:.55rem .8rem}
+  .history li .when{font-family:var(--mono);font-size:.7rem;color:rgba(242,231,225,.5);margin-left:auto}
+  .history button{background:none;border:1px solid var(--line-d);color:rgba(242,231,225,.75);
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;
+    padding:.35rem .7rem;cursor:pointer}
+  .history button:hover{border-color:var(--gold);color:var(--gold)}
+  @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <h1>This month at Ameze</h1>
+  <p>Enter your passphrase to edit the promotions on the home page.</p>
+  <input id="key" type="password" placeholder="passphrase" autocomplete="current-password">
+  <p class="err" id="err">That passphrase was rejected.</p>
+  <button class="btn primary" onclick="login()" style="justify-self:start">Open editor</button>
+</div>
+
+<div id="app" hidden>
+  <header>
+    <img src="img/logo.png" alt=""><b>Promotions editor</b>
+    <span class="spacer"></span>
+    <a class="mono" href="/" target="_blank" rel="noopener">View site ↗</a>
+  </header>
+
+  <main>
+    <p class="lede">These are the four cards under <b>“This month at Ameze.”</b>
+      Change a price, swap a flyer, reorder them — then hit Publish and the website
+      updates itself in about a minute.</p>
+
+    <div id="list"></div>
+
+    <div class="bar">
+      <button class="btn" onclick="addItem()">+ Add a special</button>
+      <button class="btn" onclick="togglePreview()" id="pvbtn">Preview</button>
+      <button class="btn primary" onclick="publish()" id="pubbtn">Publish to the website</button>
+      <span class="status" id="status"></span>
+    </div>
+
+    <section id="preview" hidden>
+      <div class="pv-head">This month at Ameze</div>
+      <div class="offers" id="pvgrid"></div>
+    </section>
+
+    <details class="history">
+      <summary>Earlier versions — undo a change</summary>
+      <ul id="hist"><li>Nothing published from here yet.</li></ul>
+    </details>
+  </main>
+</div>
+
+<script>
+const API = "/.netlify/functions/specials-api";
+const BOOKING = "https://www.vagaro.com/amezeskinelements/services";
+const MAX_W = 1400;                       // flyers are downscaled before upload
+let KEY = localStorage.getItem("cmsKey") || "";
+let items = [];
+let busy = false;
+
+/* ── api ── */
+async function api(opts){
+  const r = await fetch(API, {headers:{"x-cms-key":KEY,"Content-Type":"application/json"}, ...opts});
+  if (r.status === 401) throw new Error("unauthorized");
+  const data = await r.json().catch(()=>({}));
+  if (!r.ok) throw new Error(data.error || ("Request failed (" + r.status + ")"));
+  return data;
+}
+
+async function login(){
+  KEY = document.getElementById("key").value.trim();
+  try { const d = await api(); localStorage.setItem("cmsKey", KEY); boot(d); }
+  catch(e){ document.getElementById("err").style.display = "block"; }
+}
+
+function boot(data){
+  document.getElementById("gate").hidden = true;
+  document.getElementById("app").hidden = false;
+  items = (data.specials || []).map(s => Object.assign({}, s));
+  render();
+  renderHistory(data.history || []);
+}
+
+/* ── editor ── */
+function esc(s){ const d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; }
+
+/* Take the server's saved copy but keep showing the just-uploaded image from
+   memory — the committed file needs a Netlify deploy before its URL resolves. */
+function adopt(saved){
+  return saved.map((s, i) => {
+    const it = Object.assign({}, s);
+    if (items[i] && items[i].previewUrl) it.previewUrl = items[i].previewUrl;
+    return it;
+  });
+}
+
+function addItem(){
+  items.push({title:"", price:"", note:"", img:"", alt:"", href:BOOKING});
+  render();
+  const last = document.querySelector("#list .item:last-child input[data-f=title]");
+  if (last) last.focus();
+}
+
+function move(i, dir){
+  const j = i + dir;
+  if (j < 0 || j >= items.length) return;
+  const [it] = items.splice(i, 1);
+  items.splice(j, 0, it);
+  render();
+}
+
+function remove(i){
+  if (!confirm("Remove “" + (items[i].title || "this special") + "” from the website?")) return;
+  items.splice(i, 1);
+  render();
+}
+
+function thumbSrc(it){
+  return it.previewUrl || it.img || "";
+}
+
+function render(){
+  const list = document.getElementById("list");
+  list.innerHTML = items.map((it, i) => `
+    <div class="item${it.hidden ? " is-hidden" : ""}" data-i="${i}">
+      <label class="drop" data-i="${i}">
+        ${thumbSrc(it) ? `<img src="${esc(thumbSrc(it))}" alt="">` : ``}
+        ${thumbSrc(it) ? `<span class="swap">Replace flyer</span>`
+                       : `<span class="ph">Tap to add<br>the flyer</span>`}
+        <input type="file" accept="image/jpeg,image/png,image/webp" data-f="file">
+      </label>
+      <div class="fields">
+        <div class="top">
+          <span class="mono">Special ${i + 1}</span>
+          <button class="icon" title="Move up" onclick="move(${i},-1)" ${i === 0 ? "disabled" : ""}>↑</button>
+          <button class="icon" title="Move down" onclick="move(${i},1)" ${i === items.length - 1 ? "disabled" : ""}>↓</button>
+          <button class="icon del" title="Remove" onclick="remove(${i})">×</button>
+        </div>
+        <div class="two">
+          <label><span>Name</span><input type="text" data-f="title" value="${esc(it.title)}" placeholder="Facial of the Month"></label>
+          <label><span>Price</span><input type="text" data-f="price" value="${esc(it.price)}" placeholder="$89"></label>
+        </div>
+        <label><span>Small print</span><input type="text" data-f="note" value="${esc(it.note)}" placeholder="Pineapple enzyme + golden honey mask"></label>
+        <label class="check"><input type="checkbox" data-f="hidden" ${it.hidden ? "checked" : ""}> Hide this one for now (keeps it saved)</label>
+        <details class="more">
+          <summary>Booking link &amp; image description</summary>
+          <div class="inner">
+            <label><span>Booking link</span><input type="text" data-f="href" value="${esc(it.href || BOOKING)}"></label>
+            <label><span>Image description (for screen readers)</span><input type="text" data-f="alt" value="${esc(it.alt)}" placeholder="Pineapple honey facial flyer"></label>
+          </div>
+        </details>
+      </div>
+    </div>`).join("") || `<div class="item"><div class="fields"><p style="color:var(--muted)">No specials yet — add one below.</p></div></div>`;
+
+  list.querySelectorAll("input").forEach(el => {
+    const i = +el.closest(".item").dataset.i;
+    const f = el.dataset.f;
+    if (f === "file") { el.addEventListener("change", e => pickImage(i, e.target.files[0])); return; }
+    if (f === "hidden") {
+      el.addEventListener("change", () => { items[i].hidden = el.checked || undefined; render(); });
+      return;
+    }
+    el.addEventListener("input", () => { items[i][f] = el.value; });
+  });
+
+  list.querySelectorAll(".drop").forEach(d => {
+    const i = +d.dataset.i;
+    d.addEventListener("dragover", e => { e.preventDefault(); d.classList.add("over"); });
+    d.addEventListener("dragleave", () => d.classList.remove("over"));
+    d.addEventListener("drop", e => {
+      e.preventDefault(); d.classList.remove("over");
+      if (e.dataTransfer.files[0]) pickImage(i, e.dataTransfer.files[0]);
+    });
+  });
+
+  if (!document.getElementById("preview").hidden) renderPreview();
+}
+
+/* Resize in the browser so a 6 MB phone photo becomes a ~200 KB flyer:
+   keeps the site fast and the upload well inside the function's limits. */
+function pickImage(i, file){
+  if (!file) return;
+  if (!/^image\//.test(file.type)) return say("That file isn't an image.", "bad");
+  say("Preparing image…");
+  const reader = new FileReader();
+  reader.onload = () => {
+    const im = new Image();
+    im.onload = () => {
+      const scale = Math.min(1, MAX_W / im.width);
+      const c = document.createElement("canvas");
+      c.width = Math.round(im.width * scale);
+      c.height = Math.round(im.height * scale);
+      c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+      const url = c.toDataURL("image/jpeg", 0.85);
+      items[i].previewUrl = url;
+      items[i].upload = {name: "flyer.jpg", data: url.split(",")[1]};
+      render();
+      say("Image ready — Publish when you're happy with it.");
+    };
+    im.onerror = () => say("Couldn't read that image — try a JPG or PNG.", "bad");
+    im.src = reader.result;
+  };
+  reader.onerror = () => say("Couldn't read that file.", "bad");
+  reader.readAsDataURL(file);
+}
+
+/* ── preview ── */
+function togglePreview(){
+  const p = document.getElementById("preview");
+  p.hidden = !p.hidden;
+  document.getElementById("pvbtn").textContent = p.hidden ? "Preview" : "Hide preview";
+  if (!p.hidden) { renderPreview(); p.scrollIntoView({behavior:"smooth", block:"start"}); }
+}
+
+function renderPreview(){
+  document.getElementById("pvgrid").innerHTML = items.filter(it => !it.hidden).map(it => `
+    <span class="offer">
+      <span class="imgw">${thumbSrc(it) ? `<img src="${esc(thumbSrc(it))}" alt="">` : ``}</span>
+      <span class="c"><b>${esc(it.title || "Untitled")}</b><span>${esc(it.price)}</span></span>
+      <span class="mono">${esc(it.note)}</span>
+    </span>`).join("");
+}
+
+/* ── publish ── */
+function say(msg, kind){
+  const el = document.getElementById("status");
+  el.textContent = msg || "";
+  el.className = "status" + (kind ? " " + kind : "");
+}
+
+async function publish(){
+  if (busy) return;
+  busy = true;
+  document.getElementById("pubbtn").disabled = true;
+  say("Publishing…");
+  try {
+    const payload = items.map(it => ({
+      title: it.title, price: it.price, note: it.note, img: it.img,
+      alt: it.alt, href: it.href, hidden: !!it.hidden, upload: it.upload
+    }));
+    const res = await api({method:"POST", body: JSON.stringify({op:"save", specials: payload})});
+    items = adopt(res.specials);
+    render();
+    say("✓ Published — live on the website in about a minute.", "ok");
+    refreshHistory();
+  } catch(e){
+    say(e.message, "bad");
+  } finally {
+    busy = false;
+    document.getElementById("pubbtn").disabled = false;
+  }
+}
+
+/* ── history / undo ── */
+function renderHistory(list){
+  const ul = document.getElementById("hist");
+  ul.innerHTML = list.length ? list.map(h => `
+    <li>
+      <button onclick="restore('${h.sha}')">Restore</button>
+      <span>${esc(h.message)}</span>
+      <span class="when">${new Date(h.date).toLocaleString([], {month:"short", day:"numeric", hour:"numeric", minute:"2-digit"})}</span>
+    </li>`).join("") : `<li>No earlier versions yet.</li>`;
+}
+
+async function refreshHistory(){
+  try { const d = await api(); renderHistory(d.history || []); } catch(e){}
+}
+
+async function restore(sha){
+  if (!confirm("Put that earlier version back on the website?")) return;
+  say("Restoring…");
+  try {
+    const res = await api({method:"POST", body: JSON.stringify({op:"restore", sha})});
+    items = res.specials.map(s => Object.assign({}, s));
+    render();
+    say("✓ Restored — live in about a minute.", "ok");
+    refreshHistory();
+  } catch(e){ say(e.message, "bad"); }
+}
+
+/* ── start ── */
+if (KEY) { api().then(boot).catch(()=> localStorage.removeItem("cmsKey")); }
+document.getElementById("key").addEventListener("keydown", e => { if (e.key === "Enter") login(); });
+window.addEventListener("beforeunload", e => {
+  if (items.some(it => it.upload)) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body>
+</html>
