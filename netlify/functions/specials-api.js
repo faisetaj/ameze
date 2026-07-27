@@ -25,50 +25,6 @@ const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
 const OK_EXT = ["jpg", "jpeg", "png", "webp"];
 
 exports.handler = async (event) => {
-  // Unauthenticated config probe: answers "is this variable set?" and nothing else.
-  // Booleans only — never a value — so a misconfigured site can be diagnosed without
-  // anyone having to share a key or a token.
-  const set = (v) => !!(process.env[v] || "").trim();
-  if (event.httpMethod === "GET" && (event.queryStringParameters || {}).op === "health") {
-    // Does the token actually work? Status codes, the token's own account name, and
-    // whether the target repo is among the ones it can see. No values, no secrets.
-    let github = "not checked", tokenAccount = null, canSeeRepo = null, visibleRepos = null;
-    if (set("REPO") && set("GH_TOKEN")) {
-      const auth = { Authorization: `Bearer ${process.env.GH_TOKEN.trim()}`,
-                     Accept: "application/vnd.github+json" };
-      const target = process.env.REPO.trim().toLowerCase();
-      try {
-        const r = await fetch(`${GH_API}/repos/${process.env.REPO.trim()}/contents/${JSON_PATH}`, { headers: auth });
-        github = r.ok ? "ok" : `HTTP ${r.status} — ${(await r.json().catch(() => ({}))).message || r.statusText}`;
-
-        const who = await fetch(`${GH_API}/user`, { headers: auth });
-        tokenAccount = who.ok ? (await who.json()).login : `HTTP ${who.status}`;
-
-        const list = await fetch(`${GH_API}/user/repos?per_page=100`, { headers: auth });
-        if (list.ok) {
-          const repos = await list.json();
-          visibleRepos = repos.length;
-          canSeeRepo = repos.some((x) => (x.full_name || "").toLowerCase() === target);
-        }
-      } catch (e) {
-        github = "network error: " + e.message;
-      }
-    }
-    return json(200, {
-      CMS_KEY: set("CMS_KEY"),
-      ADMIN_KEY: set("ADMIN_KEY"),
-      REPO: set("REPO"),
-      GH_TOKEN: set("GH_TOKEN"),
-      // catches "pasted the whole github.com URL" without revealing the value
-      repoLooksValid: /^[\w.-]+\/[\w.-]+$/.test((process.env.REPO || "").trim()),
-      branch: process.env.BRANCH || "main",
-      github,
-      tokenAccount,
-      canSeeRepo,
-      visibleRepos,
-    });
-  }
-
   // Distinguish "no key configured on the site" from "wrong key typed" — otherwise a
   // missing or mis-scoped env var looks identical to a typo, which is impossible to debug.
   // Name the variable actually in play (never its value). Falling back to ADMIN_KEY
