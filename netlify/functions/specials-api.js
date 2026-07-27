@@ -27,6 +27,9 @@ const OK_EXT = ["jpg", "jpeg", "png", "webp"];
 exports.handler = async (event) => {
   // Distinguish "no key configured on the site" from "wrong key typed" — otherwise a
   // missing or mis-scoped env var looks identical to a typo, which is impossible to debug.
+  // Name the variable actually in play (never its value). Falling back to ADMIN_KEY
+  // silently is what makes a mis-scoped CMS_KEY look like a typo.
+  const keySource = process.env.CMS_KEY ? "CMS_KEY" : process.env.ADMIN_KEY ? "ADMIN_KEY" : null;
   const expected = (process.env.CMS_KEY || process.env.ADMIN_KEY || "").trim();
   if (!expected) {
     return json(503, {
@@ -35,7 +38,7 @@ exports.handler = async (event) => {
     });
   }
   if ((event.headers["x-cms-key"] || "").trim() !== expected) {
-    return json(401, { error: "unauthorized" });
+    return json(401, { error: "unauthorized", expecting: keySource });
   }
 
   const repo = process.env.REPO;
