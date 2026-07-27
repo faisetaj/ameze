@@ -88,9 +88,25 @@
   .icon:hover{border-color:var(--rose);color:var(--rose-deep)}
   .icon.del:hover{border-color:var(--bad);color:var(--bad)}
   .icon:disabled{opacity:.3;cursor:default}
-  .bar{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-top:1.2rem;
-    position:sticky;bottom:0;background:linear-gradient(180deg,transparent,var(--plum-2) 45%);
+  .bar{display:grid;gap:.7rem;margin-top:1.2rem;
+    position:sticky;bottom:0;background:linear-gradient(180deg,transparent,var(--plum-2) 35%);
     padding:1rem 0 .3rem}
+  .bar .btns{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center}
+
+  /* ── status: what's live, what hasn't gone out yet ── */
+  .chip{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;
+    padding:.2rem .5rem;border:1px solid currentColor;white-space:nowrap}
+  .chip.live{color:var(--ok)}
+  .chip.off{color:var(--muted)}
+  .banner{background:#3A2028;border-left:3px solid var(--gold);color:var(--blush);
+    padding:.9rem 1.1rem;margin-bottom:1rem;font-size:.9rem;line-height:1.6}
+  .banner b{color:var(--gold)}
+  .pending{background:rgba(216,169,138,.12);border:1px solid rgba(216,169,138,.4);
+    color:#EBC9AE;padding:.6rem .9rem;font-size:.85rem}
+  .pending b{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+    text-transform:uppercase;display:block;margin-bottom:.3rem;color:var(--gold)}
+  .pending ul{list-style:none;display:grid;gap:.15rem}
+  .pending li::before{content:"· "}
   .btn{font-family:var(--sans);font-size:.9rem;font-weight:600;cursor:pointer;
     border:1px solid var(--line-d);background:transparent;color:var(--blush);padding:.65rem 1.15rem;
     transition:border-color .2s,color .2s,transform .15s}
@@ -158,13 +174,18 @@
       Change a price, swap a flyer, reorder them — then hit Publish and the website
       updates itself in about a minute.</p>
 
+    <div class="banner" id="banner" hidden></div>
+
     <div id="list"></div>
 
     <div class="bar">
-      <button class="btn" onclick="addItem()">+ Add a special</button>
-      <button class="btn" onclick="togglePreview()" id="pvbtn">Preview</button>
-      <button class="btn primary" onclick="publish()" id="pubbtn">Publish to the website</button>
-      <span class="status" id="status"></span>
+      <div class="pending" id="pending" hidden></div>
+      <div class="btns">
+        <button class="btn" onclick="addItem()">+ Add a special</button>
+        <button class="btn" onclick="togglePreview()" id="pvbtn">Preview</button>
+        <button class="btn primary" onclick="publish()" id="pubbtn">Publish to the website</button>
+        <span class="status" id="status"></span>
+      </div>
     </div>
 
     <section id="preview" hidden>
@@ -184,7 +205,8 @@ const API = "/.netlify/functions/specials-api";
 const BOOKING = "https://www.vagaro.com/amezeskinelements/services";
 const MAX_W = 1400;                       // flyers are downscaled before upload
 let KEY = localStorage.getItem("cmsKey") || "";
-let items = [];
+let items = [];            // what's in the editor right now
+let publishedItems = [];   // what's actually on the website
 let busy = false;
 
 /* ── api ── */
@@ -207,22 +229,81 @@ async function login(){
   const err = document.getElementById("err");
   try { const d = await api(); localStorage.setItem("cmsKey", KEY); boot(d); }
   catch(e){
-    err.textContent = e.message !== "unauthorized" ? e.message
-      : e.expecting === "ADMIN_KEY"
-        ? "This site is still checking against ADMIN_KEY — CMS_KEY isn't reaching the function. "
-          + "In Netlify, check that CMS_KEY's Scopes include Functions and that it applies to this "
-          + "deploy context, then redeploy. (Your ADMIN_KEY will open the editor in the meantime.)"
-        : "That passphrase doesn't match the CMS_KEY set on this site.";
+    if (e.message !== "unauthorized") {
+      // The passphrase was accepted — the key check runs before anything else, so any
+      // other failure is a content problem. Let her in and explain it inside, rather
+      // than locking her out at the gate over something she can't fix from here.
+      localStorage.setItem("cmsKey", KEY);
+      boot({specials: [], history: []}, e.message);
+      return;
+    }
+    err.textContent = e.expecting === "ADMIN_KEY"
+      ? "This site is still checking against ADMIN_KEY — CMS_KEY isn't reaching the function. "
+        + "In Netlify, check that CMS_KEY's Scopes include Functions and that it applies to this "
+        + "deploy context, then redeploy. (Your ADMIN_KEY will open the editor in the meantime.)"
+      : "That passphrase doesn't match the CMS_KEY set on this site.";
     err.style.display = "block";
   }
 }
 
-function boot(data){
+function boot(data, problem){
   document.getElementById("gate").hidden = true;
   document.getElementById("app").hidden = false;
-  items = (data.specials || []).map(s => Object.assign({}, s));
+  adoptPublished(data.specials || []);
   render();
   renderHistory(data.history || []);
+  const banner = document.getElementById("banner");
+  if (problem) {
+    banner.innerHTML = "<b>Your specials couldn't be loaded.</b><br>" + esc(problem)
+      + "<br><br>Nothing is broken on the website itself — the cards visitors see are unaffected. "
+      + "Don't publish from here until this is resolved, or you'd overwrite them with an empty list.";
+    banner.hidden = false;
+    document.getElementById("pubbtn").disabled = true;
+  } else {
+    banner.hidden = true;
+    document.getElementById("pubbtn").disabled = false;
+  }
+}
+
+/* Record what's actually live, so the editor can show what has and hasn't gone out. */
+function adoptPublished(saved){
+  publishedItems = saved.map(s => Object.assign({}, s));
+  items = saved.map(s => Object.assign({}, s));
+}
+
+/* Plain-English list of edits made since the last publish. Matched by name, so a
+   reorder reads as "order changed" rather than as four unrelated edits. */
+function changes(){
+  const out = [];
+  const wasByTitle = new Map(publishedItems.map(s => [s.title, s]));
+  const nowTitles = items.map(s => s.title);
+  items.forEach((b, i) => {
+    const a = wasByTitle.get(b.title);
+    if (!a) { out.push((b.title || "Special " + (i+1)) + " — added"); return; }
+    const d = [];
+    if ((a.price||"") !== (b.price||"")) d.push("price");
+    if ((a.note ||"") !== (b.note ||"")) d.push("small print");
+    if ((a.href ||"") !== (b.href ||"")) d.push("booking link");
+    if ((a.alt  ||"") !== (b.alt  ||"")) d.push("image description");
+    if (!!a.hidden !== !!b.hidden) d.push(b.hidden ? "hidden" : "shown again");
+    if (b.upload) d.push("new flyer");
+    if (d.length) out.push(b.title + " — " + d.join(", "));
+  });
+  publishedItems.forEach(a => {
+    if (!nowTitles.includes(a.title)) out.push((a.title || "A special") + " — removed");
+  });
+  if (!out.length && nowTitles.join("|") !== publishedItems.map(s => s.title).join("|"))
+    out.push("Order changed");
+  return out;
+}
+
+function updateDirty(){
+  const list = changes();
+  const el = document.getElementById("pending");
+  if (!list.length) { el.hidden = true; return; }
+  el.innerHTML = "<b>" + list.length + (list.length === 1 ? " change" : " changes")
+    + " not published yet</b><ul>" + list.map(c => "<li>" + esc(c) + "</li>").join("") + "</ul>";
+  el.hidden = false;
 }
 
 /* ── editor ── */
@@ -275,6 +356,7 @@ function render(){
       </label>
       <div class="fields">
         <div class="top">
+          <span class="chip ${it.hidden ? "off" : "live"}">${it.hidden ? "○ Hidden" : "● On the site"}</span>
           <span class="mono">Special ${i + 1}</span>
           <button class="icon" title="Move up" onclick="move(${i},-1)" ${i === 0 ? "disabled" : ""}>↑</button>
           <button class="icon" title="Move down" onclick="move(${i},1)" ${i === items.length - 1 ? "disabled" : ""}>↓</button>
@@ -304,7 +386,7 @@ function render(){
       el.addEventListener("change", () => { items[i].hidden = el.checked || undefined; render(); });
       return;
     }
-    el.addEventListener("input", () => { items[i][f] = el.value; });
+    el.addEventListener("input", () => { items[i][f] = el.value; updateDirty(); });
   });
 
   list.querySelectorAll(".drop").forEach(d => {
@@ -318,6 +400,7 @@ function render(){
   });
 
   if (!document.getElementById("preview").hidden) renderPreview();
+  updateDirty();
 }
 
 /* Resize in the browser so a 6 MB phone photo becomes a ~200 KB flyer:
@@ -383,6 +466,7 @@ async function publish(){
       alt: it.alt, href: it.href, hidden: !!it.hidden, upload: it.upload
     }));
     const res = await api({method:"POST", body: JSON.stringify({op:"save", specials: payload})});
+    publishedItems = res.specials.map(s => Object.assign({}, s));
     items = adopt(res.specials);
     render();
     say("✓ Published — live on the website in about a minute.", "ok");
@@ -415,7 +499,7 @@ async function restore(sha){
   say("Restoring…");
   try {
     const res = await api({method:"POST", body: JSON.stringify({op:"restore", sha})});
-    items = res.specials.map(s => Object.assign({}, s));
+    adoptPublished(res.specials);
     render();
     say("✓ Restored — live in about a minute.", "ok");
     refreshHistory();
@@ -426,7 +510,7 @@ async function restore(sha){
 if (KEY) {
   api().then(boot).catch(e => {           // only forget the key if it's actually wrong
     if (e.message === "unauthorized") localStorage.removeItem("cmsKey");
-    else { const el = document.getElementById("err"); el.textContent = e.message; el.style.display = "block"; }
+    else boot({specials: [], history: []}, e.message);
   });
 }
 document.getElementById("key").addEventListener("keydown", e => { if (e.key === "Enter") login(); });

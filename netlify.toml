@@ -18,6 +18,23 @@
   to = "/admin.html"
   status = 200
 
+# The site publishes the repo root, so source and docs would otherwise be fetchable.
+# These only affect the static path — the function itself lives at /.netlify/functions/.
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/.github/*"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/*.md"
+  to = "/404.html"
+  status = 404
+
 # Specials are edited from /admin and must never be served stale
 [[headers]]
   for = "/content/*"
