@@ -25,8 +25,16 @@ const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
 const OK_EXT = ["jpg", "jpeg", "png", "webp"];
 
 exports.handler = async (event) => {
-  const expected = process.env.CMS_KEY || process.env.ADMIN_KEY;
-  if (!expected || (event.headers["x-cms-key"] || "") !== expected) {
+  // Distinguish "no key configured on the site" from "wrong key typed" — otherwise a
+  // missing or mis-scoped env var looks identical to a typo, which is impossible to debug.
+  const expected = (process.env.CMS_KEY || process.env.ADMIN_KEY || "").trim();
+  if (!expected) {
+    return json(503, {
+      error: "This site has no CMS_KEY set. Add it in Netlify → Site configuration → " +
+             "Environment variables (scope: Functions, or All), then redeploy.",
+    });
+  }
+  if ((event.headers["x-cms-key"] || "").trim() !== expected) {
     return json(401, { error: "unauthorized" });
   }
 

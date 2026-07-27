@@ -189,17 +189,29 @@ let busy = false;
 
 /* ── api ── */
 async function api(opts){
-  const r = await fetch(API, {headers:{"x-cms-key":KEY,"Content-Type":"application/json"}, ...opts});
+  let r;
+  try {
+    r = await fetch(API, {headers:{"x-cms-key":KEY,"Content-Type":"application/json"}, ...opts});
+  } catch(e){
+    throw new Error("Couldn't reach the site — check your connection.");
+  }
   if (r.status === 401) throw new Error("unauthorized");
   const data = await r.json().catch(()=>({}));
-  if (!r.ok) throw new Error(data.error || ("Request failed (" + r.status + ")"));
+  if (r.status === 404) throw new Error("The editor's function isn't deployed on this site yet (404). Trigger a Netlify deploy.");
+  if (!r.ok) throw new Error(data.error || ("Request failed — HTTP " + r.status));
   return data;
 }
 
 async function login(){
   KEY = document.getElementById("key").value.trim();
+  const err = document.getElementById("err");
   try { const d = await api(); localStorage.setItem("cmsKey", KEY); boot(d); }
-  catch(e){ document.getElementById("err").style.display = "block"; }
+  catch(e){
+    err.textContent = e.message === "unauthorized"
+      ? "That passphrase doesn't match the CMS_KEY set on this site."
+      : e.message;
+    err.style.display = "block";
+  }
 }
 
 function boot(data){
@@ -408,7 +420,12 @@ async function restore(sha){
 }
 
 /* ── start ── */
-if (KEY) { api().then(boot).catch(()=> localStorage.removeItem("cmsKey")); }
+if (KEY) {
+  api().then(boot).catch(e => {           // only forget the key if it's actually wrong
+    if (e.message === "unauthorized") localStorage.removeItem("cmsKey");
+    else { const el = document.getElementById("err"); el.textContent = e.message; el.style.display = "block"; }
+  });
+}
 document.getElementById("key").addEventListener("keydown", e => { if (e.key === "Enter") login(); });
 window.addEventListener("beforeunload", e => {
   if (items.some(it => it.upload)) { e.preventDefault(); e.returnValue = ""; }
