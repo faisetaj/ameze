@@ -30,12 +30,29 @@ exports.handler = async (event) => {
   // anyone having to share a key or a token.
   const set = (v) => !!(process.env[v] || "").trim();
   if (event.httpMethod === "GET" && (event.queryStringParameters || {}).op === "health") {
+    // Does the token actually work? Report the status code only, never a value.
+    let github = "not checked";
+    if (set("REPO") && set("GH_TOKEN")) {
+      try {
+        const r = await fetch(
+          `${GH_API}/repos/${process.env.REPO.trim()}/contents/${JSON_PATH}`,
+          { headers: { Authorization: `Bearer ${process.env.GH_TOKEN.trim()}`,
+                       Accept: "application/vnd.github+json" } }
+        );
+        github = r.ok ? "ok" : `HTTP ${r.status} — ${(await r.json().catch(() => ({}))).message || r.statusText}`;
+      } catch (e) {
+        github = "network error: " + e.message;
+      }
+    }
     return json(200, {
       CMS_KEY: set("CMS_KEY"),
       ADMIN_KEY: set("ADMIN_KEY"),
       REPO: set("REPO"),
       GH_TOKEN: set("GH_TOKEN"),
+      // catches "pasted the whole github.com URL" without revealing the value
+      repoLooksValid: /^[\w.-]+\/[\w.-]+$/.test((process.env.REPO || "").trim()),
       branch: process.env.BRANCH || "main",
+      github,
     });
   }
 
@@ -149,8 +166,10 @@ exports.handler = async (event) => {
 
   try {
     if (event.httpMethod === "GET") {
+      // Never swallow a failed read: an empty editor and a broken token look identical
+      // to the user, and only one of them is fixable by adding a special.
       const [raw, commits] = await Promise.all([
-        readFile(JSON_PATH).catch(() => "[]"),
+        readFile(JSON_PATH),
         ghJson(`/repos/${repo}/commits?path=${JSON_PATH}&sha=${branch}&per_page=8`).catch(() => []),
       ]);
       return json(200, {
