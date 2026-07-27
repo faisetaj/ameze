@@ -25,6 +25,20 @@ const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
 const OK_EXT = ["jpg", "jpeg", "png", "webp"];
 
 exports.handler = async (event) => {
+  // Unauthenticated config probe: answers "is this variable set?" and nothing else.
+  // Booleans only — never a value — so a misconfigured site can be diagnosed without
+  // anyone having to share a key or a token.
+  const set = (v) => !!(process.env[v] || "").trim();
+  if (event.httpMethod === "GET" && (event.queryStringParameters || {}).op === "health") {
+    return json(200, {
+      CMS_KEY: set("CMS_KEY"),
+      ADMIN_KEY: set("ADMIN_KEY"),
+      REPO: set("REPO"),
+      GH_TOKEN: set("GH_TOKEN"),
+      branch: process.env.BRANCH || "main",
+    });
+  }
+
   // Distinguish "no key configured on the site" from "wrong key typed" — otherwise a
   // missing or mis-scoped env var looks identical to a typo, which is impossible to debug.
   // Name the variable actually in play (never its value). Falling back to ADMIN_KEY
