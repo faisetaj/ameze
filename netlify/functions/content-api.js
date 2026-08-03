@@ -39,6 +39,9 @@ const SECTIONS = {
       { key: "name", label: "Treatment", max: 90, required: true },
       { key: "price", label: "Price", max: 24, required: true },
       { key: "desc", label: "Description", max: 300 },
+      // Set by the Vagaro sync so a row opens its own category in the booking
+      // modal instead of the top of the full menu. Hidden from the editor.
+      { key: "href", label: "Booking link", max: 900, type: "url", internal: true },
     ],
     maxGroups: 6,
     maxItems: 16,
@@ -335,7 +338,7 @@ function renderMenu(d) {
 
   const panels = d.groups.map((g, i) => {
     const rows = g.items.map((it) =>
-      `        <a class="prow" data-book href="${BOOKING}" target="_blank" rel="noopener">` +
+      `        <a class="prow" data-book href="${esc(it.href || BOOKING)}" target="_blank" rel="noopener">` +
       `<span class="prow-line"><span class="t">${esc(it.name)}</span><span class="lead"></span>` +
       `<span class="p">${esc(it.price)}</span></span>` +
       `<span class="d">${esc(it.desc)}</span></a>`
@@ -445,12 +448,32 @@ function esc(s) {
 const bold = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
 const emphasise = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<em class="shimmer">$1</em>');
 
+// Exposed so scripts/rebuild-page.js can regenerate index.html from content/site.json
+// using these exact renderers — one definition of the markup, not two.
+exports.SECTIONS = SECTIONS;
+exports.applySections = (page, content) => {
+  for (const [name, spec] of Object.entries(SECTIONS)) {
+    if (!content[name]) continue;
+    const start = `<!-- cms:${spec.marker}:start -->`;
+    const end = `<!-- cms:${spec.marker}:end -->`;
+    if (!page.includes(start) || !page.includes(end)) throw new Error(`missing ${start} markers`);
+    page = page.replace(
+      new RegExp(`${escapeRe(start)}[\\s\\S]*?${escapeRe(end)}`),
+      () => start + "\n" + spec.render(content[name]) + "\n      " + end
+    );
+  }
+  return page;
+};
+
 // The editor builds its forms from this, so the two can't drift apart.
 function publicSchema() {
   const out = {};
   for (const [name, s] of Object.entries(SECTIONS)) {
     out[name] = {
-      label: s.label, kind: s.kind, fields: s.fields,
+      // internal fields are machine-managed (e.g. the per-row Vagaro link) — the
+      // editor never renders them, and they survive a save because the client
+      // returns the whole stored object rather than only what it drew.
+      label: s.label, kind: s.kind, fields: s.fields.filter((f) => !f.internal),
       groupLabel: s.groupLabel, groupFields: s.groupFields,
       extras: s.extras || [], maxItems: s.maxItems, maxGroups: s.maxGroups,
     };

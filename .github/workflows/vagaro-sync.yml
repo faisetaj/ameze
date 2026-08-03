@@ -1,0 +1,41 @@
+name: Sync prices from Vagaro
+
+# Vagaro's API has no service catalogue, so prices are read from her booking
+# widgets instead. Runs hourly; publishes only when something actually changed,
+# so a quiet hour costs one browser launch and no deploy.
+on:
+  schedule:
+    - cron: "17 * * * *"     # hourly, off the hour to dodge the cron rush
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Publish changes (unchecked = dry run, just report)"
+        type: boolean
+        default: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Puppeteer
+        run: npm install puppeteer@23 --no-save --no-audit --no-fund
+
+      - name: Sync
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          CMS_KEY: ${{ secrets.CMS_KEY }}
+        # Scheduled runs publish; manual runs default to a dry run so the diff can
+        # be inspected first. Flip DRY_RUN_ONLY below to pause publishing entirely.
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.apply }}" = "true" ]; then
+            node scripts/vagaro-sync.js --apply
+          else
+            node scripts/vagaro-sync.js
+          fi

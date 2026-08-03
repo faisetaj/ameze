@@ -1,0 +1,178 @@
+{
+  "_comment": [
+    "Vagaro category widgets. Each URL is a stateless, permanent link that renders",
+    "that category's live services. Used for two things: the booking modal opens the",
+    "right category instead of the whole menu, and the hourly sync reads prices from",
+    "the scoped widget rather than matching against the full 57-service list.",
+    "Regenerate in Vagaro -> Settings -> Booking Widget -> Choose Specific Widget Items."
+  ],
+  "widgets": {
+    "injectables": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy",
+    "lips": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ68smmNEH6rTddZZW4BdV5gzCEqy60PnQmTqScHf7Oju",
+    "dissolve": null,
+    "micro": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd",
+    "peels": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJwiDqAxMlCFcRP3A/Pytn444P/eBFXdEfqA0n6RK0c62",
+    "facials": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ",
+    "promos": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJxty1dx/gnstogvblnlft4HykvqFO3SL7qT1DOPg6sSK",
+    "all": null
+  },
+  "map": {
+    "Botox® Cosmetic": {
+      "w": "injectables",
+      "v": [
+        "Botox"
+      ],
+      "fmt": "from"
+    },
+    "DAXXIFY®": {
+      "w": "injectables",
+      "v": [
+        "DAXXIFY"
+      ],
+      "fmt": "from"
+    },
+    "Dysport®": {
+      "w": "injectables",
+      "v": [
+        "Dysport"
+      ]
+    },
+    "Lip Flip": {
+      "w": "injectables",
+      "v": [
+        "Botox - Lip Flip"
+      ]
+    },
+    "Brow Lift": {
+      "w": "injectables",
+      "v": [
+        "Brow Lift"
+      ]
+    },
+    "Masseter Slimming": {
+      "w": "injectables",
+      "v": [
+        "Massters"
+      ]
+    },
+    "Refinements": {
+      "w": "injectables",
+      "fmt": "range",
+      "v": [
+        "DAO",
+        "Mentalis- Chin Toxin",
+        "Jowel",
+        "Bunny Lines",
+        "Nose Tip Lift",
+        "Platysma Bands"
+      ]
+    },
+    "Lip Filler — full syringe": {
+      "w": "lips",
+      "v": [
+        "Lip Filler"
+      ]
+    },
+    "Mini Lip Filler — half syringe": {
+      "w": "lips",
+      "v": [
+        "Mini Lip Filler"
+      ]
+    },
+    "Filler Dissolving — hyaluronidase": {
+      "w": "dissolve",
+      "v": [
+        "Hyaluronidaise"
+      ]
+    },
+    "Microneedling + HA": {
+      "w": "micro",
+      "v": [
+        "Microneedling + HA"
+      ]
+    },
+    "Pro-XO Premium Exosome Microneedling — skin": {
+      "w": "micro",
+      "v": [
+        "Pro-XO Premium Skin Microneedling Treatment 16 Billion Exosomes / 200 mcg Protein"
+      ]
+    },
+    "Pro-XO Exosome Microneedling — hair restoration": {
+      "w": "micro",
+      "v": [
+        "Pro-Xo Premium Microneedling Procedure Hair 16 Billion Exosomes / 200 mcg Protein"
+      ]
+    },
+    "Microneedling Glass Facial": {
+      "w": "micro",
+      "v": [
+        "Microneedling Glass Facial"
+      ]
+    },
+    "PDRN Under-Eye Treatment": {
+      "w": "micro",
+      "v": [
+        "PDRN-Under eye treatments"
+      ]
+    },
+    "BioRePeel Blue + Microneedling": {
+      "w": "micro",
+      "v": [
+        "BioRePeel BLUE + Microneedling"
+      ]
+    },
+    "BioRePeelCl3® Blue": {
+      "w": "peels",
+      "v": [
+        "BioRePeelCl3 Blue"
+      ]
+    },
+    "Signature Facial": {
+      "w": "facials",
+      "v": [
+        "Facials - Facial"
+      ]
+    },
+    "Hydro Glow Facial": {
+      "w": "facials",
+      "v": [
+        "Hydro Glow Facial"
+      ]
+    },
+    "Advanced Exfoliation Peels": {
+      "w": "facials",
+      "fmt": "range",
+      "v": [
+        "Advanced Exfoliation - Peptide",
+        "Advanced Exfoliation - Lactic",
+        "Advanced Exfoliation - Glycolic",
+        "Advanced Exfoliation - Hydrating",
+        "Advanced Exfoliation - Vitamin C"
+      ]
+    },
+    "Microdermabrasion": {
+      "w": "facials",
+      "v": [
+        "Facials - Microdermabrasion"
+      ]
+    },
+    "LED Light Therapy": {
+      "w": "facials",
+      "v": [
+        "LED Light Therapy"
+      ]
+    },
+    "Bridal Glow Menu": {
+      "w": "promos",
+      "v": [
+        "Bridal Glow Menu"
+      ],
+      "fmt": "from"
+    }
+  },
+  "specialsWidget": "promos",
+  "_notSynced": {
+    "_why": "Prices here are CMS-owned. Listed so it is obvious they were considered, not missed.",
+    "Bridal Glow Menu (promo card)": "site says 'from $129' — the entry price within her bridal flyer, not the $399 Vagaro service"
+  }
+}
