@@ -262,13 +262,18 @@
   }
 
   /* ───────── pricing menu ───────── */
-  .tabs{display:flex;gap:.25rem;position:relative;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+  .tabs{display:flex;gap:.25rem;position:relative;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none;
+    scroll-padding-inline:2.5rem}
   .tabs::-webkit-scrollbar{display:none}
   /* Categories are editable from /admin, so the strip can outgrow its width.
-     Fade the right edge when it does, otherwise it just looks truncated. */
-  .tabs.overflowing{-webkit-mask-image:linear-gradient(90deg,#000 84%,transparent);
+     Fade whichever edge has more tabs past it — a hard cut just reads as a
+     rendering fault, and the strip scrolls in both directions. */
+  .tabs.fade-r{-webkit-mask-image:linear-gradient(90deg,#000 84%,transparent);
     mask-image:linear-gradient(90deg,#000 84%,transparent)}
-  .tabs.overflowing.at-end{-webkit-mask-image:none;mask-image:none}
+  .tabs.fade-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 16%);
+    mask-image:linear-gradient(90deg,transparent,#000 16%)}
+  .tabs.fade-l.fade-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent)}
   .tab{
     appearance:none;border:0;background:none;cursor:pointer;white-space:nowrap;
     font-family:var(--mono);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
@@ -592,7 +597,7 @@
     <div class="sec-head">
       <div class="sec-no rv" aria-hidden="true">01</div>
       <div class="sec-title-wrap rv"><h2 class="sec-title">The treatment menu</h2></div>
-      <p class="sec-note rv">Live pricing from our booking system. Injectables are dosed per treatment plan — your exam decides the exact quote.</p>
+      <p class="sec-note rv">Prices match our booking system. Injectables are dosed per treatment plan — your exam decides the exact quote.</p>
     </div>
 
     <div class="menu-grid">
@@ -1073,9 +1078,9 @@
   function tabOverflow(){
     if (!tabStrip) return;
     var over = tabStrip.scrollWidth > tabStrip.clientWidth + 2;
-    tabStrip.classList.toggle('overflowing', over);
-    tabStrip.classList.toggle('at-end',
-      over && tabStrip.scrollLeft + tabStrip.clientWidth >= tabStrip.scrollWidth - 2);
+    tabStrip.classList.toggle('fade-l', over && tabStrip.scrollLeft > 2);
+    tabStrip.classList.toggle('fade-r',
+      over && tabStrip.scrollLeft + tabStrip.clientWidth < tabStrip.scrollWidth - 2);
   }
   if (tabStrip) {
     tabStrip.addEventListener('scroll', tabOverflow, {passive:true});
