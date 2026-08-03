@@ -1,0 +1,153 @@
+{
+  "menu": {
+    "groups": [
+      {
+        "name": "Injectables",
+        "note": "Neurotoxin artistry for the face, jaw and neck. Good-faith exam $39, credited toward treatment.",
+        "items": [
+          { "name": "Botox® Cosmetic", "price": "from $300", "desc": "Smooths frown lines, forehead and crow's feet. Dosed to your anatomy after exam." },
+          { "name": "DAXXIFY®", "price": "from $289", "desc": "Peptide-powered toxin. Visible in days, corrections lasting up to nine months." },
+          { "name": "Dysport®", "price": "$219", "desc": "Fast-onset smoothing for moderate to severe lines." },
+          { "name": "Lip Flip", "price": "$199", "desc": "Fuller-looking lips without added volume." },
+          { "name": "Brow Lift", "price": "$60", "desc": "Non-surgical lift that opens the eyes and softens frown lines." },
+          { "name": "Masseter Slimming", "price": "$599", "desc": "Relaxes overactive jaw muscles for a slimmer, defined profile." },
+          { "name": "Refinements", "price": "$29–$384", "desc": "DAO · chin · jowl · bunny lines · nose tip · platysma — targeted micro-doses for the lower face and neck." }
+        ]
+      },
+      {
+        "name": "Lip Filler",
+        "note": "Premium hyaluronic-acid fillers, placed for shape first and volume second.",
+        "items": [
+          { "name": "Lip Filler — full syringe", "price": "$599", "desc": "Customized volume and definition with a natural finish." },
+          { "name": "Mini Lip Filler — half syringe", "price": "$399", "desc": "Subtle enhancement that complements your features." },
+          { "name": "Filler Dissolving — hyaluronidase", "price": "$200", "desc": "Safe, precise correction or removal of previous filler." }
+        ]
+      },
+      {
+        "name": "Microneedling & Peels",
+        "note": "Collagen induction, exosome biologics and medical-grade resurfacing.",
+        "items": [
+          { "name": "Microneedling + HA", "price": "$299", "desc": "Micro-channels plus hyaluronic acid for deep hydration and texture repair." },
+          { "name": "Pro-XO Premium Exosome Microneedling — skin", "price": "$599", "desc": "16 billion exosomes / 200 mcg protein to accelerate renewal and collagen." },
+          { "name": "Pro-XO Exosome Microneedling — hair restoration", "price": "$749", "desc": "Stimulates follicles and scalp health with exosomes and copper peptides." },
+          { "name": "Microneedling Glass Facial", "price": "$679", "desc": "The luminous “glass skin” finish — microneedling with a tailored infusion." },
+          { "name": "PDRN Under-Eye Treatment", "price": "$249", "desc": "Polynucleotides + HA to brighten and repair the delicate under-eye." },
+          { "name": "BioRePeelCl3® Blue", "price": "$149", "desc": "Biphasic TCA peel — exfoliation, biostimulation and hydration, minimal downtime." },
+          { "name": "BioRePeel Blue + Microneedling", "price": "$399", "desc": "Our collagen-renewal pairing; also in a 3-treatment series at 20% off." }
+        ]
+      },
+      {
+        "name": "Facials — Richmond",
+        "note": "Esthetician services at the FM 723 studio, Fridays.",
+        "items": [
+          { "name": "Signature Facial", "price": "$110", "desc": "Balancing, skin-tone-enhancing treatment tailored to you. With extractions $120." },
+          { "name": "Hydro Glow Facial", "price": "$199", "desc": "Suction-based cleanse, extraction and medical-grade serum infusion. Event-ready glow." },
+          { "name": "Advanced Exfoliation Peels", "price": "$110", "desc": "Peptide · lactic · glycolic · vitamin C · hydrating — professional resurfacing, matched to your skin." },
+          { "name": "Microdermabrasion", "price": "$130", "desc": "Crystal exfoliation for texture and radiance. Back facial $120." },
+          { "name": "LED Light Therapy", "price": "$100", "desc": "Wavelength therapy for fine lines, tone and collagen." },
+          { "name": "Bridal Glow Menu", "price": "from $399", "desc": "A curated pre-wedding program — BioRePeel Glow, Hydro Facial and package options." }
+        ]
+      }
+    ]
+  },
+  "reviews": {
+    "eyebrow": "04 — What clients say · verified Vagaro appointments",
+    "scores": "Service 5.0 | Punctuality 5.0 | Value 5.0 | Venue 5.0 | Source: Vagaro published reviews",
+    "items": [
+      {
+        "quote": "“I’ve had several injectors and she is definitely my new go-to. The follow-up is what I appreciate most — she always wants to make sure her clients are **satisfied with their results.**”",
+        "who": "Sarah J — Botox® with Brenda Uhunmwagho · 5.0 / 5.0",
+        "lead": true
+      },
+      {
+        "quote": "“As a first-timer I had a great experience. I had reservations about trying Botox and now I’m returning for my second visit. She is detailed at finding the right treatment and explains the process clearly before and after.”",
+        "who": "Andrew D — first-time Botox® client",
+        "lead": false
+      },
+      {
+        "quote": "“Customer service was great. She was detailed about what she was doing and gives great advice on how to keep up. A very relaxing environment — I am most definitely going back.”",
+        "who": "Miriam A — verified client",
+        "lead": false
+      }
+    ]
+  },
+  "membership": {
+    "items": [
+      {
+        "tag": "Botox Bank™ Membership",
+        "title": "Bank it monthly",
+        "price": "$99",
+        "priceNote": "/month",
+        "bullets": "**$10 per unit** member Botox® pricing — vs $12–15 typical\nPayments accumulate as **treatment credit** — ~$297 banked every 3 months\n**10% off** additional units and filler treatments\nAuto-billed, cancel-friendly, credits never rush you",
+        "cta": "Join the Bank",
+        "href": "https://www.vagaro.com/amezeskinelements/memberships",
+        "feature": true
+      },
+      {
+        "tag": "Cherry",
+        "title": "Split it over time",
+        "price": "$100–$30k",
+        "priceNote": "financed",
+        "bullets": "Apply in ~60 seconds, **no hard credit check** to see your offer\nPlans sized to the treatment — from a peel to a full plan\nUse it same-day at checkout",
+        "cta": "Check your rate",
+        "href": "https://www.amezeskinelements.com/cherry",
+        "feature": false
+      },
+      {
+        "tag": "CareCredit",
+        "title": "Health-care credit",
+        "price": "0%",
+        "priceNote": "promo financing available*",
+        "bullets": "The health & wellness credit card, accepted here\nWorks alongside Allē Rewards points on Botox®\n*Subject to credit approval; terms apply",
+        "cta": "Learn more",
+        "href": "https://www.amezeskinelements.com/payment-plan-carecredit",
+        "feature": false
+      }
+    ]
+  },
+  "protocol": {
+    "groups": [
+      {
+        "name": "Before your appointment",
+        "items": [
+          { "text": "Book at least 4 weeks ahead of any big event — results settle, bruising fades." },
+          { "text": "Skip blood thinners & NSAIDs (aspirin, ibuprofen, fish oil, vitamin E) for 2 weeks if you can." },
+          { "text": "No alcohol for 24 hours and no smoking for 48 hours before treatment." },
+          { "text": "Pause Retin-A two days before and after. No dental work within 4 weeks." },
+          { "text": "Eat a good breakfast and arrive with a clean, makeup-free face." }
+        ]
+      },
+      {
+        "name": "After your treatment",
+        "items": [
+          { "text": "No workouts, yoga or massage for 24 hours — keep the product where we placed it." },
+          { "text": "No alcohol for 24 hours, no smoking for 48; both slow healing and invite bruising." },
+          { "text": "Prone to bruising? Arnica cream at the injection site helps." },
+          { "text": "Cleanse gently — no harsh scrubs or aggressive rubbing." },
+          { "text": "We see you again in 2 weeks. The follow-up is part of the treatment, and it's free." }
+        ]
+      }
+    ]
+  },
+  "hours-houston": {
+    "items": [
+      { "days": "WED — FRI", "time": "10:00 — 17:00" },
+      { "days": "SAT", "time": "09:00 — 16:00" },
+      { "days": "SUN — TUE", "time": "BY APPOINTMENT" }
+    ]
+  },
+  "hours-richmond": {
+    "items": [
+      { "days": "FRI", "time": "BY APPOINTMENT" },
+      { "days": "SAT — THU", "time": "SEE HOUSTON STUDIO" }
+    ]
+  },
+  "numbers": {
+    "items": [
+      { "value": "5.0", "suffix": "/5", "label": "Client rating — every published Vagaro review" },
+      { "value": "$9.49", "suffix": "", "label": "Per unit of Botox® on current member offer" },
+      { "value": "9", "suffix": "mo", "label": "DAXXIFY® corrections last up to nine months" },
+      { "value": "2", "suffix": "", "label": "Studios — W Gray St Houston & Richmond TX" }
+    ]
+  }
+}

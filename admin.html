@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>Promotions — Ameze Skin Elements</title>
+<title>Website editor — Ameze Skin Elements</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -149,14 +149,42 @@
     font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;
     padding:.35rem .7rem;cursor:pointer}
   .history button:hover{border-color:var(--gold);color:var(--gold)}
+  /* ── section switcher ── */
+  .secnav{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.6rem;
+    border-bottom:1px solid var(--line-d);padding-bottom:.9rem}
+  .secnav button{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+    text-transform:uppercase;background:none;border:1px solid transparent;
+    color:rgba(242,231,225,.55);padding:.45rem .8rem;cursor:pointer;transition:color .2s,border-color .2s}
+  .secnav button:hover{color:var(--gold)}
+  .secnav button.on{color:var(--plum-2);background:linear-gradient(100deg,var(--rose-lt),var(--gold));border-color:transparent}
+
+  /* ── generic section editor ── */
+  .grp{background:rgba(250,246,242,.06);border:1px solid var(--line-d);padding:1rem;margin-bottom:1.1rem}
+  .grp>.ghead{display:flex;gap:.6rem;align-items:center;margin-bottom:.8rem;flex-wrap:wrap}
+  .grp>.ghead .mono{color:var(--gold);margin-right:auto}
+  .rec{background:var(--paper);color:var(--ink);padding:.9rem 1rem;margin-bottom:.6rem;
+    display:grid;gap:.6rem;border-left:3px solid var(--rose)}
+  .rec .rhead{display:flex;gap:.5rem;align-items:center}
+  .rec .rhead .mono{font-size:.62rem;color:var(--muted);margin-right:auto}
+  .rec textarea{font-family:var(--sans);font-size:.95rem;color:var(--ink);background:#fff;
+    border:1px solid var(--line);padding:.6rem .75rem;width:100%;min-height:4.5rem;resize:vertical}
+  .rec textarea:focus{outline:none;border-color:var(--rose);box-shadow:0 0 0 3px rgba(156,104,117,.15)}
+  .extras{display:grid;gap:.7rem;margin-bottom:1.1rem}
+  .extras label>span{color:var(--gold)}
+  .extras input{font-family:var(--sans);font-size:.95rem;color:var(--ink);background:#fff;
+    border:1px solid var(--line);padding:.6rem .75rem;width:100%}
+  .addbtn{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;
+    background:none;border:1px dashed var(--line-d);color:rgba(242,231,225,.6);
+    padding:.5rem .9rem;cursor:pointer;margin-bottom:1.1rem}
+  .addbtn:hover{border-color:var(--gold);color:var(--gold)}
   @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 
 <div id="gate">
-  <h1>This month at Ameze</h1>
-  <p>Enter your passphrase to edit the promotions on the home page.</p>
+  <h1>Your website</h1>
+  <p>Enter your passphrase to edit the home page.</p>
   <input id="key" type="password" placeholder="passphrase" autocomplete="current-password">
   <p class="err" id="err">That passphrase was rejected.</p>
   <button class="btn primary" onclick="login()" style="justify-self:start">Open editor</button>
@@ -164,12 +192,28 @@
 
 <div id="app" hidden>
   <header>
-    <img src="img/logo.png" alt=""><b>Promotions editor</b>
+    <img src="img/logo.png" alt=""><b>Website editor</b>
     <span class="spacer"></span>
     <a class="mono" href="/" target="_blank" rel="noopener">View site ↗</a>
   </header>
 
   <main>
+    <nav class="secnav" id="secnav"></nav>
+
+    <div id="sec-content" hidden>
+      <p class="lede" id="clede"></p>
+      <div class="banner" id="cbanner" hidden></div>
+      <div id="cform"></div>
+      <div class="bar">
+        <div class="pending" id="cpending" hidden></div>
+        <div class="btns">
+          <button class="btn primary" onclick="cSave()" id="cbtn">Publish to the website</button>
+          <span class="status" id="cstatus"></span>
+        </div>
+      </div>
+    </div>
+
+    <div id="sec-specials">
     <p class="lede">These are the four cards under <b>“This month at Ameze.”</b>
       Change a price, swap a flyer, reorder them — then hit Publish and the website
       updates itself in about a minute.</p>
@@ -197,6 +241,7 @@
       <summary>Earlier versions — undo a change</summary>
       <ul id="hist"><li>Nothing published from here yet.</li></ul>
     </details>
+    </div>
   </main>
 </div>
 
@@ -252,6 +297,7 @@ function boot(data, problem){
   adoptPublished(data.specials || []);
   render();
   renderHistory(data.history || []);
+  if (typeof cLoad === "function") cLoad();
   const banner = document.getElementById("banner");
   if (problem) {
     banner.innerHTML = "<b>Your specials couldn't be loaded.</b><br>" + esc(problem)
@@ -517,6 +563,188 @@ document.getElementById("key").addEventListener("keydown", e => { if (e.key === 
 window.addEventListener("beforeunload", e => {
   if (items.some(it => it.upload)) { e.preventDefault(); e.returnValue = ""; }
 });
+</script>
+
+<script>
+/* ─────────────────────────────────────────────
+   The rest of the page — treatment menu, reviews, membership, before/after care,
+   studio hours, headline numbers. Forms are built from the schema the API sends,
+   so the two can never describe different shapes.
+   ───────────────────────────────────────────── */
+const CAPI = "/.netlify/functions/content-api";
+let SCHEMA = {}, CONTENT = {}, PUBLISHED = {}, CUR = "specials", cBusy = false;
+
+const clone = (o) => JSON.parse(JSON.stringify(o == null ? null : o));
+
+async function cApi(opts){
+  let r;
+  try { r = await fetch(CAPI, {headers:{"x-cms-key":KEY,"Content-Type":"application/json"}, ...opts}); }
+  catch(e){ throw new Error("Couldn't reach the site — check your connection."); }
+  const data = await r.json().catch(()=>({}));
+  if (r.status === 401) throw new Error("unauthorized");
+  if (r.status === 404) throw new Error("The content editor isn't deployed on this site yet (404).");
+  if (!r.ok) throw new Error(data.error || ("Request failed — HTTP " + r.status));
+  return data;
+}
+
+async function cLoad(){
+  try {
+    const d = await cApi();
+    SCHEMA = d.schema || {};
+    CONTENT = d.content || {};
+    PUBLISHED = clone(CONTENT) || {};
+    buildNav();
+  } catch(e){
+    // The promotions editor still works on its own; just note why the rest is absent.
+    const nav = document.getElementById("secnav");
+    nav.innerHTML = `<span class="mono" style="color:#E8A0A0">Other sections unavailable — ${esc(e.message)}</span>`;
+  }
+}
+
+function buildNav(){
+  const nav = document.getElementById("secnav");
+  const tabs = [["specials", "Promotions"]].concat(
+    Object.entries(SCHEMA).map(([k, s]) => [k, s.label]));
+  nav.innerHTML = tabs.map(([k, label]) =>
+    `<button data-sec="${k}" class="${k === CUR ? "on" : ""}">${esc(label)}</button>`).join("");
+  nav.querySelectorAll("button").forEach(b =>
+    b.addEventListener("click", () => showSection(b.dataset.sec)));
+}
+
+function showSection(name){
+  CUR = name;
+  document.querySelectorAll("#secnav button").forEach(b =>
+    b.classList.toggle("on", b.dataset.sec === name));
+  const isSpecials = name === "specials";
+  document.getElementById("sec-specials").hidden = !isSpecials;
+  document.getElementById("sec-content").hidden = isSpecials;
+  if (!isSpecials) renderSection();
+}
+
+/* ── form building ── */
+function field(f, val, path){
+  const id = "f_" + path.replace(/\W/g, "_");
+  if (f.type === "bool")
+    return `<label class="check"><input type="checkbox" data-path="${path}" ${val ? "checked" : ""}> ${esc(f.label)}</label>`;
+  const input = f.multiline
+    ? `<textarea data-path="${path}" id="${id}">${esc(val || "")}</textarea>`
+    : `<input type="text" data-path="${path}" id="${id}" value="${esc(val || "")}">`;
+  return `<label><span>${esc(f.label)}</span>${input}</label>`;
+}
+
+function recordBlock(spec, rec, path, i, n, label){
+  return `<div class="rec">
+    <div class="rhead">
+      <span class="mono">${esc(label)} ${i + 1}</span>
+      <button class="icon" data-act="up" data-path="${path}" ${i === 0 ? "disabled" : ""}>↑</button>
+      <button class="icon" data-act="down" data-path="${path}" ${i === n - 1 ? "disabled" : ""}>↓</button>
+      <button class="icon del" data-act="del" data-path="${path}">×</button>
+    </div>
+    ${spec.fields.map(f => field(f, rec[f.key], path + "." + f.key)).join("")}
+  </div>`;
+}
+
+function renderSection(){
+  const spec = SCHEMA[CUR];
+  const data = CONTENT[CUR] || (CONTENT[CUR] = spec.kind === "groups" ? {groups: []} : {items: []});
+  document.getElementById("clede").innerHTML =
+    `Editing <b>${esc(spec.label)}</b>. Changes go live about a minute after you publish.`;
+
+  let html = "";
+  if (spec.extras && spec.extras.length)
+    html += `<div class="extras">${spec.extras.map(f => field(f, data[f.key], f.key)).join("")}</div>`;
+
+  if (spec.kind === "groups") {
+    (data.groups || []).forEach((g, gi) => {
+      html += `<div class="grp">
+        <div class="ghead">
+          <span class="mono">${esc(spec.groupLabel)} ${gi + 1}</span>
+          <button class="icon" data-act="gup" data-path="groups.${gi}" ${gi === 0 ? "disabled" : ""}>↑</button>
+          <button class="icon" data-act="gdown" data-path="groups.${gi}" ${gi === data.groups.length - 1 ? "disabled" : ""}>↓</button>
+          <button class="icon del" data-act="gdel" data-path="groups.${gi}">×</button>
+        </div>
+        <div class="extras">${spec.groupFields.map(f => field(f, g[f.key], `groups.${gi}.${f.key}`)).join("")}</div>
+        ${(g.items || []).map((it, i) =>
+          recordBlock(spec, it, `groups.${gi}.items.${i}`, i, g.items.length, "Row")).join("")}
+        <button class="addbtn" data-act="additem" data-path="groups.${gi}">+ Add row</button>
+      </div>`;
+    });
+    html += `<button class="addbtn" data-act="addgroup">+ Add ${esc(spec.groupLabel.toLowerCase())}</button>`;
+  } else {
+    html += (data.items || []).map((it, i) =>
+      recordBlock(spec, it, `items.${i}`, i, data.items.length, "Entry")).join("");
+    html += `<button class="addbtn" data-act="add">+ Add entry</button>`;
+  }
+
+  const form = document.getElementById("cform");
+  form.innerHTML = html;
+  wire(form, data, spec);
+  cDirty();
+}
+
+function wire(form, data, spec){
+  form.querySelectorAll("[data-path]").forEach(el => {
+    if (el.tagName === "BUTTON") return;
+    const path = el.dataset.path;
+    const ev = el.type === "checkbox" ? "change" : "input";
+    el.addEventListener(ev, () => {
+      setPath(data, path, el.type === "checkbox" ? el.checked : el.value);
+      cDirty();
+    });
+  });
+  form.querySelectorAll("button[data-act]").forEach(b => {
+    b.addEventListener("click", () => {
+      const p = b.dataset.path, act = b.dataset.act;
+      const blank = (fields) => { const o = {}; fields.forEach(f => o[f.key] = f.type === "bool" ? false : ""); return o; };
+      if (act === "add") data.items.push(blank(spec.fields));
+      if (act === "addgroup") data.groups.push(Object.assign(blank(spec.groupFields), {items: [blank(spec.fields)]}));
+      if (act === "additem") getPath(data, p).items.push(blank(spec.fields));
+      if (act === "del" || act === "up" || act === "down") {
+        const i = +p.split(".").pop();
+        const arr = getPath(data, p.replace(/\.\d+$/, ""));
+        if (act === "del") { if (!confirm("Remove this?")) return; arr.splice(i, 1); }
+        else { const j = i + (act === "up" ? -1 : 1); if (j < 0 || j >= arr.length) return;
+               arr.splice(j, 0, arr.splice(i, 1)[0]); }
+      }
+      if (act === "gdel" || act === "gup" || act === "gdown") {
+        const i = +p.split(".").pop();
+        if (act === "gdel") { if (!confirm("Remove this whole section?")) return; data.groups.splice(i, 1); }
+        else { const j = i + (act === "gup" ? -1 : 1); if (j < 0 || j >= data.groups.length) return;
+               data.groups.splice(j, 0, data.groups.splice(i, 1)[0]); }
+      }
+      renderSection();
+    });
+  });
+}
+
+const getPath = (o, p) => p.split(".").reduce((a, k) => a[k], o);
+function setPath(o, p, v){
+  const keys = p.split("."), last = keys.pop();
+  keys.reduce((a, k) => a[k], o)[last] = v;
+}
+
+/* ── publish ── */
+function cDirty(){
+  const el = document.getElementById("cpending");
+  const changed = JSON.stringify(CONTENT[CUR]) !== JSON.stringify(PUBLISHED[CUR]);
+  el.innerHTML = "<b>Not published yet</b>Your edits to this section aren't on the website until you publish.";
+  el.hidden = !changed;
+}
+
+async function cSave(){
+  if (cBusy) return;
+  cBusy = true;
+  const btn = document.getElementById("cbtn"), st = document.getElementById("cstatus");
+  btn.disabled = true; st.className = "status"; st.textContent = "Publishing…";
+  try {
+    const res = await cApi({method:"POST", body: JSON.stringify({op:"save", section: CUR, data: CONTENT[CUR]})});
+    CONTENT = res.content; PUBLISHED = clone(res.content);
+    renderSection();
+    st.className = "status ok"; st.textContent = "✓ Published — live in about a minute.";
+  } catch(e){
+    st.className = "status bad"; st.textContent = e.message;
+  } finally { cBusy = false; btn.disabled = false; }
+}
 </script>
 </body>
 </html>
