@@ -1,11 +1,15 @@
 name: Sync prices from Vagaro
 
 # Vagaro's API has no service catalogue, so prices are read from her booking
-# widgets instead. Runs hourly; publishes only when something actually changed,
-# so a quiet hour costs one browser launch and no deploy.
+# widgets instead. Publishes only when something actually changed.
+#
+# Daily rather than hourly on purpose: Vagaro sits behind Imperva/Incapsula, and
+# frequent automated loads get challenged. Seven page loads once a day is modest
+# and unlikely to trip it; 24x that is asking for trouble. Prices move monthly at
+# most, so the extra freshness bought nothing.
 on:
   schedule:
-    - cron: "17 * * * *"     # hourly, off the hour to dodge the cron rush
+    - cron: "17 8 * * *"     # 08:17 UTC daily, before the working day in Houston
   workflow_dispatch:
     inputs:
       apply:

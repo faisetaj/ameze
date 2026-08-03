@@ -51,6 +51,15 @@ async function scrape(browser, label, url) {
   await page.setViewport({ width: 1280, height: 1600 });
   try {
     await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 });
+
+    // Vagaro sits behind Imperva/Incapsula. If we're challenged, say so plainly —
+    // it is not the same failure as a markup change, and it must never be worked
+    // around. Back off and let the CMS values stand.
+    const html = await page.content();
+    if (/_Incapsula_Resource|Request unsuccessful|Incapsula incident/i.test(html)) {
+      throw new Error("blocked by Vagaro's bot protection (Incapsula) — backing off");
+    }
+
     await page.waitForSelector(".service-title-alt", { timeout: 30000 });
     const rows = await page.$$eval(".service-detaildiv", (els) =>
       els.map((el) => ({
@@ -141,7 +150,9 @@ function priceFor(spec, found) {
       const spec = cfg.map[row.name];
       if (!spec) { unmatched.push(row.name); continue; }
 
-      const link = cfg.widgets[spec.w];
+      // A row whose category widget hasn't been generated still gets a working
+      // link and a price, from the unscoped widget that lists everything.
+      const link = cfg.widgets[spec.w] || cfg.widgets.all;
       if (link && row.href !== link) {
         changes.push({ row: row.name, what: "link", to: link, apply: () => (row.href = link) });
       }
