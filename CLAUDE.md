@@ -49,6 +49,17 @@ If you do edit specials by hand:
 - The credential line. She is a **medical esthetician and cosmetic injector** — not an RN,
   not a nurse, not a physician. Never upgrade or invent a credential.
 
+## File encoding — read this before any bulk edit
+
+`index.html` is UTF-8 and full of ®, ™, — and · characters. Edit it with a normal
+text edit, never with a shell command that reads and rewrites the whole file
+(PowerShell `Get-Content`/`Set-Content` in particular defaults to the system
+codepage on read and UTF-8 on write, which silently double-encodes every one of
+those characters into `Â®`, `â€"` and friends across the entire page).
+
+If it does happen, the damage is reversible: decode the file as UTF-8, re-encode
+those characters as cp1252, and write the bytes back.
+
 ## Style rules for content edits
 
 - Prices are real business data. Copy them exactly as given in the issue — never invent,

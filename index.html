@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="blush">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ameze Skin Elements â€” Medical Spa &amp; Skincare Clinic, Houston TX</title>
-<meta name="description" content="Medical estheticianâ€“led medical spa in Houston, Texas. BotoxÂ®, DysportÂ®, DAXXIFYÂ®, lip filler, exosome microneedling, BioRePeel and clinical facials. Book online.">
+<title>Ameze Skin Elements — Medical Spa &amp; Skincare Clinic, Houston TX</title>
+<meta name="description" content="Medical esthetician–led medical spa in Houston, Texas. Botox®, Dysport®, DAXXIFY®, lip filler, exosome microneedling, BioRePeel and clinical facials. Book online.">
 <script>
   /* theme before first paint */
   try { var t = localStorage.getItem("ameze-theme"); if (t) document.documentElement.dataset.theme = t; } catch(e){}
@@ -13,9 +13,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-     THEME TOKENS â€” A: Blush (default) Â· B: Noir Â· C: Porcelain
-     â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ─────────────────────────────────────────────
+     THEME TOKENS — A: Blush (default) · B: Noir · C: Porcelain
+     ───────────────────────────────────────────── */
   :root{
     --paper:#FFFFFF; --paper-2:#FBF3F3;
     --ink:#171314; --muted:#6D5A5D;
@@ -113,7 +113,7 @@
   .rv{opacity:0;transform:translateY(14px);transition:opacity .45s ease-out,transform .45s ease-out}
   .rv.in{opacity:1;transform:none}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ nav â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── nav ───────── */
   header{
     position:sticky;top:0;z-index:50;
     background:color-mix(in srgb,var(--paper) 86%,transparent);
@@ -153,7 +153,7 @@
   @media(min-width:900px){.nav-stamp{display:block;margin-left:auto;opacity:.7}.nav-links{margin-left:auto}}
   @media(max-width:720px){.nav-links{display:none}}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ hero stage â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── hero stage ───────── */
   .stage{background:var(--stage-bg);color:var(--stage-ink);position:relative;transition:background .35s ease}
   .hero{
     display:flex;align-items:center;
@@ -226,7 +226,7 @@
   .spark:nth-of-type(8){left:50%;top:38%;animation-delay:2s;width:2px;height:2px}
   @keyframes twinkle{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:1;transform:scale(1.25)}}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ marquee â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── marquee ───────── */
   .marquee{border-block:1px solid var(--stage-line);overflow:hidden;white-space:nowrap;padding-block:1rem;position:relative;z-index:3}
   .marquee-track{display:inline-block;animation:tick 34s linear infinite}
   .marquee:hover .marquee-track{animation-play-state:paused}
@@ -234,7 +234,7 @@
   .marquee b{color:var(--stage-accent);font-weight:500}
   @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ numbers â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── numbers ───────── */
   .numbers{padding-block:clamp(3.5rem,7vw,6rem)}
   .numbers .grid{display:grid;grid-template-columns:1fr 1fr;border-left:1px solid var(--line)}
   .num{padding:2rem 1.5rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .25s}
@@ -246,7 +246,7 @@
   .num .l{margin-top:.9rem;color:var(--muted);text-transform:none;font-size:.84rem;letter-spacing:.015em;line-height:1.6}
   @media(min-width:900px){.numbers .grid{grid-template-columns:repeat(4,1fr)}}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ section headers â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── section headers ───────── */
   section{scroll-margin-top:5rem}
   .sec-head{display:grid;grid-template-columns:1fr;gap:1rem;align-items:end;padding-block:clamp(3rem,6vw,5rem) 2rem}
   .sec-head>*{min-width:0}
@@ -261,7 +261,7 @@
     .sec-note{grid-column:9/13;justify-self:end;text-align:right}
   }
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ pricing menu â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── pricing menu ───────── */
   .tabs{display:flex;gap:.25rem;position:relative;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
   .tab{
@@ -319,13 +319,13 @@
     .menu-vis{display:block}
   }
 
-  /* image wipe reveal â€” visible by default; animation plays on first view */
+  /* image wipe reveal — visible by default; animation plays on first view */
   .imgrv.in{animation:wipe 1s cubic-bezier(.22,1,.36,1) both}
   .imgrv.in img{animation:unzoom 1.3s cubic-bezier(.22,1,.36,1) both}
   @keyframes wipe{from{clip-path:inset(0 94% 0 0)}to{clip-path:inset(0 0 0 0)}}
   @keyframes unzoom{from{transform:scale(1.07)}to{transform:none}}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ offers â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── offers ───────── */
   .offers{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
   @media(min-width:560px){.offers{grid-template-columns:1fr 1fr}}
   @media(min-width:900px){.offers{grid-template-columns:repeat(4,1fr)}}
@@ -345,7 +345,7 @@
   .offer .mono{display:block;margin-top:.3rem;color:var(--muted)}
   @media(min-width:900px){.offer img{height:13.5rem}}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ studio photo band â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── studio photo band ───────── */
   .band{display:grid;grid-template-columns:1fr;gap:1.1rem;margin-top:.5rem}
   .shot{position:relative;overflow:hidden;display:block}
   .shot img{width:100%;height:17rem;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1);filter:saturate(.88)}
@@ -357,7 +357,7 @@
     letter-spacing:.06em;text-transform:uppercase;color:var(--rose-deep)}
   @media(min-width:760px){.band{grid-template-columns:repeat(3,1fr)}.shot img{height:20rem}.shot:nth-child(2) img{object-position:center 30%}}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ edge word â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── edge word ───────── */
   .edgeword{overflow:hidden;padding-block:clamp(1.5rem,4vw,3rem);margin-top:clamp(3rem,7vw,5.5rem)}
   .ew-track{white-space:nowrap;display:inline-block;animation:tick 70s linear infinite}
   .ew-track span{
@@ -366,7 +366,7 @@
     color:transparent;-webkit-text-stroke:1.2px var(--edge-stroke);padding-inline:1.5rem;
   }
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ trust block (the "some black") â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── trust block (the "some black") ───────── */
   .trust{background:var(--dark-bg);color:var(--dark-ink);padding-block:clamp(4rem,9vw,7.5rem);position:relative;overflow:clip}
   .trust .mono{color:var(--dark-accent)}
   .trust-quote{
@@ -396,7 +396,7 @@
   }
   @media(min-width:900px){.trust-grid{grid-template-columns:1fr 1fr;gap:4rem}}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ membership â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── membership ───────── */
   .plans{display:grid;grid-template-columns:1fr;gap:1.25rem;align-items:stretch}
   .plan-glow{padding:1.5px;background:conic-gradient(from var(--a),var(--rose),var(--gold),var(--rose-lt),var(--rose));animation:rot 5s linear infinite;display:flex}
   @keyframes rot{to{--a:360deg}}
@@ -417,7 +417,7 @@
     .plan-glow{transform:translateY(-6px)}
   }
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ protocol â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── protocol ───────── */
   .proto{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--line)}
   .proto-col{padding:1.9rem 1.6rem}
   .proto-col+.proto-col{border-top:1px solid var(--line)}
@@ -436,7 +436,7 @@
     .proto-col+.proto-col{border-top:0;border-left:1px solid var(--line)}
   }
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ visit â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── visit ───────── */
   .locs{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
   .loc{background:var(--paper);padding:2rem 1.75rem;transition:background .25s,box-shadow .25s}
   .loc:hover{background:var(--paper-2);box-shadow:inset 0 3px 0 var(--rose)}
@@ -451,7 +451,7 @@
     background:linear-gradient(90deg,var(--rose-deep),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   @media(min-width:900px){.locs{grid-template-columns:1fr 1fr}}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ final cta â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── final cta ───────── */
   .fin{background:var(--dark-bg);color:var(--dark-ink);
     padding-block:clamp(5rem,11vw,9rem);margin-top:clamp(3.5rem,8vw,6.5rem);position:relative;overflow:clip}
   .fin-video{position:absolute;inset:0;z-index:0;opacity:.18;pointer-events:none}
@@ -461,7 +461,7 @@
   .fin .hero-cta{margin-top:2.6rem}
   .fin .b1{opacity:.5}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ footer â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── footer ───────── */
   footer{border-top:1px solid var(--line);padding-block:3rem 3.5rem;background:var(--paper-2)}
   .colo{display:grid;grid-template-columns:1fr;gap:2.5rem}
   .colo .brandline img{width:3rem}
@@ -471,7 +471,7 @@
   .colo nav a:hover{background:linear-gradient(90deg,var(--rose-deep),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   @media(min-width:900px){.colo{grid-template-columns:auto 1fr;gap:4rem}}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ booking modal â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── booking modal ───────── */
   .bm{position:fixed;inset:0;z-index:100;display:none;background:rgba(20,15,17,.62);backdrop-filter:blur(5px)}
   .bm.open{display:block}
   .bm-panel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
@@ -485,13 +485,13 @@
   .bm-close:hover{color:#8F4552}
   .bm iframe{flex:1;border:0;width:100%;background:#fff}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ scroll progress + header state â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── scroll progress + header state ───────── */
   #sprog{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;pointer-events:none;
     background:linear-gradient(90deg,var(--rose),var(--gold));transform-origin:left;transform:scaleX(0)}
   header{transition:background .35s ease,box-shadow .3s ease}
   header.scrolled{box-shadow:0 10px 34px rgba(23,19,20,.1)}
 
-  /* â”€â”€â”€â”€â”€â”€â”€â”€â”€ theme switcher â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ───────── theme switcher ───────── */
   .themer{position:fixed;right:1rem;bottom:1rem;z-index:90;display:flex;gap:.35rem;align-items:center;
     background:color-mix(in srgb,var(--paper) 80%,transparent);backdrop-filter:blur(8px);
     border:1px solid var(--line);padding:.4rem .5rem;box-shadow:0 8px 30px rgba(23,19,20,.18)}
@@ -510,7 +510,7 @@
 <header>
   <div class="wrap nav">
     <a class="brand" href="#top">
-      <img src="img/logo.png" alt="Ameze Skin Elements logo â€” rose gold 'ase' monogram" width="48" height="37">
+      <img src="img/logo.png" alt="Ameze Skin Elements logo — rose gold 'ase' monogram" width="48" height="37">
       <span>Ameze Skin Elements</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
@@ -520,7 +520,7 @@
       <a href="#membership">Membership</a>
       <a href="#visit">Visit</a>
     </nav>
-    <span class="mono nav-stamp">Houston Â· Richmond TX</span>
+    <span class="mono nav-stamp">Houston · Richmond TX</span>
     <a class="btn" data-book href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Book now</a>
   </div>
 </header>
@@ -542,20 +542,20 @@
       <div class="hero-veil" aria-hidden="true"></div>
       <div class="wrap grid">
         <div class="hero-main">
-          <p class="mono hero-eyebrow rv">Medical esthetician &amp; cosmetic injector â€” Houston, Texas</p>
-          <h1><span class="hl"><span>Good skin isnâ€™t luck.</span></span><span class="hl"><span>Itâ€™s <em class="shimmer">protocol.</em></span></span></h1>
-          <p class="hero-lede lede rv">Injectables, exosome microneedling and clinical skincare â€” every treatment begins with a facial exam, and every result gets a follow-up. Natural-looking work by an injector who wants to see you back, not redone.</p>
+          <p class="mono hero-eyebrow rv">Medical esthetician &amp; cosmetic injector — Houston, Texas</p>
+          <h1><span class="hl"><span>Good skin isn’t luck.</span></span><span class="hl"><span>It’s <em class="shimmer">protocol.</em></span></span></h1>
+          <p class="hero-lede lede rv">Injectables, exosome microneedling and clinical skincare — every treatment begins with a facial exam, and every result gets a follow-up. Natural-looking work by an injector who wants to see you back, not redone.</p>
           <div class="hero-cta rv">
             <a class="btn btn-glow" data-book href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Book an appointment</a>
             <a class="btn btn-ghost" href="#menu">View the menu</a>
           </div>
-          <p class="mono hero-stamp rv"><span>Wedâ€“Sat by appointment</span><span class="mono-num">(832) 775-6965</span></p>
+          <p class="mono hero-stamp rv"><span>Wed–Sat by appointment</span><span class="mono-num">(832) 775-6965</span></p>
         </div>
       </div>
       <span class="hero-badge" aria-hidden="true">
         <svg class="ring" viewBox="0 0 200 200">
           <defs><path id="circ" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
-          <text><textPath href="#circ">Ameze Skin Elements Â· Houston TX Â· Est. W Gray St Â·&#160;</textPath></text>
+          <text><textPath href="#circ">Ameze Skin Elements · Houston TX · Est. W Gray St ·&#160;</textPath></text>
         </svg>
         <img src="img/logo.png" alt="">
       </span>
@@ -564,8 +564,8 @@
     <!-- CREDENTIAL MARQUEE -->
     <div class="marquee" aria-label="Products and partners">
       <div class="marquee-track">
-        <span><b>BotoxÂ®</b> Cosmetic</span><span><b>DysportÂ®</b></span><span><b>DAXXIFYÂ®</b> â€” results up to 9 months</span><span><b>BioRePeelCl3Â®</b> Blue</span><span><b>Pro-XO</b> Exosome Therapy</span><span><b>PDRN</b> Polynucleotides</span><span>AllÄ“ Rewards accepted</span><span>Cherry payment plans</span><span>CareCredit accepted</span>
-        <span><b>BotoxÂ®</b> Cosmetic</span><span><b>DysportÂ®</b></span><span><b>DAXXIFYÂ®</b> â€” results up to 9 months</span><span><b>BioRePeelCl3Â®</b> Blue</span><span><b>Pro-XO</b> Exosome Therapy</span><span><b>PDRN</b> Polynucleotides</span><span>AllÄ“ Rewards accepted</span><span>Cherry payment plans</span><span>CareCredit accepted</span>
+        <span><b>Botox®</b> Cosmetic</span><span><b>Dysport®</b></span><span><b>DAXXIFY®</b> — results up to 9 months</span><span><b>BioRePeelCl3®</b> Blue</span><span><b>Pro-XO</b> Exosome Therapy</span><span><b>PDRN</b> Polynucleotides</span><span>Allē Rewards accepted</span><span>Cherry payment plans</span><span>CareCredit accepted</span>
+        <span><b>Botox®</b> Cosmetic</span><span><b>Dysport®</b></span><span><b>DAXXIFY®</b> — results up to 9 months</span><span><b>BioRePeelCl3®</b> Blue</span><span><b>Pro-XO</b> Exosome Therapy</span><span><b>PDRN</b> Polynucleotides</span><span>Allē Rewards accepted</span><span>Cherry payment plans</span><span>CareCredit accepted</span>
       </div>
     </div>
   </div>
@@ -574,10 +574,10 @@
   <section class="numbers wrap">
     <div class="grid">
       <!-- cms:numbers:start -->
-      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="5.0" data-decimals="1">5.0</span><sup>/5</sup></div><p class="mono l">Client rating â€” every published Vagaro review</p></div>
-      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="9.49" data-decimals="2" data-prefix="$">$9.49</span></div><p class="mono l">Per unit of BotoxÂ® on current member offer</p></div>
-      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="9">9</span><sup>mo</sup></div><p class="mono l">DAXXIFYÂ® corrections last up to nine months</p></div>
-      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="2">2</span></div><p class="mono l">Studios â€” W Gray St Houston &amp; Richmond TX</p></div>
+      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="5.0" data-decimals="1">5.0</span><sup>/5</sup></div><p class="mono l">Client rating — every published Vagaro review</p></div>
+      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="9.49" data-decimals="2" data-prefix="$">$9.49</span></div><p class="mono l">Per unit of Botox® on current member offer</p></div>
+      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="9">9</span><sup>mo</sup></div><p class="mono l">DAXXIFY® corrections last up to nine months</p></div>
+      <div class="num rv"><div class="n mono-num"><span class="cnt" data-target="2">2</span></div><p class="mono l">Studios — W Gray St Houston &amp; Richmond TX</p></div>
       <!-- cms:numbers:end -->
     </div>
   </section>
@@ -587,7 +587,7 @@
     <div class="sec-head">
       <div class="sec-no rv" aria-hidden="true">01</div>
       <div class="sec-title-wrap rv"><h2 class="sec-title">The treatment menu</h2></div>
-      <p class="sec-note rv">Live pricing from our booking system. Injectables are dosed per treatment plan â€” your exam decides the exact quote.</p>
+      <p class="sec-note rv">Live pricing from our booking system. Injectables are dosed per treatment plan — your exam decides the exact quote.</p>
     </div>
 
     <div class="menu-grid">
@@ -597,36 +597,36 @@
         <button class="tab on" role="tab" aria-selected="true" data-panel="p-c0">Injectables</button>
         <button class="tab" role="tab" aria-selected="false" data-panel="p-c1">Lip Filler</button>
         <button class="tab" role="tab" aria-selected="false" data-panel="p-c2">Microneedling &amp; Peels</button>
-        <button class="tab" role="tab" aria-selected="false" data-panel="p-c3">Facials â€” Richmond</button>
+        <button class="tab" role="tab" aria-selected="false" data-panel="p-c3">Facials — Richmond</button>
         <span class="tab-ind" aria-hidden="true"></span>
       </div>
 
       <div class="panel on" id="p-c0" role="tabpanel">
         <p class="panel-note">Neurotoxin artistry for the face, jaw and neck. Good-faith exam $39, credited toward treatment.</p>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">BotoxÂ® Cosmetic</span><span class="lead"></span><span class="p">from $300</span></span><span class="d">Smooths frown lines, forehead and crow's feet. Dosed to your anatomy after exam.</span></a>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">DAXXIFYÂ®</span><span class="lead"></span><span class="p">from $289</span></span><span class="d">Peptide-powered toxin. Visible in days, corrections lasting up to nine months.</span></a>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">DysportÂ®</span><span class="lead"></span><span class="p">$219</span></span><span class="d">Fast-onset smoothing for moderate to severe lines.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Botox® Cosmetic</span><span class="lead"></span><span class="p">from $300</span></span><span class="d">Smooths frown lines, forehead and crow's feet. Dosed to your anatomy after exam.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">DAXXIFY®</span><span class="lead"></span><span class="p">from $289</span></span><span class="d">Peptide-powered toxin. Visible in days, corrections lasting up to nine months.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Dysport®</span><span class="lead"></span><span class="p">$219</span></span><span class="d">Fast-onset smoothing for moderate to severe lines.</span></a>
         <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Lip Flip</span><span class="lead"></span><span class="p">$199</span></span><span class="d">Fuller-looking lips without added volume.</span></a>
         <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Brow Lift</span><span class="lead"></span><span class="p">$60</span></span><span class="d">Non-surgical lift that opens the eyes and softens frown lines.</span></a>
         <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Masseter Slimming</span><span class="lead"></span><span class="p">$599</span></span><span class="d">Relaxes overactive jaw muscles for a slimmer, defined profile.</span></a>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Refinements</span><span class="lead"></span><span class="p">$29â€“$384</span></span><span class="d">DAO Â· chin Â· jowl Â· bunny lines Â· nose tip Â· platysma â€” targeted micro-doses for the lower face and neck.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Refinements</span><span class="lead"></span><span class="p">$29–$384</span></span><span class="d">DAO · chin · jowl · bunny lines · nose tip · platysma — targeted micro-doses for the lower face and neck.</span></a>
       </div>
 
       <div class="panel" id="p-c1" role="tabpanel">
         <p class="panel-note">Premium hyaluronic-acid fillers, placed for shape first and volume second.</p>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Lip Filler â€” full syringe</span><span class="lead"></span><span class="p">$599</span></span><span class="d">Customized volume and definition with a natural finish.</span></a>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Mini Lip Filler â€” half syringe</span><span class="lead"></span><span class="p">$399</span></span><span class="d">Subtle enhancement that complements your features.</span></a>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Filler Dissolving â€” hyaluronidase</span><span class="lead"></span><span class="p">$200</span></span><span class="d">Safe, precise correction or removal of previous filler.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Lip Filler — full syringe</span><span class="lead"></span><span class="p">$599</span></span><span class="d">Customized volume and definition with a natural finish.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Mini Lip Filler — half syringe</span><span class="lead"></span><span class="p">$399</span></span><span class="d">Subtle enhancement that complements your features.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Filler Dissolving — hyaluronidase</span><span class="lead"></span><span class="p">$200</span></span><span class="d">Safe, precise correction or removal of previous filler.</span></a>
       </div>
 
       <div class="panel" id="p-c2" role="tabpanel">
         <p class="panel-note">Collagen induction, exosome biologics and medical-grade resurfacing.</p>
         <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Microneedling + HA</span><span class="lead"></span><span class="p">$299</span></span><span class="d">Micro-channels plus hyaluronic acid for deep hydration and texture repair.</span></a>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Pro-XO Premium Exosome Microneedling â€” skin</span><span class="lead"></span><span class="p">$599</span></span><span class="d">16 billion exosomes / 200&nbsp;mcg protein to accelerate renewal and collagen.</span></a>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Pro-XO Exosome Microneedling â€” hair restoration</span><span class="lead"></span><span class="p">$749</span></span><span class="d">Stimulates follicles and scalp health with exosomes and copper peptides.</span></a>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Microneedling Glass Facial</span><span class="lead"></span><span class="p">$679</span></span><span class="d">The luminous â€œglass skinâ€ finish â€” microneedling with a tailored infusion.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Pro-XO Premium Exosome Microneedling — skin</span><span class="lead"></span><span class="p">$599</span></span><span class="d">16 billion exosomes / 200&nbsp;mcg protein to accelerate renewal and collagen.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Pro-XO Exosome Microneedling — hair restoration</span><span class="lead"></span><span class="p">$749</span></span><span class="d">Stimulates follicles and scalp health with exosomes and copper peptides.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Microneedling Glass Facial</span><span class="lead"></span><span class="p">$679</span></span><span class="d">The luminous “glass skin” finish — microneedling with a tailored infusion.</span></a>
         <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">PDRN Under-Eye Treatment</span><span class="lead"></span><span class="p">$249</span></span><span class="d">Polynucleotides + HA to brighten and repair the delicate under-eye.</span></a>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">BioRePeelCl3Â® Blue</span><span class="lead"></span><span class="p">$149</span></span><span class="d">Biphasic TCA peel â€” exfoliation, biostimulation and hydration, minimal downtime.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">BioRePeelCl3® Blue</span><span class="lead"></span><span class="p">$149</span></span><span class="d">Biphasic TCA peel — exfoliation, biostimulation and hydration, minimal downtime.</span></a>
         <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">BioRePeel Blue + Microneedling</span><span class="lead"></span><span class="p">$399</span></span><span class="d">Our collagen-renewal pairing; also in a 3-treatment series at 20% off.</span></a>
       </div>
 
@@ -634,10 +634,10 @@
         <p class="panel-note">Esthetician services at the FM 723 studio, Fridays.</p>
         <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Signature Facial</span><span class="lead"></span><span class="p">$110</span></span><span class="d">Balancing, skin-tone-enhancing treatment tailored to you. With extractions $120.</span></a>
         <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Hydro Glow Facial</span><span class="lead"></span><span class="p">$199</span></span><span class="d">Suction-based cleanse, extraction and medical-grade serum infusion. Event-ready glow.</span></a>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Advanced Exfoliation Peels</span><span class="lead"></span><span class="p">$110</span></span><span class="d">Peptide Â· lactic Â· glycolic Â· vitamin C Â· hydrating â€” professional resurfacing, matched to your skin.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Advanced Exfoliation Peels</span><span class="lead"></span><span class="p">$110</span></span><span class="d">Peptide · lactic · glycolic · vitamin C · hydrating — professional resurfacing, matched to your skin.</span></a>
         <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Microdermabrasion</span><span class="lead"></span><span class="p">$130</span></span><span class="d">Crystal exfoliation for texture and radiance. Back facial $120.</span></a>
         <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">LED Light Therapy</span><span class="lead"></span><span class="p">$100</span></span><span class="d">Wavelength therapy for fine lines, tone and collagen.</span></a>
-        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Bridal Glow Menu</span><span class="lead"></span><span class="p">from $399</span></span><span class="d">A curated pre-wedding program â€” BioRePeel Glow, Hydro Facial and package options.</span></a>
+        <a class="prow" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Bridal Glow Menu</span><span class="lead"></span><span class="p">from $399</span></span><span class="d">A curated pre-wedding program — BioRePeel Glow, Hydro Facial and package options.</span></a>
       </div>
       <!-- cms:menu:end -->
     </div>
@@ -651,7 +651,7 @@
       <span class="cap" id="menu-vis-cap">The injectables suite</span>
     </div>
     </div>
-    <p class="mono menu-foot rv"><span><b>Summer promo</b> â€” 10% off most services, applied at booking</span><span>Consultation $75 Â· GFE exam $39</span><span>Complimentary 2-week follow-up on injectables</span></p>
+    <p class="mono menu-foot rv"><span><b>Summer promo</b> — 10% off most services, applied at booking</span><span>Consultation $75 · GFE exam $39</span><span>Complimentary 2-week follow-up on injectables</span></p>
   </section>
 
   <!-- OFFERS (rendered from content/specials.json; static fallback below) -->
@@ -664,14 +664,14 @@
     <div class="offers" id="offers-grid">
       <!-- specials:start -->
       <a class="offer rv" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener">
-        <span class="imgw"><img src="img/july-special.jpg" alt="Fourth of July special â€” Botox and Daxxify offer flyer"></span>
+        <span class="imgw"><img src="img/july-special.jpg" alt="Fourth of July special — Botox and Daxxify offer flyer"></span>
         <span class="c"><b>Summer Toxin Special</b><span>$299</span></span>
-        <span class="mono">40u BotoxÂ® â€” or 70u DAXXIFYÂ® $375</span>
+        <span class="mono">40u Botox® — or 70u DAXXIFY® $375</span>
       </a>
       <a class="offer rv" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener">
         <span class="imgw"><img src="img/lip-special.jpg" alt="Luxury lip enhancement special flyer showing lips"></span>
         <span class="c"><b>Luxury Lip Enhancement</b><span>from $399</span></span>
-        <span class="mono">Combo: full syringe + 40u DAXXIFYÂ® $698</span>
+        <span class="mono">Combo: full syringe + 40u DAXXIFY® $698</span>
       </a>
       <a class="offer rv" data-book href="https://www.vagaro.com/amezeskinelements/services" target="_blank" rel="noopener">
         <span class="imgw"><img src="img/facial-month.png" alt="Pineapple honey facial of the month flyer"></span>
@@ -704,8 +704,8 @@
   <!-- EDGE WORD -->
   <div class="edgeword" aria-hidden="true">
     <div class="ew-track">
-      <span>Ameze Skin Elements</span><span>Â·</span><span>Houston</span><span>Â·</span><span>Ameze Skin Elements</span><span>Â·</span><span>Houston</span><span>Â·</span>
-      <span>Ameze Skin Elements</span><span>Â·</span><span>Houston</span><span>Â·</span><span>Ameze Skin Elements</span><span>Â·</span><span>Houston</span><span>Â·</span>
+      <span>Ameze Skin Elements</span><span>·</span><span>Houston</span><span>·</span><span>Ameze Skin Elements</span><span>·</span><span>Houston</span><span>·</span>
+      <span>Ameze Skin Elements</span><span>·</span><span>Houston</span><span>·</span><span>Ameze Skin Elements</span><span>·</span><span>Houston</span><span>·</span>
     </div>
   </div>
 
@@ -716,17 +716,17 @@
       <div class="trust-inner">
         <div>
           <!-- cms:reviews:start -->
-          <p class="mono rv">04 â€” What clients say Â· verified Vagaro appointments</p>
-          <blockquote class="trust-quote rv">â€œIâ€™ve had several injectors and she is definitely my new go-to. The follow-up is what I appreciate most â€” she always wants to make sure her clients are <em class="shimmer">satisfied with their results.</em>â€</blockquote>
-          <p class="mono trust-attr rv">Sarah J â€” BotoxÂ® with Brenda Uhunmwagho Â· 5.0 / 5.0</p>
+          <p class="mono rv">04 — What clients say · verified Vagaro appointments</p>
+          <blockquote class="trust-quote rv">“I’ve had several injectors and she is definitely my new go-to. The follow-up is what I appreciate most — she always wants to make sure her clients are <em class="shimmer">satisfied with their results.</em>”</blockquote>
+          <p class="mono trust-attr rv">Sarah J — Botox® with Brenda Uhunmwagho · 5.0 / 5.0</p>
           <div class="trust-grid">
             <div class="rv">
-              <blockquote>â€œAs a first-timer I had a great experience. I had reservations about trying Botox and now Iâ€™m returning for my second visit. She is detailed at finding the right treatment and explains the process clearly before and after.â€</blockquote>
-              <p class="mono who">Andrew D â€” first-time BotoxÂ® client</p>
+              <blockquote>“As a first-timer I had a great experience. I had reservations about trying Botox and now I’m returning for my second visit. She is detailed at finding the right treatment and explains the process clearly before and after.”</blockquote>
+              <p class="mono who">Andrew D — first-time Botox® client</p>
             </div>
             <div class="rv">
-              <blockquote>â€œCustomer service was great. She was detailed about what she was doing and gives great advice on how to keep up. A very relaxing environment â€” I am most definitely going back.â€</blockquote>
-              <p class="mono who">Miriam A â€” verified client</p>
+              <blockquote>“Customer service was great. She was detailed about what she was doing and gives great advice on how to keep up. A very relaxing environment — I am most definitely going back.”</blockquote>
+              <p class="mono who">Miriam A — verified client</p>
             </div>
           </div>
           <p class="mono trust-scores rv mono-num"><span>Service 5.0</span><span>Punctuality 5.0</span><span>Value 5.0</span><span>Venue 5.0</span><span>Source: Vagaro published reviews</span></p>
@@ -751,12 +751,12 @@
       <!-- cms:membership:start -->
       <div class="plan-glow rv">
         <div class="plan feature">
-          <span class="mono tag">Botox Bankâ„¢ Membership</span>
+          <span class="mono tag">Botox Bank™ Membership</span>
           <h3>Bank it monthly</h3>
           <p class="price">$99<small> /month</small></p>
           <ul>
-            <li><b>$10 per unit</b> member BotoxÂ® pricing â€” vs $12â€“15 typical</li>
-            <li>Payments accumulate as <b>treatment credit</b> â€” ~$297 banked every 3 months</li>
+            <li><b>$10 per unit</b> member Botox® pricing — vs $12–15 typical</li>
+            <li>Payments accumulate as <b>treatment credit</b> — ~$297 banked every 3 months</li>
             <li><b>10% off</b> additional units and filler treatments</li>
             <li>Auto-billed, cancel-friendly, credits never rush you</li>
           </ul>
@@ -766,10 +766,10 @@
       <div class="plan rv">
         <span class="mono tag">Cherry</span>
         <h3>Split it over time</h3>
-        <p class="price">$100â€“$30k<small> financed</small></p>
+        <p class="price">$100–$30k<small> financed</small></p>
         <ul>
           <li>Apply in ~60 seconds, <b>no hard credit check</b> to see your offer</li>
-          <li>Plans sized to the treatment â€” from a peel to a full plan</li>
+          <li>Plans sized to the treatment — from a peel to a full plan</li>
           <li>Use it same-day at checkout</li>
         </ul>
         <a class="btn btn-ink" href="https://www.amezeskinelements.com/cherry" target="_blank" rel="noopener">Check your rate</a>
@@ -780,7 +780,7 @@
         <p class="price">0%<small> promo financing available*</small></p>
         <ul>
           <li>The health &amp; wellness credit card, accepted here</li>
-          <li>Works alongside AllÄ“ Rewards points on BotoxÂ®</li>
+          <li>Works alongside Allē Rewards points on Botox®</li>
           <li>*Subject to credit approval; terms apply</li>
         </ul>
         <a class="btn btn-ink" href="https://www.amezeskinelements.com/payment-plan-carecredit" target="_blank" rel="noopener">Learn more</a>
@@ -794,14 +794,14 @@
     <div class="sec-head">
       <div class="sec-no rv" aria-hidden="true">06</div>
       <div class="sec-title-wrap rv"><h2 class="sec-title">The protocol</h2></div>
-      <p class="sec-note rv">Great results are prepared, not improvised. The essentials below â€” your full instructions arrive with your booking.</p>
+      <p class="sec-note rv">Great results are prepared, not improvised. The essentials below — your full instructions arrive with your booking.</p>
     </div>
     <div class="proto rv">
       <!-- cms:protocol:start -->
       <div class="proto-col">
         <span class="mono" style="color:var(--rose-deep)">Before your appointment</span>
         <ol>
-          <li>Book at least 4 weeks ahead of any big event â€” results settle, bruising fades.</li>
+          <li>Book at least 4 weeks ahead of any big event — results settle, bruising fades.</li>
           <li>Skip blood thinners &amp; NSAIDs (aspirin, ibuprofen, fish oil, vitamin E) for 2 weeks if you can.</li>
           <li>No alcohol for 24 hours and no smoking for 48 hours before treatment.</li>
           <li>Pause Retin-A two days before and after. No dental work within 4 weeks.</li>
@@ -811,10 +811,10 @@
       <div class="proto-col">
         <span class="mono" style="color:var(--rose-deep)">After your treatment</span>
         <ol>
-          <li>No workouts, yoga or massage for 24 hours â€” keep the product where we placed it.</li>
+          <li>No workouts, yoga or massage for 24 hours — keep the product where we placed it.</li>
           <li>No alcohol for 24 hours, no smoking for 48; both slow healing and invite bruising.</li>
           <li>Prone to bruising? Arnica cream at the injection site helps.</li>
-          <li>Cleanse gently â€” no harsh scrubs or aggressive rubbing.</li>
+          <li>Cleanse gently — no harsh scrubs or aggressive rubbing.</li>
           <li>We see you again in 2 weeks. The follow-up is part of the treatment, and it's free.</li>
         </ol>
       </div>
@@ -831,29 +831,29 @@
     </div>
     <div class="locs rv">
       <div class="loc">
-        <span class="mono" style="color:var(--rose-deep)">Houston â€” Flagship</span>
+        <span class="mono" style="color:var(--rose-deep)">Houston — Flagship</span>
         <h3>919 W Gray St</h3>
-        <p class="addr">Houston, TX 77019 Â· <a href="tel:+18327756965" class="mono-num" style="color:var(--ink)">(832) 775-6965</a></p>
+        <p class="addr">Houston, TX 77019 · <a href="tel:+18327756965" class="mono-num" style="color:var(--ink)">(832) 775-6965</a></p>
         <table>
           <!-- cms:hours-houston:start -->
-          <tr><td>WED â€” FRI</td><td>10:00 â€” 17:00</td></tr>
-          <tr><td>SAT</td><td>09:00 â€” 16:00</td></tr>
-          <tr><td>SUN â€” TUE</td><td>BY APPOINTMENT</td></tr>
+          <tr><td>WED — FRI</td><td>10:00 — 17:00</td></tr>
+          <tr><td>SAT</td><td>09:00 — 16:00</td></tr>
+          <tr><td>SUN — TUE</td><td>BY APPOINTMENT</td></tr>
           <!-- cms:hours-houston:end -->
         </table>
-        <a class="dir" href="https://maps.google.com/?q=919+W+Gray+St,+Houston,+TX+77019" target="_blank" rel="noopener">Get directions â†—</a>
+        <a class="dir" href="https://maps.google.com/?q=919+W+Gray+St,+Houston,+TX+77019" target="_blank" rel="noopener">Get directions ↗</a>
       </div>
       <div class="loc">
-        <span class="mono" style="color:var(--rose-deep)">Richmond â€” Fridays</span>
+        <span class="mono" style="color:var(--rose-deep)">Richmond — Fridays</span>
         <h3>9107 FM 723, Suite 200</h3>
-        <p class="addr">Richmond, TX 77406 Â· Clinical facials &amp; esthetics</p>
+        <p class="addr">Richmond, TX 77406 · Clinical facials &amp; esthetics</p>
         <table>
           <!-- cms:hours-richmond:start -->
           <tr><td>FRI</td><td>BY APPOINTMENT</td></tr>
-          <tr><td>SAT â€” THU</td><td>SEE HOUSTON STUDIO</td></tr>
+          <tr><td>SAT — THU</td><td>SEE HOUSTON STUDIO</td></tr>
           <!-- cms:hours-richmond:end -->
         </table>
-        <a class="dir" href="https://maps.google.com/?q=9107+FM+723+Suite+200,+Richmond,+TX+77406" target="_blank" rel="noopener">Get directions â†—</a>
+        <a class="dir" href="https://maps.google.com/?q=9107+FM+723+Suite+200,+Richmond,+TX+77406" target="_blank" rel="noopener">Get directions ↗</a>
       </div>
     </div>
   </section>
@@ -889,10 +889,10 @@
       <nav aria-label="Footer">
         <a href="#menu">Services</a><a href="#offers">Offers</a><a href="#studio">Studio</a><a href="#reviews">Reviews</a><a href="#membership">Membership</a><a href="#protocol">Aftercare</a><a href="#visit">Locations</a><a data-book href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Book</a>
       </nav>
-      <p style="margin-top:1.5rem">Â© 2026 Ameze Skin Elements, LLC Â· Houston &amp; Richmond, Texas Â· (832) 775-6965<br>
+      <p style="margin-top:1.5rem">© 2026 Ameze Skin Elements, LLC · Houston &amp; Richmond, Texas · (832) 775-6965<br>
       Booking &amp; scheduling powered by Vagaro. Financing by Cherry Technologies and Synchrony (CareCredit), subject to approval.<br>
-      BotoxÂ® is a registered trademark of Allergan Aesthetics. DysportÂ® is a registered trademark of Ipsen Biopharm. DAXXIFYÂ® is a registered trademark of Revance Therapeutics. BioRePeelCl3Â® is a registered trademark of CMed Aesthetics.<br>
-      Select photography via Wikimedia Commons: â€œDoctor performing Botox injectionâ€, â€œSPA SKIN CAREâ€ (CC0); â€œWoman uses a skincare toolâ€¦â€, â€œWoman applies skincare productâ€¦â€ Â© Shixart1985, CC BY 2.0.<br>
+      Botox® is a registered trademark of Allergan Aesthetics. Dysport® is a registered trademark of Ipsen Biopharm. DAXXIFY® is a registered trademark of Revance Therapeutics. BioRePeelCl3® is a registered trademark of CMed Aesthetics.<br>
+      Select photography via Wikimedia Commons: “Doctor performing Botox injection”, “SPA SKIN CARE” (CC0); “Woman uses a skincare tool…”, “Woman applies skincare product…” © Shixart1985, CC BY 2.0.<br>
       Individual results vary. All injectable treatments require a good-faith exam and are performed under medical protocols. Pregnant or breastfeeding clients are not candidates for neurotoxin treatment.</p>
     </div>
   </div>
@@ -902,9 +902,9 @@
 <div class="bm" id="bookModal" role="dialog" aria-modal="true" aria-label="Book an appointment">
   <div class="bm-panel">
     <div class="bm-head">
-      <b>Book at Ameze</b><span class="mono">secure Â· via Vagaro</span>
-      <a href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Open in new tab â†—</a>
-      <button class="bm-close" aria-label="Close booking window" onclick="closeBook()">Ã—</button>
+      <b>Book at Ameze</b><span class="mono">secure · via Vagaro</span>
+      <a href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Open in new tab ↗</a>
+      <button class="bm-close" aria-label="Close booking window" onclick="closeBook()">×</button>
     </div>
     <iframe id="bookFrame" title="Ameze Skin Elements booking" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
@@ -913,16 +913,16 @@
 <!-- THEME SWITCHER -->
 <div class="themer" role="group" aria-label="Design theme">
   <span class="mono">Theme</span>
-  <button data-set="blush" title="Blush â€” white, dusty pink, black">A Â· Blush</button>
-  <button data-set="noir" title="Noir â€” dark luxe">B Â· Noir</button>
-  <button data-set="porcelain" title="Porcelain â€” soft pastel pink">C Â· Porcelain</button>
+  <button data-set="blush" title="Blush — white, dusty pink, black">A · Blush</button>
+  <button data-set="noir" title="Noir — dark luxe">B · Noir</button>
+  <button data-set="porcelain" title="Porcelain — soft pastel pink">C · Porcelain</button>
 </div>
 
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* â”€â”€ theme switcher â”€â”€ */
+  /* ── theme switcher ── */
   var tbtns = document.querySelectorAll('.themer button');
   function syncTheme(){
     var cur = document.documentElement.dataset.theme || 'blush';
@@ -937,7 +937,7 @@
   });
   syncTheme();
 
-  /* â”€â”€ booking modal (Vagaro embeds: CSP frame-ancestors *) â”€â”€ */
+  /* ── booking modal (Vagaro embeds: CSP frame-ancestors *) ── */
   var modal = document.getElementById('bookModal'), frame = document.getElementById('bookFrame');
   function openBook(url){
     if (!frame.src) frame.src = url || 'https://www.vagaro.com/amezeskinelements';
@@ -957,12 +957,12 @@
     });
   });
 
-  /* â”€â”€ videos: honor reduced motion â”€â”€ */
+  /* ── videos: honor reduced motion ── */
   document.querySelectorAll('video').forEach(function(v){
     if (reduce) { v.removeAttribute('autoplay'); v.pause(); }
   });
 
-  /* â”€â”€ scroll progress + header state â”€â”€ */
+  /* ── scroll progress + header state ── */
   var sprog = document.getElementById('sprog'), hdr = document.querySelector('header');
   var ticking = false;
   function onScroll(){
@@ -977,7 +977,7 @@
   }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
-  /* â”€â”€ magnetic buttons (desktop, motion-safe) â”€â”€ */
+  /* ── magnetic buttons (desktop, motion-safe) ── */
   if (!reduce && matchMedia('(pointer:fine)').matches) {
     document.querySelectorAll('.btn').forEach(function(b){
       b.addEventListener('pointermove', function(e){
@@ -991,7 +991,7 @@
     });
   }
 
-  /* â”€â”€ cursor glow on pricing rows â”€â”€ */
+  /* ── cursor glow on pricing rows ── */
   if (!reduce && matchMedia('(pointer:fine)').matches) {
     document.querySelectorAll('.prow').forEach(function(row){
       row.addEventListener('pointermove', function(e){
@@ -1002,7 +1002,7 @@
     });
   }
 
-  /* â”€â”€ specials from content/specials.json (written by /admin) â”€â”€ */
+  /* ── specials from content/specials.json (written by /admin) ── */
   function escHtml(v){
     return String(v == null ? '' : v)
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -1023,7 +1023,7 @@
     });
   }).catch(function(){});
 
-  /* â”€â”€ tabs â”€â”€ */
+  /* ── tabs ── */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   var ind = document.querySelector('.tab-ind');
   function stagger(panel){
@@ -1068,7 +1068,7 @@
   var first = document.querySelector('.tab.on');
   if (first) { moveInd(first); }
 
-  /* â”€â”€ count-up stats â”€â”€ */
+  /* ── count-up stats ── */
   function countUp(el){
     var target = parseFloat(el.dataset.target),
         dec = parseInt(el.dataset.decimals||'0',10),
@@ -1084,7 +1084,7 @@
     requestAnimationFrame(step);
   }
 
-  /* â”€â”€ scroll reveals â”€â”€ */
+  /* ── scroll reveals ── */
   var els = document.querySelectorAll('.rv, .imgrv');
   if (reduce || !('IntersectionObserver' in window)) {
     els.forEach(function(e){ e.classList.add('in'); });
