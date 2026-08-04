@@ -1,11 +1,12 @@
 {
   "_comment": [
-    "Vagaro category widgets. Each URL is a stateless, permanent link that renders",
-    "that category's live services. Used for two things: the booking modal opens the",
-    "right category instead of the whole menu, and the hourly sync reads prices from",
-    "the scoped widget rather than matching against the full 57-service list.",
+    "Vagaro category widgets. Each URL is a stateless, permanent link. They scope",
+    "which category the booking modal opens on, so a client lands where they tapped",
+    "instead of at the top of the full menu.",
     "Regenerate in Vagaro -> Settings -> Booking Widget -> Choose Specific Widget Items.",
-    "\"all\" is the unscoped widget: the fallback link and price source for any row whose category widget is missing."
+    "\"all\" is the unscoped widget: the link for any row with no category of its own,",
+    "and the single price source for the sync — the scoped widgets render the same",
+    "full service list anyway, so reading them all was requests for nothing."
   ],
   "widgets": {
     "injectables": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy",

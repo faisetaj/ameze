@@ -3,9 +3,8 @@
  * Pulls live prices from Vagaro into the site.
  *
  * Vagaro's public API has no service catalogue, so the only machine-readable
- * source of her prices is the booking widget. Each category widget is a
- * stateless permanent URL that renders that category's live services; we load
- * one per category in a headless browser and read the rendered rows.
+ * source of her prices is the booking widget: a stateless permanent URL that
+ * renders her live services. We load it in a headless browser and read the rows.
  *
  * Writes content/site.json (prices + per-row booking links). The regeneration of
  * index.html is left to content-api.js, which owns that markup — this script
@@ -15,7 +14,7 @@
  *   node scripts/vagaro-sync.js --apply    # writes the files
  *
  * Guards, because this publishes prices to a live medical-aesthetics site:
- *   - a widget yielding fewer rows than last time is treated as broken, not empty
+ *   - a short service list is treated as a broken read, not a pruned menu
  *   - $0 / missing / unparseable prices are skipped
  *   - a swing beyond MAX_SWING is held back and reported instead of applied
  */
@@ -35,7 +34,7 @@ const ROOT = path.join(__dirname, "..");
 const VAGARO = path.join(ROOT, "content", "vagaro.json");
 const SITE = path.join(ROOT, "content", "site.json");
 const MAX_SWING = 0.4;      // 40% — beyond this a human looks first
-const MIN_ROWS = 1;         // a widget returning nothing is broken, not empty
+const MIN_ROWS = 20;        // fewer than this is a partial render, not a pruned menu
 const APPLY = process.argv.includes("--apply");
 
 const read = (p) => JSON.parse(fs.readFileSync(p, "utf8"));
@@ -52,15 +51,20 @@ async function scrape(browser, label, url) {
   try {
     await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 });
 
-    // Vagaro sits behind Imperva/Incapsula. If we're challenged, say so plainly —
-    // it is not the same failure as a markup change, and it must never be worked
-    // around. Back off and let the CMS values stand.
-    const html = await page.content();
-    if (/_Incapsula_Resource|Request unsuccessful|Incapsula incident/i.test(html)) {
-      throw new Error("blocked by Vagaro's bot protection (Incapsula) — backing off");
+    // Only classify the failure once the page has actually failed to produce
+    // services. Vagaro loads an Incapsula beacon (/_Incapsula_Resource) on every
+    // healthy page too, so the beacon's presence proves nothing — an earlier
+    // version of this check keyed on it and failed every widget for a week.
+    try {
+      await page.waitForSelector(".service-title-alt", { timeout: 30000 });
+    } catch {
+      const html = await page.content();
+      // The challenge page is a stub: no services, and Imperva's own wording.
+      if (/Request unsuccessful|Incapsula incident|\bincident ID\b/i.test(html) || html.length < 5000) {
+        throw new Error("blocked by Vagaro's bot protection — backing off, not working around it");
+      }
+      throw new Error("no service rows rendered — Vagaro may have changed their markup");
     }
-
-    await page.waitForSelector(".service-title-alt", { timeout: 30000 });
     const rows = await page.$$eval(".service-detaildiv", (els) =>
       els.map((el) => ({
         name: (el.querySelector(".service-title-alt") || {}).textContent || "",
@@ -101,8 +105,12 @@ function priceFor(spec, found) {
 (async () => {
   const cfg = read(VAGARO);
   const site = read(SITE);
-  const widgets = Object.entries(cfg.widgets).filter(([, u]) => u);
-  if (!widgets.length) throw new Error("No Vagaro widget URLs configured");
+
+  // Prices come from the unscoped widget only. The category widgets scope which
+  // category the *booking modal* opens on, not what the page renders — all seven
+  // return the identical service list, so loading them was six extra requests at
+  // Vagaro's WAF for no extra data. They're still used, below, for the row links.
+  if (!cfg.widgets.all) throw new Error('content/vagaro.json needs an "all" widget — it is the price source');
 
   const browser = puppeteer
     ? await puppeteer.launch({
@@ -113,34 +121,30 @@ function priceFor(spec, found) {
     : null;
 
   const found = new Map();
-  const perWidget = {};
+  let rows = [];
   try {
-    for (const [label, url] of widgets) {
-      let rows = [];
-      try {
-        rows = FIXTURES
-          ? JSON.parse(fs.readFileSync(path.join(FIXTURES, `services-${label}.json`), "utf8"))
-              .map((r) => ({
-                name: r.vagaro,
-                cents: Math.round(parseFloat(String(r.price).replace(/[$,]/g, "")) * 100),
-                starting: !!r.starting,
-              }))
-          : await scrape(browser, label, url);
-      } catch (e) {
-        console.log(`!! ${label}: ${e.message} — skipping, nothing from this widget is applied`);
-      }
-      perWidget[label] = rows.length;
-      console.log(`   ${label.padEnd(12)} ${String(rows.length).padStart(3)} services`);
-      for (const r of rows) if (!found.has(norm(r.name))) found.set(norm(r.name), r);
-    }
+    rows = FIXTURES
+      ? JSON.parse(fs.readFileSync(path.join(FIXTURES, "services-all.json"), "utf8")).map((r) => ({
+          name: r.vagaro,
+          cents: Math.round(parseFloat(String(r.price).replace(/[$,]/g, "")) * 100),
+          starting: !!r.starting,
+        }))
+      : await scrape(browser, "all", cfg.widgets.all);
+  } catch (e) {
+    console.log(`!! ${e.message}`);
+    console.log("   Refusing to publish. The site keeps its current prices.");
+    process.exit(1);
   } finally {
     if (browser) await browser.close();
   }
+  console.log(`   read ${rows.length} services from Vagaro`);
+  for (const r of rows) if (!found.has(norm(r.name))) found.set(norm(r.name), r);
 
-  const broken = Object.entries(perWidget).filter(([, n]) => n < MIN_ROWS).map(([l]) => l);
-  if (broken.length) {
-    console.log(`\n!! ${broken.join(", ")} returned nothing. Vagaro may have changed their markup.`);
-    console.log("   Refusing to publish a partial menu. No files written.");
+  // A short list means a partial render, not a pruned menu — she runs ~50 services
+  // and the site maps 23 of them, so anything under MIN_ROWS can't be legitimate.
+  if (rows.length < MIN_ROWS) {
+    console.log(`\n!! only ${rows.length} services rendered, expected at least ${MIN_ROWS}.`);
+    console.log("   Treating that as a broken read. Refusing to publish a partial menu.");
     process.exit(1);
   }
 

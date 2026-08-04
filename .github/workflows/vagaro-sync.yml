@@ -4,8 +4,8 @@ name: Sync prices from Vagaro
 # widgets instead. Publishes only when something actually changed.
 #
 # Daily rather than hourly on purpose: Vagaro sits behind Imperva/Incapsula, and
-# frequent automated loads get challenged. Seven page loads once a day is modest
-# and unlikely to trip it; 24x that is asking for trouble. Prices move monthly at
+# frequent automated loads get challenged. One page load a day is modest and
+# unlikely to trip it; 24x that is asking for trouble. Prices move monthly at
 # most, so the extra freshness bought nothing.
 on:
   schedule:
@@ -22,11 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Install Puppeteer
         run: npm install puppeteer@23 --no-save --no-audit --no-fund

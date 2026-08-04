@@ -1,0 +1,4 @@
+# Only ever installed locally, to run scripts/vagaro-sync.js against live Vagaro.
+# CI installs it fresh with --no-save.
+node_modules/
+package-lock.json
