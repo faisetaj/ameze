@@ -43,6 +43,11 @@ If you do edit specials by hand:
 - Booking links (vagaro.com/amezeskinelements), phone numbers, addresses.
 - Legal/trademark text in the footer colophon.
 - The overall design system: fonts, color tokens, animations, layout structure.
+  Brenda chose **Porcelain** (2026-08-05) — it is set on `<html data-theme="porcelain">`
+  and the old A/B/C theme picker is gone. The Blush and Noir token blocks are kept
+  only so a future switch is a one-attribute change; don't revert to them.
+  Headings are **Jost** (`--display`), body **Inter** (`--sans`) — she found the old
+  Fraunces serif "newspaper"-ish. Prices stay mono.
 - Anything in `netlify/`, `.github/`, `netlify.toml`, `dashboard.html`, `updates.html`,
   `admin.html`, or this file. If an issue asks for that, comment that it needs the
   developer (Faisel).
@@ -66,7 +71,7 @@ those characters as cp1252, and write the bytes back.
   round, or "improve" a price. If a price seems wrong (e.g. $0), ask on the issue.
 - Match the surrounding writing voice: confident, warm, no exclamation-mark spam, no
   "revolutionary/cutting-edge" filler.
-- Keep the design tokens: mono for prices/labels (`--mono`), serif for headings.
+- Keep the design tokens: mono for prices/labels (`--mono`), `--display` for headings.
 - Preserve the reveal/animation classes (`rv`, `prow`, etc.) when editing rows.
 
 ## Verify before opening the PR

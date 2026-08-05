@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="blush">
+<html lang="en" data-theme="porcelain">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ameze Skin Elements — Medical Spa &amp; Skincare Clinic, Houston TX</title>
 <meta name="description" content="Medical esthetician–led medical spa in Houston, Texas. Botox®, Dysport®, DAXXIFY®, lip filler, exosome microneedling, BioRePeel and clinical facials. Book online.">
 <script>
-  /* theme before first paint */
-  try { var t = localStorage.getItem("ameze-theme"); if (t) document.documentElement.dataset.theme = t; } catch(e){}
+  /* Porcelain is the chosen theme, set on <html> above. This clears the key the
+     old A/B/C picker wrote, so anyone who tried Blush or Noir while choosing
+     doesn't keep seeing it. Safe to delete once everyone's loaded the site once. */
+  try { localStorage.removeItem("ameze-theme"); } catch(e){}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,300..700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* ─────────────────────────────────────────────
      THEME TOKENS — A: Blush (default) · B: Noir · C: Porcelain
@@ -34,9 +36,11 @@
     --veil:linear-gradient(160deg,rgba(176,93,106,.18),rgba(216,169,138,.08) 55%,transparent);
     --hero-veil:linear-gradient(180deg,rgba(255,255,255,.4) 0%,transparent 32%,transparent 72%,rgba(255,255,255,.92) 100%),
                 linear-gradient(100deg,rgba(255,255,255,.97) 6%,rgba(255,251,251,.88) 38%,rgba(255,246,247,.5) 70%,rgba(255,255,255,.22) 100%);
-    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    /* Jost replaces Fraunces: the old high-contrast editorial serif was what read
+       as "newspaper". Geometric, low-contrast, quiet — closer to porcelain. */
+    --display:"Jost",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
     --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   }
   [data-theme="noir"]{
     --paper:#FAF6F2; --paper-2:#F4EEE8;
@@ -97,7 +101,9 @@
   img,video{max-width:100%;display:block}
   a{color:inherit}
   .wrap{max-width:76rem;margin-inline:auto;padding-inline:clamp(1.25rem,4vw,3rem)}
-  h1,h2,h3{font-family:var(--serif);font-weight:640;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
+  /* Jost is geometric, so it wants less weight and far less negative tracking
+     than Fraunces did — the old -.035em collapses it into a smear. */
+  h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.012em;line-height:1.08;text-wrap:balance}
   .mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
   .mono-num{font-family:var(--mono);font-feature-settings:"tnum"}
   .lede{text-wrap:pretty}
@@ -124,7 +130,7 @@
   .nav{display:flex;align-items:center;gap:1.5rem;padding-block:.8rem}
   .brand{display:flex;align-items:center;gap:.65rem;text-decoration:none}
   .brand img{width:2.4rem;height:auto;filter:drop-shadow(0 0 8px rgba(216,169,138,.35))}
-  .brand span{font-family:var(--serif);font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+  .brand span{font-family:var(--display);font-weight:500;font-size:1.05rem;letter-spacing:.02em}
   .nav-links{display:flex;gap:1.4rem;margin-left:auto}
   .nav-links a{text-decoration:none;font-size:.9rem;opacity:.75;position:relative}
   .nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--gold);transition:width .2s ease-out}
@@ -165,9 +171,9 @@
   .hero .grid>*{min-width:0}
   .hero-eyebrow{color:var(--stage-accent);margin-bottom:1.7rem;display:flex;align-items:center;gap:.9rem}
   .hero-eyebrow::before{content:"";width:2.6rem;height:1px;background:linear-gradient(90deg,var(--stage-accent-2),transparent)}
-  h1{font-size:clamp(2.9rem,7.2vw,5.9rem);font-weight:700;letter-spacing:-.045em;color:var(--h1-ink);
+  h1{font-size:clamp(2.9rem,7.2vw,5.9rem);font-weight:450;letter-spacing:-.02em;color:var(--h1-ink);
      text-shadow:0 0 70px var(--h1-glow)}
-  h1 em{font-style:italic;font-weight:420}
+  h1 em{font-style:italic;font-weight:300}
   .hl{display:block;overflow:hidden;padding-bottom:.09em;margin-bottom:-.09em}
   .hl>span{display:inline-block;transform:translateY(115%);animation:rise .8s cubic-bezier(.19,.7,.22,1) forwards}
   .hl:nth-child(2)>span{animation-delay:.14s}
@@ -241,7 +247,7 @@
   .num:hover{background:linear-gradient(160deg,rgba(196,121,134,.1),rgba(216,169,138,.12))}
   .num:hover .n{background:linear-gradient(120deg,var(--rose-deep) 30%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   .num:hover .n sup{color:var(--gold)}
-  .num .n{font-family:var(--serif);font-size:clamp(3rem,6.4vw,5.6rem);font-weight:590;letter-spacing:-.015em;line-height:1;font-variation-settings:"opsz" 30}
+  .num .n{font-family:var(--display);font-size:clamp(3rem,6.4vw,5.6rem);font-weight:400;letter-spacing:-.01em;line-height:1}
   .num .n sup{font-size:.35em;font-weight:430;color:var(--rose)}
   .num .l{margin-top:.9rem;color:var(--muted);text-transform:none;font-size:.84rem;letter-spacing:.015em;line-height:1.6}
   @media(min-width:900px){.numbers .grid{grid-template-columns:repeat(4,1fr)}}
@@ -250,7 +256,7 @@
   section{scroll-margin-top:5rem}
   .sec-head{display:grid;grid-template-columns:1fr;gap:1rem;align-items:end;padding-block:clamp(3rem,6vw,5rem) 2rem}
   .sec-head>*{min-width:0}
-  .sec-no{font-family:var(--serif);font-size:clamp(3.8rem,8vw,7rem);font-weight:300;font-style:italic;line-height:.9;
+  .sec-no{font-family:var(--display);font-size:clamp(3.8rem,8vw,7rem);font-weight:300;font-style:italic;line-height:.9;
     background:linear-gradient(160deg,var(--rose) 20%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.7}
   .sec-title{font-size:clamp(2.1rem,4.6vw,3.6rem)}
   .sec-note{color:var(--muted);max-width:30rem}
@@ -298,7 +304,7 @@
     box-shadow:inset 3px 0 0 var(--rose),0 10px 32px rgba(143,69,82,.18)}
   .prow:hover .p{text-shadow:0 0 20px rgba(196,121,134,.55)}
   .prow-line{display:flex;align-items:baseline;gap:.9rem}
-  .prow .t{font-family:var(--serif);font-size:clamp(1.2rem,2.4vw,1.5rem);font-weight:560;letter-spacing:-.005em;font-variation-settings:"opsz" 22}
+  .prow .t{font-family:var(--display);font-size:clamp(1.2rem,2.4vw,1.5rem);font-weight:500;letter-spacing:0}
   .prow:hover .t{background:linear-gradient(90deg,var(--rose-deep),var(--gold) 130%);-webkit-background-clip:text;background-clip:text;color:transparent}
   .prow .lead{flex:1;border-bottom:1px dotted color-mix(in srgb,var(--ink) 40%,transparent);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1) .25s;min-width:2rem;position:relative;top:-.25em}
   .prow.in .lead{transform:none}
@@ -350,7 +356,7 @@
   .offer img{width:100%;height:15rem;object-fit:cover;object-position:top;filter:saturate(.95);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
   .offer:hover img{transform:scale(1.045)}
   .offer .c{display:flex;justify-content:space-between;gap:1rem;margin-top:.95rem;align-items:baseline}
-  .offer .c b{font-family:var(--serif);font-weight:580;font-size:1.05rem;letter-spacing:-.01em}
+  .offer .c b{font-family:var(--display);font-weight:500;font-size:1.05rem;letter-spacing:0}
   .offer .c span{font-family:var(--mono);font-size:.84rem;white-space:nowrap;font-feature-settings:"tnum";color:var(--rose-deep)}
   .offer .mono{display:block;margin-top:.3rem;color:var(--muted)}
   @media(min-width:900px){.offer img{height:13.5rem}}
@@ -371,8 +377,8 @@
   .edgeword{overflow:hidden;padding-block:clamp(1.5rem,4vw,3rem);margin-top:clamp(3rem,7vw,5.5rem)}
   .ew-track{white-space:nowrap;display:inline-block;animation:tick 70s linear infinite}
   .ew-track span{
-    font-family:var(--serif);font-style:italic;font-weight:340;
-    font-size:clamp(4rem,10vw,8.5rem);letter-spacing:-.02em;line-height:1;
+    font-family:var(--display);font-style:italic;font-weight:300;
+    font-size:clamp(4rem,10vw,8.5rem);letter-spacing:.005em;line-height:1;
     color:transparent;-webkit-text-stroke:1.2px var(--edge-stroke);padding-inline:1.5rem;
   }
 
@@ -380,8 +386,8 @@
   .trust{background:var(--dark-bg);color:var(--dark-ink);padding-block:clamp(4rem,9vw,7.5rem);position:relative;overflow:clip}
   .trust .mono{color:var(--dark-accent)}
   .trust-quote{
-    font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.02em;
-    font-size:clamp(1.7rem,4.1vw,3.15rem);line-height:1.2;max-width:56rem;
+    font-family:var(--display);font-weight:300;font-style:italic;letter-spacing:-.005em;
+    font-size:clamp(1.7rem,4.1vw,3.15rem);line-height:1.28;max-width:56rem;
     margin-top:2rem;text-wrap:balance;
   }
   .trust-attr{margin-top:1.75rem;color:var(--dark-muted)}
@@ -488,7 +494,7 @@
     width:min(62rem,94vw);height:min(86vh,60rem);background:#fff;display:flex;flex-direction:column;
     box-shadow:0 30px 90px rgba(0,0,0,.45)}
   .bm-head{display:flex;align-items:center;gap:1rem;padding:.75rem 1.1rem;border-bottom:1px solid rgba(23,19,20,.12);color:#171314}
-  .bm-head b{font-family:var(--serif);font-weight:600}
+  .bm-head b{font-family:var(--display);font-weight:500}
   .bm-head .mono{color:#8F4552}
   .bm-head a{margin-left:auto;font-size:.8rem;color:#8F4552}
   .bm-close{appearance:none;border:0;background:none;cursor:pointer;font-size:1.5rem;line-height:1;color:#171314;padding:.25rem .5rem}
@@ -501,17 +507,62 @@
   header{transition:background .35s ease,box-shadow .3s ease}
   header.scrolled{box-shadow:0 10px 34px rgba(23,19,20,.1)}
 
-  /* ───────── theme switcher ───────── */
-  .themer{position:fixed;right:1rem;bottom:1rem;z-index:90;display:flex;gap:.35rem;align-items:center;
-    background:color-mix(in srgb,var(--paper) 80%,transparent);backdrop-filter:blur(8px);
-    border:1px solid var(--line);padding:.4rem .5rem;box-shadow:0 8px 30px rgba(23,19,20,.18)}
-  .themer .mono{color:var(--muted);padding-inline:.3rem}
-  .themer button{
-    appearance:none;cursor:pointer;border:1px solid var(--line);background:var(--paper);
-    font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;
-    color:var(--muted);padding:.4rem .7rem;transition:all .2s}
-  .themer button:hover{border-color:var(--rose);color:var(--rose-deep)}
-  .themer button.on{background:linear-gradient(100deg,var(--rose),var(--gold));color:#fff;border-color:transparent}
+  /* ───────── newsletter — card that retires to a pill ─────────
+     Deliberately not a takeover: no overlay, no focus steal, no scroll lock.
+     It slides in once, and from then on it's a pill in the corner. */
+  .nl{position:fixed;right:1rem;bottom:1rem;z-index:95;display:flex;justify-content:flex-end;
+    max-width:min(23rem,calc(100vw - 2rem))}
+  .nl[hidden]{display:none}
+  .nl-card{
+    position:relative;width:min(23rem,calc(100vw - 2rem));
+    background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);
+    border:1px solid var(--line);padding:1.4rem 1.35rem 1.25rem;
+    box-shadow:0 18px 50px rgba(26,19,21,.16);
+    opacity:0;transform:translateY(14px) scale(.98);transform-origin:100% 100%;
+    transition:opacity .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1);
+  }
+  .nl.open .nl-card{opacity:1;transform:none}
+  .nl:not(.open) .nl-card{pointer-events:none;position:absolute;right:0;bottom:0}
+  .nl-card h3{font-size:1.3rem;margin-bottom:.4rem}
+  .nl-card p{font-size:.9rem;color:var(--muted);line-height:1.5;margin-bottom:.95rem;text-wrap:pretty}
+  .nl-row{display:flex;gap:.5rem}
+  .nl-row input{
+    flex:1;min-width:0;appearance:none;border:1px solid var(--line);background:var(--paper);
+    font-family:var(--sans);font-size:.9rem;color:var(--ink);padding:.65rem .75rem;
+  }
+  .nl-row input:focus-visible{outline:2px solid var(--rose);outline-offset:1px}
+  .nl-row button{
+    appearance:none;cursor:pointer;border:0;background:var(--btn-grad);color:var(--btn-ink);
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+    padding:.65rem .95rem;transition:filter .2s}
+  .nl-row button:hover{filter:brightness(1.06)}
+  .nl-fine{font-size:.72rem;color:var(--muted);margin:.7rem 0 0}
+  .nl-close{
+    position:absolute;top:.45rem;right:.5rem;appearance:none;border:0;background:none;cursor:pointer;
+    color:var(--muted);font-size:1.15rem;line-height:1;padding:.3rem .45rem;transition:color .2s}
+  .nl-close:hover{color:var(--rose-deep)}
+  .nl-done{font-size:.9rem;color:var(--rose-deep)}
+
+  /* the retired state — a small pill that glows just enough to be noticed */
+  .nl-pill{
+    appearance:none;cursor:pointer;border:1px solid var(--edge-stroke);
+    background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--rose-deep);padding:.6rem 1.05rem;border-radius:999px;white-space:nowrap;
+    box-shadow:0 6px 20px rgba(26,19,21,.12),0 0 0 0 var(--h1-glow);
+    opacity:0;transform:translateY(10px) scale(.96);pointer-events:none;
+    transition:opacity .4s ease,transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease;
+    animation:nlglow 3.4s ease-in-out infinite;
+  }
+  .nl:not(.open) .nl-pill{opacity:1;transform:none;pointer-events:auto}
+  .nl.open .nl-pill{position:absolute;right:0;bottom:0}
+  .nl-pill:hover{box-shadow:0 8px 26px rgba(26,19,21,.18),0 0 22px 3px var(--h1-glow)}
+  @keyframes nlglow{
+    0%,100%{box-shadow:0 6px 20px rgba(26,19,21,.12),0 0 0 0 var(--h1-glow)}
+    50%{box-shadow:0 6px 20px rgba(26,19,21,.12),0 0 18px 4px var(--h1-glow)}
+  }
+  @media (prefers-reduced-motion: reduce){ .nl-pill{animation:none} }
+  @media(max-width:520px){ .nl{left:1rem;right:1rem;max-width:none} }
 </style>
 </head>
 <body>
@@ -705,7 +756,7 @@
       <p class="sec-note rv">Medical-grade treatments in a space that feels like self-care, not a clinic corridor.</p>
     </div>
     <div class="band rv">
-      <span class="shot imgrv"><img src="img/media/injectables.jpg" alt="Injector performing a Botox treatment" loading="lazy"><span class="cap">The injectables suite</span></span>
+      <span class="shot imgrv"><img src="img/media/injectables.jpg" alt="Brenda Uhunmwagho placing lip filler for a client at the Houston studio" loading="lazy"><span class="cap">The injectables suite</span></span>
       <span class="shot imgrv"><img src="img/media/facial.jpg" alt="Client receiving a clinical facial" loading="lazy"><span class="cap">Clinical facials</span></span>
       <span class="shot imgrv"><img src="img/media/glow.jpg" alt="Woman using a skincare tool, glowing skin" loading="lazy"><span class="cap">The glow standard</span></span>
     </div>
@@ -920,32 +971,30 @@
   </div>
 </div>
 
-<!-- THEME SWITCHER -->
-<div class="themer" role="group" aria-label="Design theme">
-  <span class="mono">Theme</span>
-  <button data-set="blush" title="Blush — white, dusty pink, black">A · Blush</button>
-  <button data-set="noir" title="Noir — dark luxe">B · Noir</button>
-  <button data-set="porcelain" title="Porcelain — soft pastel pink">C · Porcelain</button>
+<!-- NEWSLETTER — Netlify Forms collects these; submissions appear under Forms
+     in the Netlify dashboard, exportable as CSV. Nothing else stores the address. -->
+<div class="nl" id="nl" hidden>
+  <button class="nl-pill" id="nlPill" aria-expanded="false" aria-controls="nlCard">Offers &amp; specials</button>
+  <div class="nl-card" id="nlCard" role="region" aria-label="Email list signup">
+    <button class="nl-close" id="nlClose" aria-label="Minimize">&times;</button>
+    <h3>First to know</h3>
+    <p>Monthly specials, new treatments and member pricing — sent when there's something worth sending.</p>
+    <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="nlForm">
+      <input type="hidden" name="form-name" value="newsletter">
+      <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
+      <div class="nl-row">
+        <input type="email" name="email" required autocomplete="email" placeholder="you@email.com" aria-label="Your email address">
+        <button type="submit">Join</button>
+      </div>
+      <p class="nl-fine">No spam, and you can unsubscribe any time.</p>
+    </form>
+    <p class="nl-done" id="nlDone" hidden role="status"></p>
+  </div>
 </div>
 
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ── theme switcher ── */
-  var tbtns = document.querySelectorAll('.themer button');
-  function syncTheme(){
-    var cur = document.documentElement.dataset.theme || 'blush';
-    tbtns.forEach(function(b){ b.classList.toggle('on', b.dataset.set===cur); });
-  }
-  tbtns.forEach(function(b){
-    b.addEventListener('click', function(){
-      document.documentElement.dataset.theme = b.dataset.set;
-      try{ localStorage.setItem('ameze-theme', b.dataset.set); }catch(e){}
-      syncTheme();
-    });
-  });
-  syncTheme();
 
   /* ── booking modal (Vagaro embeds: CSP frame-ancestors *) ── */
   var modal = document.getElementById('bookModal'), frame = document.getElementById('bookFrame');
@@ -1140,6 +1189,59 @@
     });
   }, {threshold:.12, rootMargin:'0px 0px -4% 0px'});
   els.forEach(function(e){ io.observe(e); });
+
+  /* ── newsletter ──
+     Shows once, 8s in. After that it lives as a pill in the corner: someone who
+     closed it gets the pill on the next visit, never the card again, and someone
+     who joined never sees any of it. */
+  var nl = document.getElementById('nl');
+  if (nl) {
+    var nlPill = document.getElementById('nlPill'),
+        nlForm = document.getElementById('nlForm'),
+        nlDone = document.getElementById('nlDone'),
+        state = '';
+    try { state = localStorage.getItem('ameze-nl') || ''; } catch(e){}
+
+    function nlOpen(on){
+      nl.classList.toggle('open', on);
+      nlPill.setAttribute('aria-expanded', on ? 'true' : 'false');
+    }
+    function remember(v){ try { localStorage.setItem('ameze-nl', v); } catch(e){} }
+
+    if (state !== 'joined') {
+      nl.hidden = false;
+      // Already dismissed once — come back as the pill, not the card.
+      setTimeout(function(){ nlOpen(state !== 'closed'); }, state === 'closed' ? 0 : 8000);
+    }
+
+    nlPill.addEventListener('click', function(){ nlOpen(!nl.classList.contains('open')); });
+    document.getElementById('nlClose').addEventListener('click', function(){
+      nlOpen(false); remember('closed');
+    });
+
+    nlForm.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var btn = nlForm.querySelector('button[type=submit]');
+      btn.disabled = true; btn.textContent = '…';
+      fetch('/', {
+        method: 'POST',
+        headers: {'Content-Type':'application/x-www-form-urlencoded'},
+        body: new URLSearchParams(new FormData(nlForm)).toString()
+      }).then(function(res){
+        if (!res.ok) throw new Error(res.status);
+        nlForm.hidden = true;
+        nlDone.hidden = false;
+        nlDone.textContent = "You're on the list — watch for the next set of specials.";
+        remember('joined');
+        setTimeout(function(){ nlOpen(false); nl.hidden = true; }, 4000);
+      }).catch(function(){
+        // Don't claim a signup that didn't happen.
+        btn.disabled = false; btn.textContent = 'Join';
+        nlDone.hidden = false;
+        nlDone.textContent = "That didn't go through. Try again, or call us at (832) 775-6965.";
+      });
+    });
+  }
 })();
 </script>
 </body>
