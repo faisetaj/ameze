@@ -1,0 +1,59 @@
+name: Open PR for agent branches
+
+# claude-code-action pushes a claude/* branch but leaves opening the PR to a human.
+# The ops panel's "ready to publish" lane is built from open PRs, so without this the
+# agent's work lands on a branch and is invisible — it just sits in "agent working".
+#
+# This opens the PR automatically, and puts "Closes #N" in the body because the panel
+# parses that to link a PR back to its request (Send back depends on it).
+on:
+  push:
+    branches: ['claude/**']
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'claude/* branch to open a PR for'
+        required: true
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.inputs.branch || github.ref }}
+
+      - name: Open a pull request if one is not already open
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          BRANCH="${{ github.event.inputs.branch || github.ref_name }}"
+          echo "branch: $BRANCH"
+
+          EXISTING=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            echo "PR #$EXISTING is already open for $BRANCH"
+            exit 0
+          fi
+
+          TITLE=$(git log -1 --pretty=%s)
+          BODY=$(git log -1 --pretty=%b)
+
+          # Prefer the issue number encoded in the branch (claude/issue-2-...),
+          # otherwise fall back to the first #N mentioned in the commit message.
+          ISSUE=$(printf '%s' "$BRANCH" | sed -n 's#^claude/issue-\([0-9]\{1,\}\).*#\1#p')
+          if [ -z "$ISSUE" ]; then
+            ISSUE=$(git log -1 --pretty=%B | sed -n 's/.*#\([0-9]\{1,\}\).*/\1/p' | head -1)
+          fi
+          if [ -n "$ISSUE" ]; then
+            printf -v BODY '%s\n\nCloses #%s' "$BODY" "$ISSUE"
+          else
+            echo "::warning::No issue number found for $BRANCH — the panel will not be able to link this PR back to its request."
+          fi
+
+          gh pr create --base main --head "$BRANCH" --title "$TITLE" --body "$BODY"

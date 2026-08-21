@@ -1,6 +1,7 @@
 // Runs automatically on every verified Netlify Forms submission.
-// Opens a GitHub issue on the site repo, mentioning @claude so the
-// claude-code-action workflow picks it up and prepares a PR.
+// Opens a GitHub issue on the site repo labeled site-update + needs-triage. It deliberately
+// does NOT mention @claude: the agent only runs once a human approves in the ops panel, so
+// junk and ambiguous requests never cost tokens and a vague request can be sharpened first.
 //
 // Required env vars (Netlify site settings → Environment variables):
 //   GH_TOKEN   – fine-grained PAT with Issues:write + Contents:write on the repo
@@ -82,15 +83,13 @@ exports.handler = async (event) => {
     ``,
     `---`,
     ``,
-    `@claude Please implement this change request on the site. Follow the rules in CLAUDE.md:`,
-    `work on a \`claude/\` branch, open a PR that references this issue (\"Closes #<this issue>\"),`,
-    `and describe exactly what you changed in the PR body. If the request is ambiguous or`,
-    `touches anything CLAUDE.md forbids, do NOT guess — comment here asking for clarification instead.`,
+    `⏸ **Awaiting triage.** The agent has not run. Approve this in the ops panel to dispatch it —`,
+    `approving posts the final instruction as a comment that dispatches the agent.`,
   ].join("\n");
 
   const issue = await gh(`/repos/${repo}/issues`, {
     method: "POST",
-    body: JSON.stringify({ title, body, labels: ["site-update"] }),
+    body: JSON.stringify({ title, body, labels: ["site-update", "needs-triage"] }),
   });
 
   if (!issue.ok) {

@@ -1,8 +1,9 @@
 name: Claude site updates
 
+# issue_comment ONLY. An `issues: [opened]` trigger fires the agent on every raw client
+# submission, which defeats gate 1 — the whole point is that a human approves (and can
+# rewrite) the instruction before any tokens are spent.
 on:
-  issues:
-    types: [opened]
   issue_comment:
     types: [created]
 
