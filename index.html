@@ -273,28 +273,19 @@
   }
 
   /* ───────── pricing menu ───────── */
-  .tabs{display:flex;gap:.25rem;position:relative;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none;
-    scroll-padding-inline:2.5rem}
-  .tabs::-webkit-scrollbar{display:none}
-  /* Categories are editable from /admin, so the strip can outgrow its width.
-     Fade whichever edge has more tabs past it — a hard cut just reads as a
-     rendering fault, and the strip scrolls in both directions. */
-  .tabs.fade-r{-webkit-mask-image:linear-gradient(90deg,#000 84%,transparent);
-    mask-image:linear-gradient(90deg,#000 84%,transparent)}
-  .tabs.fade-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 16%);
-    mask-image:linear-gradient(90deg,transparent,#000 16%)}
-  .tabs.fade-l.fade-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent)}
+  /* Every category visible at once — the strip wraps instead of scrolling, so
+     nothing hides past the edge. The old sliding underline can't follow tabs
+     across rows, so the active tab carries its own. */
+  .tabs{display:flex;flex-wrap:wrap;gap:.25rem;position:relative;border-bottom:1px solid var(--line)}
   .tab{
     appearance:none;border:0;background:none;cursor:pointer;white-space:nowrap;
     font-family:var(--mono);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
     color:var(--muted);padding:.9rem 1.1rem;transition:color .2s;
   }
   .tab:hover{background:linear-gradient(90deg,var(--rose-deep),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .tab.on{color:var(--rose-deep)}
-  .tab-ind{position:absolute;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold));
-    box-shadow:0 0 14px rgba(196,121,134,.65),0 2px 8px rgba(216,169,138,.4);
-    transition:transform .35s cubic-bezier(.4,0,.2,1),width .35s cubic-bezier(.4,0,.2,1);will-change:transform,width}
+  .tab.on{color:var(--rose-deep);
+    background:linear-gradient(90deg,var(--rose),var(--gold)) left bottom/100% 2px no-repeat}
+  .tab-ind{display:none}
   .panel{display:none;padding-top:.4rem}
   .panel.on{display:block}
   .panel-note{padding:1.1rem 0 .4rem;color:var(--muted);font-size:.92rem;max-width:44rem;text-wrap:pretty}
