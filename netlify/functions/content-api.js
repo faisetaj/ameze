@@ -501,8 +501,11 @@ function renderHours(d) {
 
 function renderNumbers(d) {
   return d.items.map((n) => {
-    const num = String(n.value).replace(/[^0-9.]/g, "");
-    const prefix = /^\$/.test(n.value) ? ' data-prefix="$"' : "";
+    // A range like "4–6" animates only the upper number; the lower half rides
+    // along as the counter's prefix ("4–" + counting 0→6).
+    const range = String(n.value).match(/^(\d+(?:\.\d+)?)\s*[–-]\s*(\d+(?:\.\d+)?)$/);
+    const num = range ? range[2] : String(n.value).replace(/[^0-9.]/g, "");
+    const prefix = range ? ` data-prefix="${esc(range[1])}–"` : /^\$/.test(n.value) ? ' data-prefix="$"' : "";
     const decimals = num.includes(".") ? ` data-decimals="${num.split(".")[1].length}"` : "";
     return `      <div class="num rv"><div class="n mono-num">` +
            `<span class="cnt" data-target="${esc(num)}"${decimals}${prefix}>${esc(n.value)}</span>` +
