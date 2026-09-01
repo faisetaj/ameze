@@ -221,7 +221,10 @@
       </div>
     </div>
 
-    <div id="sec-specials">
+    <!-- Retired 2026-09: promotions, services and prices are managed in Vagaro and
+         mirrored to the site by the daily sync. The editor below stays dormant in
+         case the flyer cards ever need hand-editing again. -->
+    <div id="sec-specials" hidden>
     <p class="lede">These are the four cards under <b>“This month at Ameze.”</b>
       Change a price, swap a flyer, reorder them — then hit Publish and the website
       updates itself in about a minute.</p>
@@ -590,7 +593,7 @@ window.addEventListener("beforeunload", e => {
    so the two can never describe different shapes.
    ───────────────────────────────────────────── */
 const CAPI = "/.netlify/functions/content-api";
-let SCHEMA = {}, CONTENT = {}, PUBLISHED = {}, CUR = "specials", cBusy = false;
+let SCHEMA = {}, CONTENT = {}, PUBLISHED = {}, CUR = "photos-menu", cBusy = false;
 
 const clone = (o) => JSON.parse(JSON.stringify(o == null ? null : o));
 
@@ -624,23 +627,29 @@ async function cLoad(){
 }
 
 function buildNav(){
+  // Photos only: services, prices and promotions live in Vagaro now, and the
+  // text sections go through a change request. The server sends just the
+  // sections she edits here.
   const nav = document.getElementById("secnav");
-  const tabs = [["specials", "Promotions"]].concat(
-    Object.entries(SCHEMA).map(([k, s]) => [k, s.label]));
+  const tabs = Object.entries(SCHEMA).map(([k, s]) => [k, s.label]);
+  if (!tabs.length){
+    nav.innerHTML = `<span class="mono" style="color:#E8A0A0">No editable sections available</span>`;
+    return;
+  }
+  if (!SCHEMA[CUR]) CUR = tabs[0][0];
   nav.innerHTML = tabs.map(([k, label]) =>
     `<button data-sec="${k}" class="${k === CUR ? "on" : ""}">${esc(label)}</button>`).join("");
   nav.querySelectorAll("button").forEach(b =>
     b.addEventListener("click", () => showSection(b.dataset.sec)));
+  showSection(CUR);
 }
 
 function showSection(name){
   CUR = name;
   document.querySelectorAll("#secnav button").forEach(b =>
     b.classList.toggle("on", b.dataset.sec === name));
-  const isSpecials = name === "specials";
-  document.getElementById("sec-specials").hidden = !isSpecials;
-  document.getElementById("sec-content").hidden = isSpecials;
-  if (!isSpecials) renderSection();
+  document.getElementById("sec-content").hidden = false;
+  renderSection();
 }
 
 /* ── form building ── */

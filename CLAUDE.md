@@ -12,23 +12,25 @@ Change requests arrive as GitHub issues labeled `site-update`, filed from the /u
 4. If a request is ambiguous, contradictory, or out of scope, do NOT guess. Comment on the
    issue asking a specific clarifying question, and stop.
 
-## Weekly specials — the client edits these herself
+## The treatment menu — Vagaro owns it (since 2026-09)
 
-The "This month at Ameze" section is CMS-managed. The client publishes it from **`/admin`**,
-which commits `content/specials.json` and regenerates the static fallback cards in
-`index.html` in one commit. **Prefer to let her do it** — if an issue asks for a specials
-change, reply on the issue pointing her to `/admin` rather than opening a PR, unless she's
-explicitly asked you to do it for her.
+The menu (categories, services, prices, descriptions, booking links) is a **mirror of her
+live Vagaro catalogue**. The daily `vagaro-sync.yml` Action scrapes her booking widget and
+publishes `content/site.json` + the `cms:menu` region of `index.html` through `content-api`.
+She edits services **in Vagaro only** — never open a PR that hand-edits menu rows, prices
+or service descriptions; the next sync would overwrite it. If an issue asks for a menu
+change, reply pointing her to Vagaro (or, for how the menu is *presented*, to the
+change-request form). Sync configuration lives in `content/vagaro.json`
+(`categoryWidgets` maps Vagaro categories to scoped booking widgets; `hide` suppresses
+bookkeeping rows like the no-show fee).
 
-If you do edit specials by hand:
+## Specials cards — dormant
 
-- Edit `content/specials.json` (title, price, note, img, alt, href, optional `hidden: true`).
-- Mirror the change into the static fallback cards between the
-  `<!-- specials:start -->` / `<!-- specials:end -->` markers in `index.html` (`#offers-grid`)
-  so no-JS visitors see the same specials. **Never remove those marker comments** — `/admin`
-  needs them to find the block, and publishing breaks without them.
-- Client-uploaded flyer images land in `img/uploads/` — reference them there, or copy to
-  `img/` with a sensible name.
+The "This month at Ameze" flyer cards (`content/specials.json`) are no longer editable
+from `/admin` (her promotions live in Vagaro's "Monthly Promotions and Discounts"
+category, which the sync mirrors as a menu tab). The cards and their
+`<!-- specials:start -->` / `<!-- specials:end -->` markers remain in `index.html` —
+**never remove the markers**. A request to change these cards goes through Faisel.
 
 ## Photos — she edits these herself too
 
@@ -38,15 +40,16 @@ as specials: `content/site.json` plus the `cms:photos-menu` / `cms:photos-studio
 `cms:photos-trust` markers in `index.html`. **Never remove those markers.** If an issue
 asks for a photo swap in those spots, reply pointing her to /admin rather than opening a
 PR, unless she's explicitly asked you to do it for her. Her uploads land in `img/uploads/`.
-The rotator images map to menu categories by order (`data-for="p-c0…"`), and their
-captions come from the `visCaps` map in the page script — keep them in sync if categories
-change.
+The rotator images map to menu categories by order (`data-for="p-c0…"`); captions follow
+the active tab's label automatically, and when there are more categories than photos the
+rotator holds the previous image, so category churn from the Vagaro sync is safe.
 
 ## What you may edit
 
-- `content/specials.json` (see above).
-- Content inside `index.html`: prices, service names/descriptions, hours,
-  membership copy, protocol lists, review quotes (only if the issue provides new ones).
+- Content inside `index.html` **outside the `cms:menu` region**: hours, membership copy,
+  protocol lists, review quotes (only if the issue provides new ones). Never hand-edit
+  menu rows, service names/descriptions or prices — Vagaro owns those (see above).
+- `about.html` and `reviews.html` (same design tokens and voice rules).
 - Blog-style announcements: if asked for a "blog post", add it as a new section or a new
   HTML page matching the site's design tokens, and link it from the footer nav.
 

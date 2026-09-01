@@ -28,6 +28,9 @@ const OK_EXT = ["jpg", "jpeg", "png", "webp"];
    kind "groups" : named groups, each holding a list of records
    ───────────────────────────────────────────── */
 const SECTIONS = {
+  // The menu is machine-managed: the daily Vagaro sync mirrors her live
+  // catalogue here (categories, services, prices, descriptions). It is not
+  // offered in /admin — she edits services in Vagaro, once.
   menu: {
     label: "Treatment menu",
     marker: "menu",
@@ -45,8 +48,8 @@ const SECTIONS = {
       // modal instead of the top of the full menu. Hidden from the editor.
       { key: "href", label: "Booking link", max: 900, type: "url", internal: true },
     ],
-    maxGroups: 6,
-    maxItems: 16,
+    maxGroups: 16,
+    maxItems: 24,
     render: renderMenu,
   },
   reviews: {
@@ -128,6 +131,7 @@ const SECTIONS = {
     render: renderNumbers,
   },
   "photos-studio": {
+    clientEditable: true,
     label: "Photos — inside the studio",
     marker: "photos-studio",
     kind: "list",
@@ -140,6 +144,7 @@ const SECTIONS = {
     render: renderStudioPhotos,
   },
   "photos-trust": {
+    clientEditable: true,
     label: "Photos — reviews corner",
     marker: "photos-trust",
     kind: "list",
@@ -152,6 +157,7 @@ const SECTIONS = {
     render: renderTrustPhoto,
   },
   "photos-menu": {
+    clientEditable: true,
     label: "Photos — treatment menu",
     marker: "photos-menu",
     kind: "list",
@@ -549,9 +555,13 @@ exports.applySections = (page, content) => {
 };
 
 // The editor builds its forms from this, so the two can't drift apart.
+// Only clientEditable sections are offered: since 2026-09 the client edits
+// photos here and everything else in Vagaro (or via a change request), so the
+// text sections stay machine-publishable but disappear from /admin.
 function publicSchema() {
   const out = {};
   for (const [name, s] of Object.entries(SECTIONS)) {
+    if (!s.clientEditable) continue;
     out[name] = {
       // internal fields are machine-managed (e.g. the per-row Vagaro link) — the
       // editor never renders them, and they survive a save because the client

@@ -1106,16 +1106,18 @@
     ind.style.width = tab.offsetWidth+'px';
     ind.style.transform = 'translateX('+tab.offsetLeft+'px)';
   }
-  var visCaps = {'p-c0':'The injectables suite','p-c1':'Lips, done softly','p-c2':'Peels & microneedling','p-c3':'Clinical facials'};
   function syncVis(panelId){
-    /* Categories are editable from /admin, so there may be more tabs than photos.
-       If nothing matches, hold the current image rather than clearing them all. */
+    /* Categories come from Vagaro via the daily sync, so there may be more tabs
+       than photos. If nothing matches, hold the current image rather than
+       clearing them all. The caption follows the active tab's own label, so it
+       stays correct no matter how her categories change. */
     var imgs = document.querySelectorAll('.menu-vis img');
     var match = false;
     imgs.forEach(function(im){ if (im.dataset.for === panelId) match = true; });
     if (match) imgs.forEach(function(im){ im.classList.toggle('on', im.dataset.for === panelId); });
     var cap = document.getElementById('menu-vis-cap');
-    if (cap && visCaps[panelId]) cap.textContent = visCaps[panelId];
+    var tabEl = document.querySelector('.tab[data-panel="' + panelId + '"]');
+    if (cap && match && tabEl) cap.textContent = tabEl.textContent.trim();
   }
   tabs.forEach(function(tab){
     tab.addEventListener('click', function(){
