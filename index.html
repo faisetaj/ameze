@@ -6,10 +6,15 @@
 <title>Ameze Skin Elements — Medical Spa &amp; Skincare Clinic, Houston TX</title>
 <meta name="description" content="Medical esthetician–led medical spa in Houston, Texas. Botox®, Dysport®, DAXXIFY®, lip filler, exosome microneedling, BioRePeel and clinical facials. Book online.">
 <script>
-  /* Porcelain is the chosen theme, set on <html> above. This clears the key the
-     old A/B/C picker wrote, so anyone who tried Blush or Noir while choosing
-     doesn't keep seeing it. Safe to delete once everyone's loaded the site once. */
-  try { localStorage.removeItem("ameze-theme"); } catch(e){}
+  /* TEMPORARY: the theme picker is back while Brenda compares light (Porcelain)
+     and dark (Noir). This applies her stored choice before first paint; the
+     picker at the bottom-left writes it. When she's decided, delete this script,
+     the .tp CSS block, the #themePick markup and its handler, and restore the
+     localStorage.removeItem("ameze-theme") cleanup here. */
+  try {
+    var t0 = localStorage.getItem("ameze-theme");
+    if (t0 === "noir" || t0 === "porcelain") document.documentElement.dataset.theme = t0;
+  } catch(e){}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -500,6 +505,17 @@
   .bm-close{appearance:none;border:0;background:none;cursor:pointer;font-size:1.5rem;line-height:1;color:#171314;padding:.25rem .5rem}
   .bm-close:hover{color:#8F4552}
   .bm iframe{flex:1;border:0;width:100%;background:#fff}
+
+  /* ───────── TEMPORARY theme picker — delete with the head script ───────── */
+  .tp{position:fixed;left:1rem;bottom:1rem;z-index:95;display:flex;overflow:hidden;
+    border:1px solid var(--edge-stroke);border-radius:999px;
+    background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);
+    box-shadow:0 6px 20px rgba(26,19,21,.12)}
+  .tp button{appearance:none;border:0;background:none;cursor:pointer;
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--muted);padding:.6rem .95rem;transition:color .2s}
+  .tp button:hover{color:var(--rose-deep)}
+  .tp button[aria-pressed="true"]{background:var(--btn-grad);color:var(--btn-ink)}
 
   /* ───────── scroll progress + header state ───────── */
   #sprog{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;pointer-events:none;
@@ -998,9 +1014,29 @@
   </div>
 </div>
 
+<!-- TEMPORARY theme picker — remove once Brenda has chosen -->
+<div class="tp" id="themePick" role="group" aria-label="Color theme">
+  <button type="button" data-set="porcelain">Light</button>
+  <button type="button" data-set="noir">Dark</button>
+</div>
+
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── TEMPORARY theme picker ── */
+  var tp = document.getElementById('themePick');
+  if (tp) {
+    var tpBtns = tp.querySelectorAll('button');
+    var setTheme = function(t){
+      document.documentElement.dataset.theme = t;
+      tpBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.set === t)); });
+      try { localStorage.setItem('ameze-theme', t); } catch(e){}
+    };
+    tpBtns.forEach(function(b){ b.addEventListener('click', function(){ setTheme(b.dataset.set); }); });
+    var cur = document.documentElement.dataset.theme === 'noir' ? 'noir' : 'porcelain';
+    tpBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.set === cur)); });
+  }
 
   /* ── booking modal (Vagaro embeds: CSP frame-ancestors *) ── */
   var modal = document.getElementById('bookModal'), frame = document.getElementById('bookFrame');
