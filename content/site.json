@@ -315,5 +315,53 @@
         "label": "Studios — W Gray St Houston & Richmond TX"
       }
     ]
+  },
+  "photos-studio": {
+    "items": [
+      {
+        "img": "img/media/injectables.jpg",
+        "cap": "The injectables suite",
+        "alt": "Brenda Uhunmwagho placing lip filler for a client at the Houston studio"
+      },
+      {
+        "img": "img/media/facial.jpg",
+        "cap": "Clinical facials",
+        "alt": "Client receiving a clinical facial"
+      },
+      {
+        "img": "img/media/glow.jpg",
+        "cap": "The glow standard",
+        "alt": "Woman using a skincare tool, glowing skin"
+      }
+    ]
+  },
+  "photos-trust": {
+    "items": [
+      {
+        "img": "img/media/facial.jpg",
+        "cap": "Every face, examined first",
+        "alt": "Client mid-facial at the Ameze studio"
+      }
+    ]
+  },
+  "photos-menu": {
+    "items": [
+      {
+        "img": "img/media/injectables.jpg",
+        "alt": ""
+      },
+      {
+        "img": "img/media/routine.jpg",
+        "alt": ""
+      },
+      {
+        "img": "img/media/treatment-still.jpg",
+        "alt": ""
+      },
+      {
+        "img": "img/media/glow.jpg",
+        "alt": ""
+      }
+    ]
   }
 }

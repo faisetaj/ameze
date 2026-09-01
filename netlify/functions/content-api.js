@@ -19,6 +19,8 @@ const GH_API = "https://api.github.com";
 const JSON_PATH = "content/site.json";
 const PAGE_PATH = "index.html";
 const BOOKING = "https://www.vagaro.com/amezeskinelements/services";
+const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
+const OK_EXT = ["jpg", "jpeg", "png", "webp"];
 
 /* ─────────────────────────────────────────────
    Section registry — the whole surface in one place.
@@ -125,6 +127,41 @@ const SECTIONS = {
     maxItems: 4,
     render: renderNumbers,
   },
+  "photos-studio": {
+    label: "Photos — inside the studio",
+    marker: "photos-studio",
+    kind: "list",
+    fields: [
+      { key: "img", label: "Photo", type: "image", max: 300, required: true },
+      { key: "cap", label: "Caption", max: 60, required: true },
+      { key: "alt", label: "Describe the photo (screen readers)", max: 200 },
+    ],
+    maxItems: 3,
+    render: renderStudioPhotos,
+  },
+  "photos-trust": {
+    label: "Photos — reviews corner",
+    marker: "photos-trust",
+    kind: "list",
+    fields: [
+      { key: "img", label: "Photo", type: "image", max: 300, required: true },
+      { key: "cap", label: "Caption", max: 60, required: true },
+      { key: "alt", label: "Describe the photo (screen readers)", max: 200 },
+    ],
+    maxItems: 1,
+    render: renderTrustPhoto,
+  },
+  "photos-menu": {
+    label: "Photos — treatment menu",
+    marker: "photos-menu",
+    kind: "list",
+    fields: [
+      { key: "img", label: "Photo (one per menu category, same order)", type: "image", max: 300, required: true },
+      { key: "alt", label: "Describe the photo (screen readers)", max: 200 },
+    ],
+    maxItems: 6,
+    render: renderMenuPhotos,
+  },
 };
 
 exports.handler = async (event) => {
@@ -209,7 +246,7 @@ exports.handler = async (event) => {
     return stored;
   };
 
-  const publish = async (content, message) => {
+  const publish = async (content, message, images = []) => {
     let page = await readFile(PAGE_PATH);
     for (const [name, spec] of Object.entries(SECTIONS)) {
       if (!content[name]) continue;
@@ -227,6 +264,7 @@ exports.handler = async (event) => {
       [
         { path: JSON_PATH, base64: b64(JSON.stringify(content, null, 2) + "\n") },
         { path: PAGE_PATH, base64: b64(page) },
+        ...images,
       ],
       message
     );
@@ -260,8 +298,9 @@ exports.handler = async (event) => {
         const spec = SECTIONS[body.section];
         if (!spec) return json(400, { error: `Unknown section "${body.section}"` });
         const content = await loadContent();
-        content[body.section] = validate(spec, body.data);
-        const result = await publish(content, `Update ${spec.label.toLowerCase()} (via /admin)`);
+        const images = [];
+        content[body.section] = validate(spec, body.data, images);
+        const result = await publish(content, `Update ${spec.label.toLowerCase()} (via /admin)`, images);
         return json(200, result);
       }
 
@@ -286,7 +325,7 @@ exports.handler = async (event) => {
    validation
    ───────────────────────────────────────────── */
 
-function validate(spec, data) {
+function validate(spec, data, images) {
   if (spec.kind === "groups") {
     const groups = Array.isArray(data && data.groups) ? data.groups : null;
     if (!groups || !groups.length) throw new Error(`${spec.label} needs at least one ${(spec.groupLabel || "group").toLowerCase()}.`);
@@ -294,11 +333,11 @@ function validate(spec, data) {
     return {
       groups: groups.map((g, gi) => {
         const out = {};
-        for (const f of spec.groupFields) out[f.key] = checkField(f, g[f.key], `${spec.label} ${spec.groupLabel} ${gi + 1}`);
+        for (const f of spec.groupFields) out[f.key] = checkField(f, g[f.key], `${spec.label} ${spec.groupLabel} ${gi + 1}`, images);
         const items = Array.isArray(g.items) ? g.items : [];
         if (!items.length) throw new Error(`"${out.name || spec.groupLabel + " " + (gi + 1)}" has no rows yet.`);
         if (items.length > spec.maxItems) throw new Error(`"${out.name}": no more than ${spec.maxItems} rows.`);
-        out.items = items.map((it, i) => checkRecord(spec.fields, it, `"${out.name}" row ${i + 1}`));
+        out.items = items.map((it, i) => checkRecord(spec.fields, it, `"${out.name}" row ${i + 1}`, images));
         return out;
       }),
     };
@@ -307,19 +346,40 @@ function validate(spec, data) {
   const items = Array.isArray(data && data.items) ? data.items : null;
   if (!items || !items.length) throw new Error(`${spec.label} needs at least one entry.`);
   if (items.length > spec.maxItems) throw new Error(`${spec.label}: no more than ${spec.maxItems} entries.`);
-  const out = { items: items.map((it, i) => checkRecord(spec.fields, it, `${spec.label} entry ${i + 1}`)) };
-  for (const f of spec.extras || []) out[f.key] = checkField(f, (data || {})[f.key], spec.label);
+  const out = { items: items.map((it, i) => checkRecord(spec.fields, it, `${spec.label} entry ${i + 1}`, images)) };
+  for (const f of spec.extras || []) out[f.key] = checkField(f, (data || {})[f.key], spec.label, images);
   return out;
 }
 
-function checkRecord(fields, rec, where) {
+function checkRecord(fields, rec, where, images) {
   const out = {};
-  for (const f of fields) out[f.key] = checkField(f, (rec || {})[f.key], where);
+  for (const f of fields) out[f.key] = checkField(f, (rec || {})[f.key], where, images);
   return out;
 }
 
-function checkField(f, raw, where) {
+function checkField(f, raw, where, images) {
   if (f.type === "bool") return !!raw;
+  if (f.type === "image") {
+    // A just-picked photo arrives as {upload:{name,data}}; an untouched one as the
+    // committed repo path. Uploads land in img/uploads/ in the same commit as the page.
+    if (raw && typeof raw === "object" && raw.upload && raw.upload.data) {
+      const ext = String(raw.upload.name || "").split(".").pop().toLowerCase();
+      if (!OK_EXT.includes(ext)) throw new Error(`${where}: photo must be a ${OK_EXT.join(", ")} file.`);
+      const bytes = Buffer.from(raw.upload.data, "base64");
+      if (!bytes.length) throw new Error(`${where}: that photo came through empty — try again.`);
+      if (bytes.length > MAX_IMAGE_BYTES) throw new Error(`${where}: photo is over 4 MB, even after resizing.`);
+      const base = String(raw.upload.name || "photo").replace(/\.[^.]+$/, "")
+        .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "photo";
+      const path = `img/uploads/${base}-${Date.now().toString(36)}.${ext}`;
+      (images || []).push({ path, base64: raw.upload.data });
+      return path;
+    }
+    const v = String(raw == null ? "" : raw).trim();
+    if (f.required && !v) throw new Error(`${where}: pick a photo.`);
+    if (v && !/^img\//.test(v)) throw new Error(`${where}: photo path must start with img/`);
+    if (v.length > f.max) throw new Error(`${where}: photo path is too long.`);
+    return v;
+  }
   const v = f.multiline
     ? String(raw == null ? "" : raw).replace(/\r/g, "").replace(/[ \t]+$/gm, "").trim()
     : String(raw == null ? "" : raw).replace(/\s+/g, " ").trim();
@@ -375,6 +435,26 @@ function renderReviews(d) {
     `          </div>`,
     scores ? `          <p class="mono trust-scores rv mono-num">${scores}</p>` : "",
   ].filter(Boolean).join("\n");
+}
+
+function renderStudioPhotos(d) {
+  return d.items.map((p) =>
+    `      <span class="shot imgrv"><img src="${esc(p.img)}" alt="${esc(p.alt || p.cap)}" loading="lazy"><span class="cap">${esc(p.cap)}</span></span>`
+  ).join("\n");
+}
+
+function renderTrustPhoto(d) {
+  const p = d.items[0];
+  return [
+    `          <span class="frame"><img src="${esc(p.img)}" alt="${esc(p.alt || p.cap)}" loading="lazy"></span>`,
+    `          <span class="cap">${esc(p.cap)}</span>`,
+  ].join("\n");
+}
+
+function renderMenuPhotos(d) {
+  return d.items.map((p, i) =>
+    `        <img data-for="p-c${i}"${i === 0 ? ' class="on"' : ""} src="${esc(p.img)}" alt="${esc(p.alt || "")}" loading="lazy">`
+  ).join("\n");
 }
 
 function renderMembership(d) {

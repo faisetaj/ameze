@@ -30,6 +30,18 @@ If you do edit specials by hand:
 - Client-uploaded flyer images land in `img/uploads/` — reference them there, or copy to
   `img/` with a sensible name.
 
+## Photos — she edits these herself too
+
+The treatment-menu photo rotator, the "Inside the studio" strip, and the reviews-corner
+photo are CMS-managed from **`/admin`** (the three "Photos — …" sections), same contract
+as specials: `content/site.json` plus the `cms:photos-menu` / `cms:photos-studio` /
+`cms:photos-trust` markers in `index.html`. **Never remove those markers.** If an issue
+asks for a photo swap in those spots, reply pointing her to /admin rather than opening a
+PR, unless she's explicitly asked you to do it for her. Her uploads land in `img/uploads/`.
+The rotator images map to menu categories by order (`data-for="p-c0…"`), and their
+captions come from the `visCaps` map in the page script — keep them in sync if categories
+change.
+
 ## What you may edit
 
 - `content/specials.json` (see above).
