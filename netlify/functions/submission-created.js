@@ -13,6 +13,15 @@ const GH_API = "https://api.github.com";
 
 exports.handler = async (event) => {
   const { payload } = JSON.parse(event.body);
+
+  // This event fires for EVERY form on the site. Only the /updates change-request
+  // form should open an issue — newsletter signups just get stored by Netlify
+  // (and forwarded by its email notification), not filed as site-update work.
+  if (payload.form_name && payload.form_name !== "site-update") {
+    console.log(`Ignoring submission from form "${payload.form_name}"`);
+    return { statusCode: 200, body: "Not a change-request form; nothing to do" };
+  }
+
   const d = payload.data || {};
   const repo = process.env.REPO;
   const ghToken = process.env.GH_TOKEN;
