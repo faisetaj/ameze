@@ -241,6 +241,9 @@ exports.handler = async (event) => {
       ]);
       return json(200, {
         schema: publicSchema(),
+        // The change-request portal link carries the portal key, so it must never sit in
+        // the public /admin HTML — it is only handed out here, behind the CMS key.
+        careUrl: process.env.CARE_URL || "",
         content,
         history: commits.slice(1).map((c) => ({
           sha: c.sha,

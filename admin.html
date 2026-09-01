@@ -139,6 +139,10 @@
 
   /* ── history ── */
   .history{margin-top:2.2rem;border-top:1px solid var(--line-d);padding-top:1rem}
+  .care{margin-top:2.6rem;border-top:1px solid var(--line-d);padding-top:1.5rem;
+    display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .care p{margin:.4rem 0 0;opacity:.72;max-width:56ch;font-size:.92rem;line-height:1.5}
+  .care a.btn{text-decoration:none;display:inline-block;white-space:nowrap}
   .history summary{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;
     text-transform:uppercase;color:rgba(242,231,225,.6);cursor:pointer}
   .history ul{list-style:none;margin-top:.9rem;display:grid;gap:.5rem}
@@ -241,6 +245,16 @@
       <summary>Earlier versions — undo a change</summary>
       <ul id="hist"><li>Nothing published from here yet.</li></ul>
     </details>
+    </div>
+
+    <div class="care" id="care" hidden>
+      <div>
+        <b>Need a bigger change?</b>
+        <p>A new page, different wording, a section redesign — anything the editors above
+        don't cover. It goes through one short form; Faisel reviews every request, and
+        nothing changes on the website until it's been approved.</p>
+      </div>
+      <a class="btn" id="carelink" href="#" target="_blank" rel="noopener">Request a change</a>
     </div>
   </main>
 </div>
@@ -594,6 +608,10 @@ async function cLoad(){
     CONTENT = d.content || {};
     PUBLISHED = clone(CONTENT) || {};
     buildNav();
+    if (d.careUrl) {
+      document.getElementById("carelink").href = d.careUrl;
+      document.getElementById("care").hidden = false;
+    }
   } catch(e){
     // The promotions editor still works on its own; just note why the rest is absent.
     const nav = document.getElementById("secnav");
