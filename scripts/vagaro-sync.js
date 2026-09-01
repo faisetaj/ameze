@@ -69,6 +69,18 @@ const display = (s, max) =>
     .trim()
     .slice(0, max);
 
+// Names only: the widget mangles some of her emoji into literal "?" marks
+// ("?? SPECIAL ??", "Facial?") — strip them from the edges, where no real
+// question mark belongs. Descriptions keep theirs.
+const displayName = (s, max) =>
+  display(
+    String(s || "")
+      .replace(/(^|\s)\?+(?=\s|$)/g, "$1")
+      .replace(/^\s*\?+/, "")
+      .replace(/\?+\s*$/, ""),
+    max
+  );
+
 const fmtMoney = (cents) =>
   cents % 100 === 0 ? `$${cents / 100}` : `$${(cents / 100).toFixed(2)}`;
 
@@ -209,7 +221,7 @@ async function scrapeCatalogue(url) {
           if (r.promo) promos.push(r.name);
           const desc = display(r.desc || (old ? old.desc : ""), 10000);
           return {
-            name: display(r.name, NAME_MAX),
+            name: displayName(r.name, NAME_MAX),
             price: priceText,
             desc: desc.length > DESC_MAX ? desc.slice(0, DESC_MAX - 1).trimEnd() + "…" : desc,
             href: widgetFor(c.name),
@@ -217,7 +229,7 @@ async function scrapeCatalogue(url) {
         })
         .filter(Boolean);
       return {
-        name: display(c.name, 40),
+        name: displayName(c.name, 40),
         note: oldNotes.get(norm(c.name)) || "",
         items,
       };
