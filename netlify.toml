@@ -2,6 +2,17 @@
   publish = "."
   functions = "netlify/functions"
 
+# Pretty URLs for the site pages
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/reviews"
+  to = "/reviews.html"
+  status = 200
+
 # Pretty URLs for the portal pages
 [[redirects]]
   from = "/updates"

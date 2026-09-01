@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="porcelain">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Ameze Skin Elements, Houston TX</title>
+<meta name="description" content="Ameze Skin Elements is a medical esthetician–led medical spa in Houston, Texas. Meet Brenda Uhunmwagho, see our studio hours, locations and policies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,300..700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Porcelain tokens — mirrors index.html's [data-theme="porcelain"] block. */
+  :root{
+    --paper:#FDF7F7; --paper-2:#FFFFFF;
+    --ink:#1A1315; --muted:#77595E;
+    --rose:#C4707E; --rose-deep:#9E4F5D; --rose-lt:#E3A6AF; --gold:#DFB59A;
+    --line:rgba(26,19,21,.12);
+    --btn-grad:linear-gradient(100deg,#C4707E,#DFB59A,#F0CDD3,#C4707E);
+    --btn-ink:#FFFFFF;
+    --display:"Jost",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{overflow-x:clip}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:64rem;margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2.5rem)}
+  .mono{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
+  h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.02em;line-height:1.08}
+  em.shimmer{font-style:italic;color:var(--rose-deep)}
+  a{color:var(--rose-deep)}
+
+  header.bar{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);
+    background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(10px)}
+  .bar .wrap{display:flex;align-items:center;gap:1.1rem;padding-block:.7rem}
+  .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink);
+    font-family:var(--display);font-weight:500}
+  .brand img{width:1.9rem}
+  .bar nav{display:flex;gap:1.1rem;margin-left:auto;flex-wrap:wrap}
+  .bar nav a{font-family:var(--mono);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none}
+  .bar nav a:hover,.bar nav a[aria-current]{color:var(--rose-deep)}
+  .btn{font-size:.9rem;font-weight:600;text-decoration:none;padding:.65rem 1.2rem;border:0;
+    background:var(--btn-grad);color:var(--btn-ink);white-space:nowrap;
+    transition:transform .15s,box-shadow .25s;display:inline-block}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(196,112,126,.3)}
+  .btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+
+  .lead{padding-block:clamp(3rem,7vw,5.5rem) clamp(2rem,5vw,3.5rem)}
+  .lead h1{font-size:clamp(2.4rem,6vw,4rem);max-width:20ch}
+  .lead .intro{max-width:46rem;margin-top:1.4rem;font-size:1.06rem;color:var(--muted)}
+
+  section{padding-block:clamp(1.6rem,4vw,2.8rem)}
+  .founder{display:grid;gap:2rem;align-items:start}
+  @media(min-width:820px){.founder{grid-template-columns:minmax(16rem,26rem) 1fr;gap:3rem}}
+  .founder .photo{border:1px solid var(--line);background:var(--paper-2);padding:.6rem}
+  .founder .photo img{display:block;width:100%;height:auto}
+  .founder .photo .mono{display:block;padding:.55rem .2rem 0;color:var(--muted)}
+  .founder h2{font-size:clamp(1.6rem,3.4vw,2.2rem)}
+  .founder .role{color:var(--rose-deep);margin-block:.3rem 1rem}
+  .founder p+p{margin-top:.9rem}
+  .founder .team-note{margin-top:1.4rem;font-size:.92rem;color:var(--muted)}
+
+  .facts{border-block:1px solid var(--line);background:var(--paper-2)}
+  .facts .grid{display:grid;gap:2rem;padding-block:.6rem}
+  @media(min-width:820px){.facts .grid{grid-template-columns:repeat(3,1fr)}}
+  .facts h3{font-size:1.05rem;margin-bottom:.7rem}
+  .facts table{border-collapse:collapse;width:100%;font-size:.92rem}
+  .facts td{padding:.28rem 0;color:var(--muted)}
+  .facts td:last-child{text-align:right;font-family:var(--mono);font-size:.78rem;color:var(--ink)}
+  .facts .addr{font-size:.94rem;color:var(--muted)}
+  .facts .addr b{color:var(--ink);font-weight:600}
+  .facts .addr+.addr{margin-top:1rem}
+  .facts ul{list-style:none;font-size:.94rem;color:var(--muted)}
+  .facts li{padding:.2rem 0}
+  .facts li b{color:var(--ink);font-weight:600}
+
+  .policies h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:1.2rem}
+  .policies .cols{display:grid;gap:2rem}
+  @media(min-width:820px){.policies .cols{grid-template-columns:1fr 1fr}}
+  .policies h3{font-size:1.02rem;margin-bottom:.55rem}
+  .policies p{font-size:.94rem;color:var(--muted)}
+
+  .cta-band{text-align:center;padding-block:clamp(2.5rem,6vw,4rem)}
+  .cta-band h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1.4rem}
+  .cta-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+  .mono-num{font-variant-numeric:tabular-nums}
+
+  footer{border-top:1px solid var(--line);background:var(--paper-2);padding-block:2.5rem}
+  footer nav{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin-bottom:1.2rem}
+  footer nav a{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none}
+  footer nav a:hover{color:var(--rose-deep)}
+  footer p{font-size:.8rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="img/logo.png" alt="Ameze Skin Elements monogram"><span>Ameze Skin Elements</span></a>
+    <nav aria-label="Primary">
+      <a href="/#menu">Services</a>
+      <a href="/about" aria-current="page">About</a>
+      <a href="/reviews">Reviews</a>
+      <a href="/#visit">Visit</a>
+    </nav>
+    <a class="btn" href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Book now</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap lead">
+    <p class="mono" style="color:var(--rose-deep);margin-bottom:1rem">About the studio</p>
+    <h1>Beauty and wellness, <em class="shimmer">optimized.</em></h1>
+    <p class="intro">Welcome to Ameze Skin Elements, your premier destination for all your beauty
+      needs in Houston, Texas. We specialize in top-notch medspa skincare and cosmetic injections —
+      natural-looking aesthetic enhancements, medical-grade, results-driven skincare, current and
+      expert-level styling, and top-of-the-line equipment and techniques to optimize beauty and
+      wellness.</p>
+  </div>
+
+  <section class="wrap founder">
+    <figure class="photo">
+      <img src="img/media/injectables.jpg" alt="Brenda Uhunmwagho placing lip filler for a client at the Houston studio">
+      <figcaption class="mono">The injectables suite — W Gray St, Houston</figcaption>
+    </figure>
+    <div>
+      <p class="mono" style="color:var(--rose-deep)">Founder &amp; lead injector</p>
+      <h2>Brenda Uhunmwagho</h2>
+      <p class="mono role">Medical esthetician · Cosmetic injector</p>
+      <p>Brenda is a seasoned licensed esthetician with a passion for skincare, beauty and cosmetic
+        injecting. With years of experience in the industry, she has dedicated her career to helping
+        clients achieve their best skin through personalized treatments and skincare routines, and
+        focuses heavily on preventative and corrective injection treatments to help people regain
+        their self-confidence.</p>
+      <p>Every treatment at Ameze begins with a good-faith facial exam, and every result gets a
+        follow-up — natural-looking work by an injector who wants to see you back, not redone.</p>
+      <p class="team-note">Meet the whole team on our
+        <a href="https://www.amezeskinelements.com/staff" target="_blank" rel="noopener">staff page</a>,
+        or say hello in person at the studio.</p>
+    </div>
+  </section>
+
+  <section class="facts">
+    <div class="wrap grid">
+      <div>
+        <h3>Hours</h3>
+        <table>
+          <tr><td>Sunday – Tuesday</td><td>Closed</td></tr>
+          <tr><td>Wednesday – Friday</td><td>10:00 AM – 7:00 PM</td></tr>
+          <tr><td>Saturday</td><td>9:00 AM – 6:00 PM</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>Locations</h3>
+        <p class="addr"><b>Houston</b><br>919 West Gray Street<br>Houston, TX 77019</p>
+        <p class="addr"><b>Richmond — Fridays only</b><br>9107 FM 723, Suite 200<br>Richmond, TX 77406</p>
+      </div>
+      <div>
+        <h3>Good to know</h3>
+        <ul>
+          <li><b>Phone</b> — <a class="mono-num" href="tel:+18327756965">(832) 775-6965</a></li>
+          <li><b>Payments</b> — Cash, debit, Visa &amp; MasterCard, and buy-now-pay-later via Cherry and CareCredit</li>
+          <li><b>Amenities</b> — Beer &amp; wine, snack bar, WiFi</li>
+          <li><b>Parking</b> — Free</li>
+          <li><b>Kids</b> — Adults only, please</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap policies">
+    <h2>Before you visit</h2>
+    <div class="cols">
+      <div>
+        <h3>Appointments &amp; the good-faith exam</h3>
+        <p>Please arrive on time to ensure the full duration of your appointment — arrivals more than
+          15 minutes late may require rescheduling. A credit card remains on file through our
+          encrypted system to secure your appointment, and all sales are final. Every treatment plan
+          starts with a $39 good-faith exam that ensures treatments match your needs perfectly; the
+          fee is credited toward treatment. The Richmond location operates exclusively on Fridays,
+          and not all services are available there — contact us directly to book.</p>
+      </div>
+      <div>
+        <h3>Cancellations</h3>
+        <p>Appointments are reserved exclusively for you. We ask for at least 24 hours' notice to
+          cancel or reschedule a Thursday appointment, and 48 hours' notice for Friday and Saturday
+          appointments — at the Richmond location as well. Cancellations without adequate notice
+          incur a $50 fee, or $75 for same-day changes. Clients with valid packages may have one
+          treatment deducted from the $50 cancellation fee.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band wrap">
+    <h2>Come see us in <em class="shimmer">person.</em></h2>
+    <div class="cta-row">
+      <a class="btn" href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Book an appointment</a>
+      <a class="btn ghost mono-num" href="tel:+18327756965">Call (832) 775-6965</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="/#menu">Services</a><a href="/#offers">Offers</a><a href="/about">About</a><a href="/reviews">Reviews</a><a href="/#membership">Membership</a><a href="/#protocol">Aftercare</a><a href="/#visit">Locations</a>
+    </nav>
+    <p>© 2026 Ameze Skin Elements, LLC · Houston &amp; Richmond, Texas · (832) 775-6965<br>
+    Booking &amp; scheduling powered by Vagaro. Financing by Cherry Technologies and Synchrony (CareCredit), subject to approval.<br>
+    Individual results vary. All injectable treatments require a good-faith exam and are performed under medical protocols. Pregnant or breastfeeding clients are not candidates for neurotoxin treatment.</p>
+  </div>
+</footer>
+</body>
+</html>
