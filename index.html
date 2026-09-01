@@ -13,7 +13,7 @@
      localStorage.removeItem("ameze-theme") cleanup here. */
   try {
     var t0 = localStorage.getItem("ameze-theme");
-    if (t0 === "noir" || t0 === "porcelain") document.documentElement.dataset.theme = t0;
+    if (t0 === "noir" || t0 === "porcelain" || t0 === "blush") document.documentElement.dataset.theme = t0;
   } catch(e){}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1066,8 +1066,9 @@
 
 <!-- TEMPORARY theme picker — remove once Brenda has chosen -->
 <div class="tp" id="themePick" role="group" aria-label="Color theme">
-  <button type="button" data-set="porcelain">Light</button>
-  <button type="button" data-set="noir">Dark</button>
+  <button type="button" data-set="porcelain">Porcelain</button>
+  <button type="button" data-set="blush">Blush</button>
+  <button type="button" data-set="noir">Noir</button>
 </div>
 
 <script>
@@ -1084,7 +1085,8 @@
       try { localStorage.setItem('ameze-theme', t); } catch(e){}
     };
     tpBtns.forEach(function(b){ b.addEventListener('click', function(){ setTheme(b.dataset.set); }); });
-    var cur = document.documentElement.dataset.theme === 'noir' ? 'noir' : 'porcelain';
+    var dt = document.documentElement.dataset.theme;
+    var cur = (dt === 'noir' || dt === 'blush') ? dt : 'porcelain';
     tpBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.set === cur)); });
   }
 
