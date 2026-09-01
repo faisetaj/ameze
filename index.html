@@ -1091,7 +1091,10 @@
   /* ── booking modal (Vagaro embeds: CSP frame-ancestors *) ── */
   var modal = document.getElementById('bookModal'), frame = document.getElementById('bookFrame');
   function openBook(url){
-    if (!frame.src) frame.src = url || 'https://www.vagaro.com/amezeskinelements';
+    var want = url || 'https://www.vagaro.com/amezeskinelements';
+    // Reload only when the target differs — a repeat click on the same service
+    // keeps the already-loaded widget (and any booking in progress) intact.
+    if (frame.src !== want) frame.src = want;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
