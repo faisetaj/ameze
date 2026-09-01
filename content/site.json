@@ -6,159 +6,357 @@
         "note": "Neurotoxin artistry for the face, jaw and neck. Good-faith exam $39, credited toward treatment.",
         "items": [
           {
-            "name": "Botox® Cosmetic",
-            "price": "from $300",
-            "desc": "Smooths frown lines, forehead and crow's feet. Dosed to your anatomy after exam.",
+            "name": "Daxxify (GFE)",
+            "price": "$35.10",
+            "desc": "Consultation exam fee",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
           },
           {
-            "name": "DAXXIFY®",
-            "price": "from $289",
-            "desc": "Peptide-powered toxin. Visible in days, corrections lasting up to nine months.",
+            "name": "Botox",
+            "price": "from $270",
+            "desc": "Botox is a temporary prescription medicine injected into muscles to enhance and smoothen the appearance of frown lines between the eyebrows in individuals aged 18 to 65.",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
           },
           {
-            "name": "Dysport®",
-            "price": "$219",
-            "desc": "Fast-onset smoothing for moderate to severe lines.",
+            "name": "Microtox",
+            "price": "$194.40",
+            "desc": "Microtox employs advanced technology to evaluate and improve your skin's health by effectively targeting fine lines, wrinkles, and overall texture while addressing acne and excess oil. This innovative service rejuvenates your appearance, ensuring you look refreshed and youthful.",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
           },
           {
-            "name": "Lip Flip",
-            "price": "$199",
-            "desc": "Fuller-looking lips without added volume.",
+            "name": "Platysma Bands",
+            "price": "$345.60",
+            "desc": "Platysma Bands treatment involves the precise injection of Botox into targeted areas of the platysma muscle, promoting muscle relaxation and minimizing the visibility of neck bands. This non-surgical approach offers an effective solution for individuals seeking a smoother, more youthful neck appear…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
+          },
+          {
+            "name": "Botox (GFE)",
+            "price": "$35.10",
+            "desc": "Consultation exam fee.",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
           },
           {
             "name": "Brow Lift",
-            "price": "$60",
-            "desc": "Non-surgical lift that opens the eyes and softens frown lines.",
+            "price": "$54",
+            "desc": "The Brow Lift service offers a non-surgical solution utilizing Botox injections to lift the eyebrows, resulting in a more youthful and refreshed appearance. By targeting the muscles between the eyebrows and the forehead, this procedure effectively reduces frown lines and opens up the eyes.",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
           },
           {
-            "name": "Masseter Slimming",
-            "price": "$599",
-            "desc": "Relaxes overactive jaw muscles for a slimmer, defined profile.",
+            "name": "DAO",
+            "price": "$53.10",
+            "desc": "DAO Botox is a cosmetic procedure that targets the Depressor Anguli Oris (DAO) muscle to rejuvenate the lower face by reducing signs of aging such as downturned mouth, dynamic wrinkles, and facial asymmetry.",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
           },
           {
-            "name": "Refinements",
-            "price": "$29–$384",
-            "desc": "DAO · chin · jowl · bunny lines · nose tip · platysma — targeted micro-doses for the lower face and neck.",
+            "name": "Mentalis- Chin Toxin",
+            "price": "$44.10",
+            "desc": "Achieve a smoother, more even chin surface with Mentalis treatment, which specifically targets and relaxes the Mentalis muscle. This non-surgical solution utilizes Botox to reduce dimpling, creasing, and wrinkles while enhancing the overall shape of the chin.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
+          },
+          {
+            "name": "Jowel",
+            "price": "$71.10",
+            "desc": "Jowel is a cutting-edge procedure using botulinum toxin injections to effectively tighten sagging jowls and enhance the jawline, with the option of dermal fillers for additional definition. Experience temporary yet gratifying results with this non-surgical solution.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
+          },
+          {
+            "name": "Massters",
+            "price": "$539.10",
+            "desc": "Massters is a professional service that offers Masseter Botox injections. This non-surgical procedure helps relax overactive jaw muscles, resulting in a slimmer and more defined facial shape over time.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
+          },
+          {
+            "name": "Bunny Lines",
+            "price": "$44.10",
+            "desc": "Bunny Lines is a service that uses Botox injections to treat fine lines on the sides of the nose. By temporarily blocking nerve signals, Botox relaxes the muscles, smoothing out the skin and reducing the appearance of bunny lines.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
+          },
+          {
+            "name": "Nose Tip Lift",
+            "price": "$26.10",
+            "desc": "The Nose Tip Lift service involves the use of Botox injections to address aesthetic concerns, such as a drooping nasal tip. By targeting the depressor Nasal Septi muscle, the injections help relax the muscle and provide a perkier and more cheerful appearance to the nose.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
+          },
+          {
+            "name": "Forehead",
+            "price": "$170.10",
+            "desc": "A prescription medicine that is injected into muscles and used to improve the look of moderate to severe lines in the forehead in people 18 to 65 years of age for a short period of time.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
+          },
+          {
+            "name": "Botox - Around the Eyes (Smiley Eyes)",
+            "price": "$260.10",
+            "desc": "Botox - Around the Eyes (Smiley Eyes) is a prescription medication that temporarily improves the appearance of crow's feet in individuals aged 18 to 65 by injecting it into the muscles around the eyes.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
+          },
+          {
+            "name": "Botox - Glabella (Between Eyes)",
+            "price": "$242.10",
+            "desc": "Cosmetic is a prescription medicine that is injected into muscles and used to improve the look of moderate to severe frown lines between the eyebrows (glabellar lines) in people 18 to 65 years of age for a short period of time.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
+          },
+          {
+            "name": "DAXXIFY",
+            "price": "from $260.10",
+            "desc": "DAXXIFY offers a safe and effective solution to diminish the appearance of wrinkles by injecting botulinum toxin into the muscles underneath, resulting in noticeable results in just a few days and lasting corrections for up to nine months.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
+          },
+          {
+            "name": "Botox - Lip Flip",
+            "price": "$179.10",
+            "desc": "A prescription medicine that is injected into muscles and used to improve the look of moderate to severe lines around the lips in people 18 to 65 years of age for a short period of time. It makes your lips look fuller without adding volume. It can help you achieve a desired look, which can boost yo…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
+          },
+          {
+            "name": "Dysport",
+            "price": "$197.10",
+            "desc": "Experience the rejuvenating effects of our Dysport service, a non-surgical cosmetic procedure designed to smooth and diminish the appearance of fine lines and wrinkles",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
           }
         ]
       },
       {
-        "name": "Lip Filler",
-        "note": "Premium hyaluronic-acid fillers, placed for shape first and volume second.",
+        "name": "Chemical Peels",
+        "note": "",
         "items": [
           {
-            "name": "Lip Filler — full syringe",
-            "price": "$599",
-            "desc": "Customized volume and definition with a natural finish.",
-            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ68smmNEH6rTddZZW4BdV5gzCEqy60PnQmTqScHf7Oju"
+            "name": "BioRePeelCl3 Blue",
+            "price": "$179.10",
+            "desc": "BioRePeelCl3® BLUE is a professional, biphasic medical-grade TCA peel suitable for the face, neck, and décolleté. This innovative treatment combines exfoliation with biostimulation and hydration, significantly enhancing skin quality with minimal downtime. It effectively improves fine lines, brighte…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJwiDqAxMlCFcRP3A/Pytn444P/eBFXdEfqA0n6RK0c62"
           },
           {
-            "name": "Mini Lip Filler — half syringe",
-            "price": "$399",
-            "desc": "Subtle enhancement that complements your features.",
-            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ68smmNEH6rTddZZW4BdV5gzCEqy60PnQmTqScHf7Oju"
+            "name": "Bio RePeel Blue (3 treatment )",
+            "price": "$597",
+            "desc": "Revitalize your skin with our Bio RePeel Blue package, featuring three transformative treatments. This innovative skincare solution combines the power of BioRePeelCl3 Blue to deliver a refreshing and rejuvenating experience. Say goodbye to dullness and hello to a radiant complexion as the unique fo…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJwiDqAxMlCFcRP3A/Pytn444P/eBFXdEfqA0n6RK0c62"
+          }
+        ]
+      },
+      {
+        "name": "Microneedling",
+        "note": "",
+        "items": [
+          {
+            "name": "BioRePeel BLUE + Microneedling",
+            "price": "$359.10",
+            "desc": "BioRePeel BLUE combined with Microneedling offers a cutting-edge solution for skin rejuvenation by harnessing the collagen-boosting properties of microneedling along with the revitalizing effects of BioRePeel BLUE. This synergistic treatment enhances skin texture and tone while promoting overall sk…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
           },
           {
-            "name": "Filler Dissolving — hyaluronidase",
-            "price": "$200",
-            "desc": "Safe, precise correction or removal of previous filler.",
+            "name": "Microneedling + HA",
+            "price": "$269.10",
+            "desc": "Microneedling + HA is a cutting-edge skin rejuvenation treatment that utilizes tiny needles to create micro-channels in the skin, stimulating the body's natural healing process and enhancing collagen and elastin production. When combined with Hyaluronic Acid, this procedure promotes deeper hydratio…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
+          },
+          {
+            "name": "Pro-Xo Premium Microneedling Procedure Hair 16 Billion Exosomes / 200 mcg Protein",
+            "price": "$674.10",
+            "desc": "Pro-Xo Premium Microneedling Procedure for Hair utilizes a potent combination of 16 billion exosomes and 200 mcg of protein to enhance hair restoration outcomes. This innovative treatment promotes stronger, thicker hair by stimulating hair follicles, improving scalp health, and leveraging the regen…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
+          },
+          {
+            "name": "Pro-XO Premium Skin Microneedling Treatment 16 Billion Exosomes / 200 mcg Protein",
+            "price": "$539.10",
+            "desc": "Pro-XO Premium Skin Microneedling Treatment utilizes a cutting-edge formula infused with 16 billion exosomes and 200 mcg of protein, specifically designed to boost collagen and elastin production for optimal skin health. This advanced treatment not only accelerates skin renewal but also enhances re…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
+          },
+          {
+            "name": "Pro-XO Protect Microneedling Treatment.",
+            "price": "$494.10",
+            "desc": "Experience the transformative benefits of our Pro-XO Protect Microneedling Treatment, designed to enhance your skin’s natural glow through a powerful blend of 8 Billion Exosomes and targeted peptides. This advanced formula promotes skin renewal, boosts collagen production, and delivers deep hydrati…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
+          },
+          {
+            "name": "Microneedling Glass Facial",
+            "price": "$611.10",
+            "desc": "The Microneedling Glass Facial merges microneedling techniques with a tailored blend of ingredients, such as neurotoxins and fillers, to enhance skin texture and tone. This innovative treatment delivers a luminous, youthful \"glass skin\" effect by infusing these beneficial substances directly into t…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
+          },
+          {
+            "name": "VAMP- Microneedling - addon",
+            "price": "$135",
+            "desc": "",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
+          },
+          {
+            "name": "Nano Infusion Nano Needle",
+            "price": "$179.10",
+            "desc": "Nano Infusion Nano Needle is a non-invasive facial treatment that utilizes a handheld device with microscopic, pyramid-shaped tips to create micro-channels in the skin, significantly enhancing the absorption of serums, vitamins, and active ingredients. This gentle procedure addresses concerns such…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
+          },
+          {
+            "name": "PDRN-Under eye treatments",
+            "price": "$224.10",
+            "desc": "PDRN Under Eye Treatments utilize a blend of hyaluronic acid and polynucleotides to revitalize the sensitive under-eye area. This innovative approach enhances hydration and stimulates natural skin repair, resulting in brighter, smoother, and more refreshed eyes that appear well-rested. With micron…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
+          }
+        ]
+      },
+      {
+        "name": "Monthly Promotions and Discounts",
+        "note": "",
+        "items": [
+          {
+            "name": "Facial Of The Month- Pineapple Honey Facial!!",
+            "price": "$80.10",
+            "desc": "Indulge in our Facial Of The Month - Pineapple Honey Facial, a luxurious treatment that combines the exfoliating power of pineapple enzymes with the nourishing benefits of a golden honey mask. This facial not only reduces fine lines and wrinkles but also brightens the complexion, evens skin tone, b…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJxty1dx/gnstogvblnlft4HykvqFO3SL7qT1DOPg6sSK"
+          },
+          {
+            "name": "LUXURY LIP ENHANCEMENT SPECIAL",
+            "price": "$359.10",
+            "desc": "Indulge in our Luxury Lip Enhancement Special, designed to enhance your natural beauty with soft, plump, and hydrated lips tailored just for you. Choose from our lip filler specials, including a half syringe for $399 or a full syringe for $599, and take advantage of our exclusive combo deal for a t…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJxty1dx/gnstogvblnlft4HykvqFO3SL7qT1DOPg6sSK"
+          },
+          {
+            "name": "Daxxify-August Glow Into Fall Special",
+            "price": "$299",
+            "desc": "Experience the Daxxify-August Glow Into Fall Special with 40 units for $299, targeting forehead lines, frown lines, and crow’s feet, or opt for 70 units at $449 for full upper face rejuvenation. Enjoy a complimentary Dermaplaning treatment valued at $69 or receive 50% off a BioRePeel Glow Facial wh…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJxty1dx/gnstogvblnlft4HykvqFO3SL7qT1DOPg6sSK"
+          }
+        ]
+      },
+      {
+        "name": "Consultation",
+        "note": "",
+        "items": [
+          {
+            "name": "Consultation",
+            "price": "$45",
+            "desc": "In a Consultation appointment, you will receive in-depth answers to your questions about various procedures, accompanied by a detailed facial analysis. This session aims to provide valuable insights and tailored recommendations to meet your individual needs.",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ3dUl0pAEkWIb7K4pF2Q2wsZOD3PvzNNUW/X84b+yqMY"
           }
         ]
       },
       {
-        "name": "Microneedling & Peels",
-        "note": "Collagen induction, exosome biologics and medical-grade resurfacing.",
+        "name": "Addons",
+        "note": "",
         "items": [
           {
-            "name": "Microneedling + HA",
-            "price": "$299",
-            "desc": "Micro-channels plus hyaluronic acid for deep hydration and texture repair.",
-            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
-          },
-          {
-            "name": "Pro-XO Premium Exosome Microneedling — skin",
-            "price": "$599",
-            "desc": "16 billion exosomes / 200 mcg protein to accelerate renewal and collagen.",
-            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
-          },
-          {
-            "name": "Pro-XO Exosome Microneedling — hair restoration",
-            "price": "$749",
-            "desc": "Stimulates follicles and scalp health with exosomes and copper peptides.",
-            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
-          },
-          {
-            "name": "Microneedling Glass Facial",
-            "price": "$679",
-            "desc": "The luminous “glass skin” finish — microneedling with a tailored infusion.",
-            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
-          },
-          {
-            "name": "PDRN Under-Eye Treatment",
-            "price": "$249",
-            "desc": "Polynucleotides + HA to brighten and repair the delicate under-eye.",
-            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
-          },
-          {
-            "name": "BioRePeelCl3® Blue",
-            "price": "$199",
-            "desc": "Biphasic TCA peel — exfoliation, biostimulation and hydration, minimal downtime.",
-            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJwiDqAxMlCFcRP3A/Pytn444P/eBFXdEfqA0n6RK0c62"
-          },
-          {
-            "name": "BioRePeel Blue + Microneedling",
-            "price": "$399",
-            "desc": "Our collagen-renewal pairing; also in a 3-treatment series at 20% off.",
-            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ/+SPrk6uDFL+1ZhPyZ0zkTRLJUR2ggFx3ZtQ0airJjd"
+            "name": "Dermaplaning",
+            "price": "$62.10",
+            "desc": "Derma planing is a cosmetic procedure that gently exfoliates the skin by removing dead skin cells and fine vellus hair, resulting in a smoother and more radiant complexion. This treatment not only enhances the effectiveness of skincare products but also provides a flawless canvas for makeup applica…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ3dUl0pAEkWIb7K4pF2Q2wsZOD3PvzNNUW/X84b+yqMY"
           }
         ]
       },
       {
-        "name": "Facials — Richmond",
-        "note": "Esthetician services at the FM 723 studio, Fridays.",
+        "name": "Dissolve Filler",
+        "note": "",
         "items": [
           {
-            "name": "Signature Facial",
-            "price": "$110",
-            "desc": "Balancing, skin-tone-enhancing treatment tailored to you. With extractions $120.",
+            "name": "Hyaluronidaise",
+            "price": "$180",
+            "desc": "Hyaluronidaise is an enzyme specifically designed to break down hyaluronic acid fillers, offering a safe and efficient solution for clients looking to dissolve unwanted enhancements. Our professional treatment ensures a tailored approach, allowing for precise adjustment and restoration of your natu…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ3dUl0pAEkWIb7K4pF2Q2wsZOD3PvzNNUW/X84b+yqMY"
+          }
+        ]
+      },
+      {
+        "name": "Fillers",
+        "note": "",
+        "items": [
+          {
+            "name": "Lip Filler",
+            "price": "$539.10",
+            "desc": "Our experienced team utilizes premium lip fillers to enhance volume and definition, ensuring a natural and aesthetically pleasing outcome. Whether you're looking for a plumper look or to rejuvenate your lips, our customized approach with one full syringe is designed to suit your desires.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ68smmNEH6rTddZZW4BdV5gzCEqy60PnQmTqScHf7Oju"
+          },
+          {
+            "name": "Mini Lip Filler",
+            "price": "$359.10",
+            "desc": "Mini lip filler treatments utilize a gel-like substance to subtly enhance the volume and shape of your lips, providing a natural and youthful appearance. Using half a syringe, our skilled professionals ensure precise application for optimal results that complement your facial features.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ68smmNEH6rTddZZW4BdV5gzCEqy60PnQmTqScHf7Oju"
+          }
+        ]
+      },
+      {
+        "name": "Skincare/ Richmond TX Location",
+        "note": "",
+        "items": [
+          {
+            "name": "Advanced Exfoliation - Peptide",
+            "price": "$99",
+            "desc": "Advanced Exfoliation - Peptide is a professional age management treatment that combines peptides and alpha hydroxy acids to effectively rejuvenate and revitalize the skin. This specialized service, available exclusively at our Richmond, TX location, aims to enhance skin texture, promote cellular tu…",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
           },
           {
-            "name": "Hydro Glow Facial",
-            "price": "$199",
-            "desc": "Suction-based cleanse, extraction and medical-grade serum infusion. Event-ready glow.",
+            "name": "Advanced Exfoliation - Lactic",
+            "price": "$99",
+            "desc": "Advanced Exfoliation - Lactic is a gentle resurfacing treatment tailored for sensitive skin, specifically targeting age management and hyperpigmentation concerns. Offered exclusively at our Richmond, TX location, this service rejuvenates the skin's appearance while promoting a smoother, more radian…",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
           },
           {
-            "name": "Advanced Exfoliation Peels",
-            "price": "$110",
-            "desc": "Peptide · lactic · glycolic · vitamin C · hydrating — professional resurfacing, matched to your skin.",
+            "name": "Advanced Exfoliation - Glycolic",
+            "price": "$99",
+            "desc": "Advanced Exfoliation - Glycolic is a powerful treatment designed to resurface and rejuvenate the skin by effectively removing damaged outer layers, promoting a smoother and more radiant complexion. This specialized service is exclusively available at our Richmond, TX location, ensuring tailored car…",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
           },
           {
-            "name": "Microdermabrasion",
-            "price": "$130",
-            "desc": "Crystal exfoliation for texture and radiance. Back facial $120.",
+            "name": "Advanced Exfoliation - Hydrating",
+            "price": "$99",
+            "desc": "Facial peels that moisturize dry skin and soothe moisture-starved skin. Richmond location, TX only.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
+          },
+          {
+            "name": "Advanced Exfoliation - Vitamin C",
+            "price": "$99",
+            "desc": "Advanced Exfoliation - Vitamin C is a rejuvenating facial peel that targets sun damage and natural aging, promoting a brighter, more youthful complexion. Available exclusively at our Richmond, TX location, this treatment helps to revitalize and repair your skin, leaving it refreshed and radiant.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
+          },
+          {
+            "name": "Facials - Facial With Extractions",
+            "price": "$108",
+            "desc": "This facial treatment targets congested skin through a thorough deep cleansing process, followed by professional extractions to eliminate impurities and unclog pores. Enjoy a revitalized and refreshed complexion, leading to a clearer and healthier appearance, exclusively available at our Richmond,…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
+          },
+          {
+            "name": "Facials - Microdermabrasion",
+            "price": "$117",
+            "desc": "Microdermabrasion is an advanced skincare treatment that utilizes a stream of tiny crystals to gently exfoliate the skin, removing dead skin cells and promoting a refreshed appearance. This procedure is available exclusively at our Richmond, TX location and is designed to enhance skin texture and r…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
+          },
+          {
+            "name": "Facials - Facial",
+            "price": "$99",
+            "desc": "Experience a rejuvenating facial treatment designed to balance and enhance your skin tone. Available exclusively at our Richmond, TX location, this service combines relaxation with effective skincare tailored to your individual needs.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
+          },
+          {
+            "name": "Facials - Back Facial",
+            "price": "$108",
+            "desc": "Experience a rejuvenating Back Facial designed to target ingrown hairs and acne-prone skin, leaving your back smooth and refreshed. Available exclusively at our Richmond, TX location, this service provides deep cleansing, exfoliation, and hydration tailored to your skin's needs.",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
+          },
+          {
+            "name": "Chemical Peel",
+            "price": "$90",
+            "desc": "Experience the transformative effects of our Chemical Peel service, tailored to rejuvenate and revitalize your skin. Our expert team utilizes advanced formulations to gently exfoliate, removing dull and damaged layers to reveal a radiant complexion exclusively at our Richmond, TX location.",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
           },
           {
             "name": "LED Light Therapy",
-            "price": "$100",
-            "desc": "Wavelength therapy for fine lines, tone and collagen.",
+            "price": "$90",
+            "desc": "Our LED Light Therapy Service utilizes advanced technology to rejuvenate your skin by harnessing specific light wavelengths that stimulate cellular activity and promote collagen production. This non-invasive and painless treatment effectively addresses various skin concerns, including fine lines, w…",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
           },
           {
+            "name": "Hydro Glow Facial",
+            "price": "$179.10",
+            "desc": "The Hydro Glow Facial employs cutting-edge suction technology to thoroughly cleanse, extract impurities, and deeply hydrate your skin. Infused with tailored, medical-grade serums, this treatment provides an immediate radiant glow, perfect for weddings, special occasions, or photoshoots, all while r…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ1CfyVyBJUYY1U82sRmx//eummlNyjNS1EHdldZ2eekJ"
+          }
+        ]
+      },
+      {
+        "name": "Bridal Glow Menus",
+        "note": "",
+        "items": [
+          {
             "name": "Bridal Glow Menu",
-            "price": "from $399",
-            "desc": "A curated pre-wedding program — BioRePeel Glow, Hydro Facial and package options.",
+            "price": "$359.10",
+            "desc": "Bridal Glow by Ameze Skin Elements presents an extensive menu of services meticulously crafted to elevate your natural beauty for your big day. Indulge in treatments like the BioRePeel Glow Facial, Hydro Facial, and our exclusive Bridal Glow Package, which features a Hydro Facial, complimentary der…",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJxty1dx/gnstogvblnlft4HykvqFO3SL7qT1DOPg6sSK"
           }
         ]
