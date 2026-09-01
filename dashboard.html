@@ -102,7 +102,10 @@ function fmt(iso){return new Date(iso).toLocaleString([], {month:"short",day:"nu
 async function api(opts){
   const r = await fetch(API, {headers:{"x-admin-key":KEY,"Content-Type":"application/json"}, ...opts});
   if (r.status===401) throw new Error("unauthorized");
-  return r.json();
+  const data = await r.json().catch(()=>({}));
+  // Non-OK responses carry GitHub's reason (e.g. a token that can't merge).
+  if (!r.ok) throw new Error(data.message || data.error || ("HTTP " + r.status));
+  return data;
 }
 
 async function login(){
@@ -149,26 +152,40 @@ async function load(){
     </div>`).join("") : `<div class="empty">No open requests. The agent is caught up.</div>`;
 }
 
+function explain(e){
+  if (e.message === "unauthorized")
+    return "Your saved admin key no longer matches the site's ADMIN_KEY — reload the page and log in again.";
+  if (/not accessible|permission|403/i.test(e.message))
+    return "GitHub refused: the site's GH_TOKEN can't merge pull requests. In GitHub → Settings → Developer settings → Fine-grained tokens, edit the token and add 'Pull requests: Read and write', then save. (" + e.message + ")";
+  return e.message;
+}
+
 async function approve(n){
   const el = document.getElementById("pr-"+n);
   el.style.opacity=.5;
-  const r = await api({method:"POST", body:JSON.stringify({op:"merge", number:n})});
-  if (r.merged){ el.classList.add("done"); el.style.opacity=1;
-    el.querySelector(".row").innerHTML = `<span class="done-note">✓ Merged — Netlify is deploying now</span>`;
-  } else { el.style.opacity=1; alert("Merge failed: " + (r.message||"unknown")); }
+  try {
+    const r = await api({method:"POST", body:JSON.stringify({op:"merge", number:n})});
+    if (r.merged){ el.classList.add("done"); el.style.opacity=1;
+      el.querySelector(".row").innerHTML = `<span class="done-note">✓ Merged — Netlify is deploying now</span>`;
+    } else { el.style.opacity=1; alert("Merge failed: " + (r.message||"unknown")); }
+  } catch(e){ el.style.opacity=1; alert("Approve didn't go through.\n\n" + explain(e)); }
 }
 
 async function reject(n){
   const note = prompt("Why is this rejected? (posted as a comment for the agent — leave blank to skip)");
   const el = document.getElementById("pr-"+n); el.style.opacity=.5;
-  await api({method:"POST", body:JSON.stringify({op:"close", kind:"pr", number:n,
-    note: note ? "Rejected by reviewer: " + note + "\n\n@claude please revise per the note above." : ""})});
+  try {
+    await api({method:"POST", body:JSON.stringify({op:"close", kind:"pr", number:n,
+      note: note ? "Rejected by reviewer: " + note + "\n\n@claude please revise per the note above." : ""})});
+  } catch(e){ alert("Reject didn't go through.\n\n" + explain(e)); }
   load();
 }
 
 async function dismiss(n){
   const note = prompt("Optional closing note for the client record:");
-  await api({method:"POST", body:JSON.stringify({op:"close", kind:"issue", number:n, note: note||""})});
+  try {
+    await api({method:"POST", body:JSON.stringify({op:"close", kind:"issue", number:n, note: note||""})});
+  } catch(e){ alert("Dismiss didn't go through.\n\n" + explain(e)); }
   load();
 }
 
