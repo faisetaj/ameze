@@ -273,28 +273,19 @@
   }
 
   /* ───────── pricing menu ───────── */
-  .tabs{display:flex;gap:.25rem;position:relative;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none;
-    scroll-padding-inline:2.5rem}
-  .tabs::-webkit-scrollbar{display:none}
-  /* Categories are editable from /admin, so the strip can outgrow its width.
-     Fade whichever edge has more tabs past it — a hard cut just reads as a
-     rendering fault, and the strip scrolls in both directions. */
-  .tabs.fade-r{-webkit-mask-image:linear-gradient(90deg,#000 84%,transparent);
-    mask-image:linear-gradient(90deg,#000 84%,transparent)}
-  .tabs.fade-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 16%);
-    mask-image:linear-gradient(90deg,transparent,#000 16%)}
-  .tabs.fade-l.fade-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent)}
+  /* Every category visible at once — the strip wraps instead of scrolling, so
+     nothing hides past the edge. The old sliding underline can't follow tabs
+     across rows, so the active tab carries its own. */
+  .tabs{display:flex;flex-wrap:wrap;gap:.25rem;position:relative;border-bottom:1px solid var(--line)}
   .tab{
     appearance:none;border:0;background:none;cursor:pointer;white-space:nowrap;
     font-family:var(--mono);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
     color:var(--muted);padding:.9rem 1.1rem;transition:color .2s;
   }
   .tab:hover{background:linear-gradient(90deg,var(--rose-deep),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .tab.on{color:var(--rose-deep)}
-  .tab-ind{position:absolute;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold));
-    box-shadow:0 0 14px rgba(196,121,134,.65),0 2px 8px rgba(216,169,138,.4);
-    transition:transform .35s cubic-bezier(.4,0,.2,1),width .35s cubic-bezier(.4,0,.2,1);will-change:transform,width}
+  .tab.on{color:var(--rose-deep);
+    background:linear-gradient(90deg,var(--rose),var(--gold)) left bottom/100% 2px no-repeat}
+  .tab-ind{display:none}
   .panel{display:none;padding-top:.4rem}
   .panel.on{display:block}
   .panel-note{padding:1.1rem 0 .4rem;color:var(--muted);font-size:.92rem;max-width:44rem;text-wrap:pretty}
@@ -316,7 +307,10 @@
   .prow:hover .lead{border-bottom-color:var(--rose)}
   .prow .p{font-family:var(--mono);font-size:1.08rem;font-weight:500;white-space:nowrap;font-feature-settings:"tnum";color:var(--ink);transition:transform .2s,color .2s}
   .prow:hover .p{transform:scale(1.05);color:var(--rose-deep)}
-  .prow .d{display:block;color:var(--muted);font-size:.92rem;max-width:44rem;margin-top:.3rem;text-wrap:pretty}
+  /* Vagaro descriptions run long — clamp to two lines; the full text lives in
+     the booking flow the row opens. */
+  .prow .d{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+    color:var(--muted);font-size:.92rem;max-width:44rem;margin-top:.3rem;text-wrap:pretty}
   .menu-foot{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem;color:var(--muted)}
   .menu-foot b{color:var(--rose-deep);font-weight:500}
 
@@ -338,6 +332,22 @@
   @media(min-width:1000px){
     .menu-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem}
     .menu-vis{display:block}
+    /* The list scrolls inside a bounded panel matched to the photo column, so
+       the section has a fixed height and long categories read as scrollable
+       instead of endless. A fade plus the count line below make that legible. */
+    .menu{position:relative}
+    .panel.on{max-height:min(calc(100vh - 16rem),30rem);overflow-y:auto;padding-right:1rem;
+      scrollbar-width:thin;scrollbar-color:var(--rose-lt) transparent}
+    .panel.on::-webkit-scrollbar{width:5px}
+    .panel.on::-webkit-scrollbar-thumb{background:var(--rose-lt);border-radius:3px}
+    .panel.on::-webkit-scrollbar-track{background:transparent}
+    .menu.has-more::after{content:"";position:absolute;left:0;right:1.2rem;bottom:1.7rem;height:3.6rem;
+      background:linear-gradient(transparent,var(--paper));pointer-events:none}
+  }
+  .menu-more{display:none;margin-top:.55rem;color:var(--rose-deep);font-size:.7rem;letter-spacing:.08em}
+  @media(min-width:1000px){
+    .menu-more{display:block;visibility:hidden}
+    .menu.has-more .menu-more{visibility:visible}
   }
 
   /* image wipe reveal — visible by default; animation plays on first view */
@@ -766,6 +776,7 @@
         <a class="prow" data-book href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJxty1dx/gnstogvblnlft4HykvqFO3SL7qT1DOPg6sSK" target="_blank" rel="noopener"><span class="prow-line"><span class="t">Bridal Glow Menu</span><span class="lead"></span><span class="p">$359.10</span></span><span class="d">Bridal Glow by Ameze Skin Elements presents an extensive menu of services meticulously crafted to elevate your natural beauty for your big day. Indulge in treatments like the BioRePeel Glow Facial, Hydro Facial, and our exclusive Bridal Glow Package, which features a Hydro Facial, complimentary der…</span></a>
       </div>
       <!-- cms:menu:end -->
+      <p class="menu-more mono" aria-hidden="true"></p>
     </div>
     <div class="menu-vis imgrv rv" aria-hidden="true">
       <span class="frame">
@@ -1208,6 +1219,23 @@
     var tabEl = document.querySelector('.tab[data-panel="' + panelId + '"]');
     if (cap && match && tabEl) cap.textContent = tabEl.textContent.trim();
   }
+  /* ── bounded menu panel: fade + count hint while more rows are below ── */
+  var menuCol = document.querySelector('.menu');
+  function updateMenuMore(){
+    if (!menuCol) return;
+    var p = menuCol.querySelector('.panel.on');
+    var hint = menuCol.querySelector('.menu-more');
+    var more = !!p && p.scrollHeight - p.scrollTop - p.clientHeight > 24;
+    menuCol.classList.toggle('has-more', more);
+    if (hint && p) hint.textContent = '↓ ' + p.querySelectorAll('.prow').length + ' treatments — scroll for more';
+  }
+  if (menuCol) {
+    // capture:true so scrolls inside whichever panel is active are heard
+    menuCol.addEventListener('scroll', updateMenuMore, {passive:true, capture:true});
+    window.addEventListener('resize', updateMenuMore, {passive:true});
+    updateMenuMore();
+  }
+
   tabs.forEach(function(tab){
     tab.addEventListener('click', function(){
       tabs.forEach(function(t){ t.classList.remove('on'); t.setAttribute('aria-selected','false'); });
@@ -1216,8 +1244,10 @@
       document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('on'); });
       var panel = document.getElementById(tab.dataset.panel);
       panel.classList.add('on');
+      panel.scrollTop = 0;
       stagger(panel);
       syncVis(tab.dataset.panel);
+      updateMenuMore();
     });
   });
   var tabStrip = document.querySelector('.tabs');
