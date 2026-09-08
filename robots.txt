@@ -1,0 +1,15 @@
+# Ameze Skin Elements
+User-agent: *
+Allow: /
+
+# Client portal and internal tooling — no search value.
+# content/ is deliberately NOT blocked: the page fetches it at runtime, and a
+# blocked subresource makes Search Console report unloadable page resources.
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /dashboard
+Disallow: /dashboard.html
+Disallow: /updates
+Disallow: /updates.html
+
+Sitemap: https://amezeskinelements.com/sitemap.xml
