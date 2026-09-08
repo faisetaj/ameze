@@ -6,15 +6,10 @@
 <title>Ameze Skin Elements — Medical Spa &amp; Skincare Clinic, Houston TX</title>
 <meta name="description" content="Medical esthetician–led medical spa in Houston, Texas. Botox®, Dysport®, DAXXIFY®, lip filler, exosome microneedling, BioRePeel and clinical facials. Book online.">
 <script>
-  /* TEMPORARY: the theme picker is back while Brenda compares light (Porcelain)
-     and dark (Noir). This applies her stored choice before first paint; the
-     picker at the bottom-left writes it. When she's decided, delete this script,
-     the .tp CSS block, the #themePick markup and its handler, and restore the
-     localStorage.removeItem("ameze-theme") cleanup here. */
-  try {
-    var t0 = localStorage.getItem("ameze-theme");
-    if (t0 === "noir" || t0 === "porcelain" || t0 === "blush") document.documentElement.dataset.theme = t0;
-  } catch(e){}
+  /* Brenda chose Porcelain, so the picker is retired and the theme is fixed on
+     <html data-theme>. This clears the key the picker used to write, so anyone
+     who left the site on Blush or Noir comes back to Porcelain. */
+  try { localStorage.removeItem("ameze-theme"); } catch(e){}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -253,7 +248,9 @@
   .num:hover .n{background:linear-gradient(120deg,var(--rose-deep) 30%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   .num:hover .n sup{color:var(--gold)}
   .num .n{font-family:var(--display);font-size:clamp(3rem,6.4vw,5.6rem);font-weight:400;letter-spacing:-.01em;line-height:1}
-  .num .n sup{font-size:.35em;font-weight:430;color:var(--rose)}
+  /* --rose lands at 3.3:1 on paper, which is under AA once the number shrinks
+     on small screens; --rose-deep reads the same and clears it. */
+  .num .n sup{font-size:.35em;font-weight:430;color:var(--rose-deep)}
   .num .l{margin-top:.9rem;color:var(--muted);text-transform:none;font-size:.84rem;letter-spacing:.015em;line-height:1.6}
   @media(min-width:900px){.numbers .grid{grid-template-columns:repeat(4,1fr)}}
 
@@ -274,17 +271,26 @@
 
   /* ───────── pricing menu ───────── */
   /* Every category visible at once — the strip wraps instead of scrolling, so
-     nothing hides past the edge. The old sliding underline can't follow tabs
-     across rows, so the active tab carries its own. */
-  .tabs{display:flex;flex-wrap:wrap;gap:.25rem;position:relative;border-bottom:1px solid var(--line)}
+     nothing hides past the edge. Bare text tabs read as a paragraph of labels
+     rather than as controls, so each category is a bordered chip that looks
+     pressable, and the active one is filled — a state you can spot at a glance
+     and that survives the strip wrapping onto several rows. */
+  .menu-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);padding-bottom:.7rem}
+  .tabs{display:flex;flex-wrap:wrap;gap:.4rem;position:relative;
+    padding-bottom:1.15rem;border-bottom:1px solid var(--line)}
   .tab{
-    appearance:none;border:0;background:none;cursor:pointer;white-space:nowrap;
-    font-family:var(--mono);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
-    color:var(--muted);padding:.9rem 1.1rem;transition:color .2s;
+    appearance:none;cursor:pointer;white-space:nowrap;
+    font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--muted);padding:.62rem 1.05rem;border-radius:999px;
+    border:1px solid var(--line);background:var(--paper-2);
+    transition:color .2s,border-color .2s,background .2s,box-shadow .2s;
   }
-  .tab:hover{background:linear-gradient(90deg,var(--rose-deep),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .tab.on{color:var(--rose-deep);
-    background:linear-gradient(90deg,var(--rose),var(--gold)) left bottom/100% 2px no-repeat}
+  .tab:hover{color:var(--rose-deep);border-color:var(--rose-lt);
+    box-shadow:0 2px 10px rgba(143,69,82,.12)}
+  .tab:focus-visible{outline:2px solid var(--rose-deep);outline-offset:2px}
+  .tab.on,.tab.on:hover{color:#fff;border-color:var(--rose-deep);background:var(--rose-deep);
+    box-shadow:0 4px 14px rgba(143,69,82,.22)}
   .tab-ind{display:none}
   .panel{display:none;padding-top:.4rem}
   .panel.on{display:block}
@@ -357,10 +363,24 @@
   @keyframes unzoom{from{transform:scale(1.07)}to{transform:none}}
 
   /* ───────── offers ───────── */
-  .offers{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
-  @media(min-width:560px){.offers{grid-template-columns:1fr 1fr}}
-  @media(min-width:900px){.offers{grid-template-columns:repeat(4,1fr)}}
-  .offer{background:var(--paper);padding:1.1rem;text-decoration:none;transition:background .2s;position:relative;overflow:hidden;cursor:pointer}
+  /* The number of specials is whatever /admin publishes, so the column count
+     follows the card count instead of being pinned at four. The hairline grid is
+     drawn by the cards themselves, so a leftover track can never show up as a
+     grey block where a fourth card used to be. */
+  .offers{--cols:4;display:grid;grid-template-columns:1fr;gap:1px;background:var(--paper)}
+  .offers:has(> .offer:nth-child(1):nth-last-child(1)){--cols:1;max-width:34rem}
+  .offers:has(> .offer:nth-child(1):nth-last-child(2)){--cols:2}
+  .offers:has(> .offer:nth-child(1):nth-last-child(3)){--cols:3}
+  .offers:has(> .offer:nth-child(1):nth-last-child(6)){--cols:3}
+  @media(min-width:560px){.offers{grid-template-columns:repeat(min(var(--cols),2),1fr)}}
+  /* Odd count in the two-column band: the last card takes the whole row rather
+     than leaving a hole. Capped below 900px so it can't leak into the wide grid. */
+  @media(min-width:560px) and (max-width:899.98px){
+    .offers > .offer:nth-child(odd):last-child{grid-column:1/-1}
+  }
+  @media(min-width:900px){.offers{grid-template-columns:repeat(var(--cols),1fr)}}
+  .offer{background:var(--paper);padding:1.1rem;text-decoration:none;transition:background .2s;position:relative;overflow:hidden;cursor:pointer;
+    box-shadow:0 0 0 1px var(--line)}
   .offer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;z-index:1;
     background:linear-gradient(90deg,var(--rose),var(--gold),var(--rose-lt));
     transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
@@ -410,6 +430,13 @@
   .trust-grid blockquote{font-size:.96rem;color:var(--dark-muted);text-wrap:pretty}
   .trust-grid .who{margin-top:1rem;color:var(--dark-accent)}
   .trust-scores{display:flex;flex-wrap:wrap;gap:.4rem 2rem;margin-top:3.5rem;color:var(--dark-muted)}
+  /* On the dark panel --rose-deep sits at 2.6:1 against the background. This link
+     uses the panel's own ink and carries a rule under it so it still reads as a link. */
+  .trust-more{display:inline-block;margin-top:1.6rem;font-family:var(--mono);font-size:.82rem;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--dark-ink);text-decoration:none;
+    padding-bottom:.35rem;border-bottom:1px solid var(--dark-accent);
+    transition:color .2s,border-color .2s}
+  .trust-more:hover{color:var(--dark-accent);border-bottom-color:var(--dark-ink)}
   .trust-inner{display:grid;grid-template-columns:1fr;gap:3rem;align-items:start}
   .trust-photo{position:relative;display:none;height:100%;min-height:30rem}
   .trust-photo::before{content:"";position:absolute;inset:0;transform:translate(14px,14px);
@@ -479,7 +506,7 @@
   .loc .dir{display:inline-block;margin-top:1.5rem;font-size:.9rem;color:var(--rose-deep);text-decoration:none;
     border-bottom:1px solid var(--rose);transition:transform .2s,border-color .2s}
   .loc .dir:hover{transform:translateX(4px);border-bottom-color:var(--gold);
-    background:linear-gradient(90deg,var(--rose-deep),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+    background:linear-gradient(90deg,var(--rose-deep),var(--gold) 130%);-webkit-background-clip:text;background-clip:text;color:transparent}
   @media(min-width:900px){.locs{grid-template-columns:1fr 1fr}}
 
   /* ───────── final cta ───────── */
@@ -499,7 +526,7 @@
   .colo p{font-family:var(--mono);font-size:.76rem;line-height:1.85;letter-spacing:.02em;color:var(--muted);max-width:46rem}
   .colo nav{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem}
   .colo nav a{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none}
-  .colo nav a:hover{background:linear-gradient(90deg,var(--rose-deep),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .colo nav a:hover{background:linear-gradient(90deg,var(--rose-deep),var(--gold) 150%);-webkit-background-clip:text;background-clip:text;color:transparent}
   @media(min-width:900px){.colo{grid-template-columns:auto 1fr;gap:4rem}}
 
   /* ───────── booking modal ───────── */
@@ -515,19 +542,6 @@
   .bm-close{appearance:none;border:0;background:none;cursor:pointer;font-size:1.5rem;line-height:1;color:#171314;padding:.25rem .5rem}
   .bm-close:hover{color:#8F4552}
   .bm iframe{flex:1;border:0;width:100%;background:#fff}
-
-  /* ───────── TEMPORARY theme picker — delete with the head script ───────── */
-  /* Bottom-right like the old A/B/C picker, stacked above the newsletter pill;
-     sits under the opened newsletter card (z 94 < the card's 95). */
-  .tp{position:fixed;right:1rem;bottom:4.9rem;z-index:94;display:flex;overflow:hidden;
-    border:1px solid var(--edge-stroke);border-radius:999px;
-    background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);
-    box-shadow:0 6px 20px rgba(26,19,21,.12)}
-  .tp button{appearance:none;border:0;background:none;cursor:pointer;
-    font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
-    color:var(--muted);padding:.6rem .95rem;transition:color .2s}
-  .tp button:hover{color:var(--rose-deep)}
-  .tp button[aria-pressed="true"]{background:var(--btn-grad);color:var(--btn-ink)}
 
   /* ───────── scroll progress + header state ───────── */
   #sprog{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;pointer-events:none;
@@ -682,6 +696,7 @@
 
     <div class="menu-grid">
     <div class="menu rv">
+      <p class="menu-eyebrow">Browse by category</p>
       <!-- cms:menu:start -->
       <div class="tabs" role="tablist" aria-label="Service categories">
         <button class="tab on" role="tab" aria-selected="true" data-panel="p-c0">Injectables</button>
@@ -871,7 +886,7 @@
           </div>
           <p class="mono trust-scores rv mono-num"><span>Service 5.0</span><span>Punctuality 5.0</span><span>Value 5.0</span><span>Venue 5.0</span><span>Source: Vagaro published reviews</span></p>
       <!-- cms:reviews:end -->
-          <p class="rv" style="margin-top:1.4rem"><a class="mono" style="color:var(--rose-deep);text-decoration:none" href="/reviews">Read every review →</a></p>
+          <p class="rv"><a class="trust-more" href="/reviews">Read every review →</a></p>
         </div>
         <div class="trust-photo imgrv rv">
           <!-- cms:photos-trust:start -->
@@ -1074,31 +1089,9 @@
   </div>
 </div>
 
-<!-- TEMPORARY theme picker — remove once Brenda has chosen -->
-<div class="tp" id="themePick" role="group" aria-label="Color theme">
-  <button type="button" data-set="porcelain">Porcelain</button>
-  <button type="button" data-set="blush">Blush</button>
-  <button type="button" data-set="noir">Noir</button>
-</div>
-
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ── TEMPORARY theme picker ── */
-  var tp = document.getElementById('themePick');
-  if (tp) {
-    var tpBtns = tp.querySelectorAll('button');
-    var setTheme = function(t){
-      document.documentElement.dataset.theme = t;
-      tpBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.set === t)); });
-      try { localStorage.setItem('ameze-theme', t); } catch(e){}
-    };
-    tpBtns.forEach(function(b){ b.addEventListener('click', function(){ setTheme(b.dataset.set); }); });
-    var dt = document.documentElement.dataset.theme;
-    var cur = (dt === 'noir' || dt === 'blush') ? dt : 'porcelain';
-    tpBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.set === cur)); });
-  }
 
   /* ── booking modal (Vagaro embeds: CSP frame-ancestors *) ── */
   var modal = document.getElementById('bookModal'), frame = document.getElementById('bookFrame');
