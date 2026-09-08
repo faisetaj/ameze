@@ -30,6 +30,20 @@
     "monthly promotions and discounts": "promos",
     "bridal glow menus": "promos"
   },
+  "promoCards": {
+    "_comment": [
+      "The 'This month at Ameze' cards mirror one Vagaro category, so she never",
+      "maintains them by hand: title, price and flyer art all come from Vagaro,",
+      "and the daily sync republishes when any of them change.",
+      "category: normalized Vagaro category name that feeds the cards.",
+      "fallbackImage: used only when a promotion has no photo in Vagaro — the",
+      "cards are image-led, so a card still renders rather than failing to publish.",
+      "max: the grid caps at 8; extra promotions stay on the menu tab."
+    ],
+    "category": "monthly promotions and discounts",
+    "fallbackImage": "img/media/injectables.jpg",
+    "max": 4
+  },
   "hide": [
     "no show fee"
   ]

@@ -231,9 +231,20 @@ function normalise(list) {
       if (!bytes.length) throw new Error(`"${title}": that image came through empty — try again.`);
       if (bytes.length > MAX_IMAGE_BYTES) throw new Error(`"${title}": image is over 4 MB, even after resizing.`);
 
-      let path = `img/uploads/${slug(title)}.${ext}`;
-      let n = 2;
-      while (seen.has(path)) path = `img/uploads/${slug(title)}-${n++}.${ext}`;
+      // The sync names its own files so the path changes when she swaps the art in
+      // Vagaro — same name would leave a stale flyer cached on the card forever.
+      // /admin never sends this, so its behaviour is unchanged.
+      let path;
+      if (s.upload.path) {
+        if (!new RegExp(`^img/uploads/[a-z0-9][a-z0-9-]{0,79}\\.${ext}$`).test(s.upload.path)) {
+          throw new Error(`"${title}": that image path is not allowed.`);
+        }
+        path = s.upload.path;
+      } else {
+        path = `img/uploads/${slug(title)}.${ext}`;
+        let n = 2;
+        while (seen.has(path)) path = `img/uploads/${slug(title)}-${n++}.${ext}`;
+      }
       seen.add(path);
 
       images.push({ path, base64: s.upload.data });
@@ -277,3 +288,20 @@ function fallbackCards(specials) {
     )
     .join("\n");
 }
+
+/* ── shared with scripts/vagaro-sync.js ──────────────────────────────────────
+   The daily sync mirrors her Vagaro promotions into these cards, and its
+   --write-local mode has to produce byte-identical markup to a /admin publish.
+   Exporting the renderer keeps one definition of the card markup, the same way
+   content-api exports applySections for the menu. */
+exports.normalise = normalise;
+exports.fallbackCards = fallbackCards;
+exports.applySpecials = (page, specials) => {
+  if (!page.includes(START) || !page.includes(END)) {
+    throw new Error(`index.html is missing the ${START} / ${END} markers`);
+  }
+  return page.replace(
+    new RegExp(`${escapeRe(START)}[\\s\\S]*?${escapeRe(END)}`),
+    START + "\n" + fallbackCards(specials) + "\n      " + END
+  );
+};
