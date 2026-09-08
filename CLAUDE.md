@@ -24,13 +24,23 @@ change-request form). Sync configuration lives in `content/vagaro.json`
 (`categoryWidgets` maps Vagaro categories to scoped booking widgets; `hide` suppresses
 bookkeeping rows like the no-show fee).
 
-## Specials cards — dormant
+## Specials cards — Vagaro owns these too (since 2026-09-08)
 
-The "This month at Ameze" flyer cards (`content/specials.json`) are no longer editable
-from `/admin` (her promotions live in Vagaro's "Monthly Promotions and Discounts"
-category, which the sync mirrors as a menu tab). The cards and their
-`<!-- specials:start -->` / `<!-- specials:end -->` markers remain in `index.html` —
-**never remove the markers**. A request to change these cards goes through Faisel.
+The "This month at Ameze" flyer cards (`content/specials.json`) mirror her Vagaro
+**"Monthly Promotions and Discounts"** category, art included: the daily
+`vagaro-sync.yml` Action reads the title, the promo-aware price, the first sentence
+of the description and the service photo she uploaded in Vagaro, then publishes
+through `specials-api`. She maintains nothing here — adding, retiring or repricing
+a promotion in Vagaro is the whole workflow, and the card count follows (the grid
+auto-fits 1–4; `promoCards.max` in `content/vagaro.json` caps it).
+
+They are not editable from `/admin`. **Never hand-edit `content/specials.json` or the
+card markup** — the next sync overwrites it. The `<!-- specials:start -->` /
+`<!-- specials:end -->` markers must stay in `index.html`.
+
+If a promotion looks wrong on the site, the fix is in Vagaro, not here. If the *cards*
+themselves need to behave differently, that is a change to `scripts/vagaro-sync.js`
+and goes through Faisel.
 
 ## Photos — she edits these herself too
 
