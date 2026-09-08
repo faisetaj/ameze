@@ -528,6 +528,13 @@
   .colo{display:grid;grid-template-columns:1fr;gap:2.5rem}
   .colo .brandline img{width:3rem}
   .colo p{font-family:var(--mono);font-size:.76rem;line-height:1.85;letter-spacing:.02em;color:var(--muted);max-width:46rem}
+  /* The global rule is a{color:inherit}, which would leave the colophon credit
+     indistinguishable from the muted text around it. */
+  .colo p a{color:var(--rose-deep);text-decoration:underline;text-underline-offset:3px;
+    text-decoration-thickness:1px;transition:color .2s}
+  /* Hover darkens rather than lightens — --rose is 3.5:1 on the footer
+     ground, under AA at this size. */
+  .colo p a:hover{color:var(--ink)}
   .colo nav{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem}
   .colo nav a{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none}
   .colo nav a:hover{background:linear-gradient(90deg,var(--rose-deep),var(--gold) 150%);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -1056,7 +1063,7 @@
       <nav aria-label="Footer">
         <a href="#menu">Services</a><a href="#offers">Offers</a><a href="#studio">Studio</a><a href="/about">About</a><a href="/reviews">Reviews</a><a href="#membership">Membership</a><a href="#protocol">Aftercare</a><a href="#visit">Locations</a><a data-book href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Book</a>
       </nav>
-      <p style="margin-top:1.5rem">© 2026 Ameze Skin Elements, LLC · Houston &amp; Richmond, Texas · (832) 775-6965<br>
+      <p style="margin-top:1.5rem">© 2026 Ameze Skin Elements, LLC · Houston &amp; Richmond, Texas · (832) 775-6965 · Designed &amp; administered by <a href="https://faiseltajiran.com" target="_blank" rel="noopener">Faisel Tajiran</a><br>
       Booking &amp; scheduling powered by Vagaro. Financing by Cherry Technologies and Synchrony (CareCredit), subject to approval.<br>
       Botox® is a registered trademark of Allergan Aesthetics. Dysport® is a registered trademark of Ipsen Biopharm. DAXXIFY® is a registered trademark of Revance Therapeutics. BioRePeelCl3® is a registered trademark of CMed Aesthetics.<br>
       Select photography via Wikimedia Commons: “Doctor performing Botox injection”, “SPA SKIN CARE” (CC0); “Woman uses a skincare tool…”, “Woman applies skincare product…” © Shixart1985, CC BY 2.0.<br>
