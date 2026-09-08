@@ -368,9 +368,13 @@
      drawn by the cards themselves, so a leftover track can never show up as a
      grey block where a fourth card used to be. */
   .offers{--cols:4;display:grid;grid-template-columns:1fr;gap:1px;background:var(--paper)}
+  /* Columns balance the rows rather than always filling to four: 5 and 6 read
+     better as 3+2 and 3+3 than as 4+1 and 4+2. She keeps last month's promotion
+     up beside the new one, so counts above four are normal, not an edge case. */
   .offers:has(> .offer:nth-child(1):nth-last-child(1)){--cols:1;max-width:34rem}
   .offers:has(> .offer:nth-child(1):nth-last-child(2)){--cols:2}
   .offers:has(> .offer:nth-child(1):nth-last-child(3)){--cols:3}
+  .offers:has(> .offer:nth-child(1):nth-last-child(5)){--cols:3}
   .offers:has(> .offer:nth-child(1):nth-last-child(6)){--cols:3}
   @media(min-width:560px){.offers{grid-template-columns:repeat(min(var(--cols),2),1fr)}}
   /* Odd count in the two-column band: the last card takes the whole row rather

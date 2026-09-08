@@ -38,11 +38,14 @@
       "category: normalized Vagaro category name that feeds the cards.",
       "fallbackImage: used only when a promotion has no photo in Vagaro — the",
       "cards are image-led, so a card still renders rather than failing to publish.",
-      "max: the grid caps at 8; extra promotions stay on the menu tab."
+      "max: she keeps last month's promotion up alongside the new one, so this",
+      "sits at the grid's ceiling of 8 rather than a tight number — a promotion",
+      "that silently failed to appear is the exact problem this sync removes.",
+      "Anything past 8 stays on the menu tab."
     ],
     "category": "monthly promotions and discounts",
     "fallbackImage": "img/media/injectables.jpg",
-    "max": 4
+    "max": 8
   },
   "hide": [
     "no show fee"
