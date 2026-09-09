@@ -1234,9 +1234,8 @@
       <a href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener" aria-label="Open booking in a new tab"><span class="bm-lbl">Open in new tab </span>↗</a>
       <button class="bm-close" aria-label="Close booking window" onclick="closeBook()">×</button>
     </div>
-    <div class="bm-stage" id="bookStage">
-      <iframe id="bookFrame" title="Ameze Skin Elements booking" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    <!-- The frame is written in on open, with its src already set. See mountFrame. -->
+    <div class="bm-stage" id="bookStage"></div>
   </div>
 </div>
 
@@ -1266,44 +1265,52 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ── booking modal (Vagaro embeds: CSP frame-ancestors *) ── */
-  var modal = document.getElementById('bookModal'), frame = document.getElementById('bookFrame');
+  var modal = document.getElementById('bookModal');
   var stage = document.getElementById('bookStage');
 
-  // Vagaro's widget decides its layout from the width it is handed and does not
-  // reconsider, so below FRAME_W we hand it a roomier viewport and scale the
-  // result down to fit rather than letting it collapse to a bare button.
+  // Vagaro's widget lays itself out against the width it is handed and never
+  // reconsiders, so below FRAME_W we give it a roomier viewport and scale the
+  // result down to fit instead of letting it collapse.
   var FRAME_W = 600;
-  function fitFrame(){
+
+  function frameCss(){
     var w = stage.clientWidth, h = stage.clientHeight;
-    if (!w || !h) return;
-    if (w >= FRAME_W) {                       // room for the real thing
-      frame.style.width = '100%';
-      frame.style.height = '100%';
-      frame.style.transform = 'none';
-      return;
-    }
-    var scale = w / FRAME_W;
-    frame.style.width = FRAME_W + 'px';
-    frame.style.height = Math.ceil(h / scale) + 'px';
-    frame.style.transform = 'scale(' + scale.toFixed(4) + ')';
+    if (!w || !h || w >= FRAME_W) return 'width:100%;height:100%';
+    var s = w / FRAME_W;
+    return 'width:' + FRAME_W + 'px;height:' + Math.ceil(h / s) + 'px;' +
+           'transform:scale(' + s.toFixed(4) + ')';
+  }
+
+  // Written as markup with src already set, rather than created empty and
+  // pointed at the URL afterwards. On iOS the latter leaves Vagaro's widget
+  // collapsed to a bare "Click to Book": every build that put src in the markup
+  // rendered the full service list, every build that assigned it from script
+  // did not. Keep the src inline here.
+  function mountFrame(url){
+    stage.innerHTML =
+      '<iframe title="Ameze Skin Elements booking" ' +
+      'referrerpolicy="no-referrer-when-downgrade" ' +
+      'style="' + frameCss() + '" src="' + escHtml(url) + '"></iframe>';
+    stage.setAttribute('data-src', url);
   }
 
   function openBook(url){
     var want = url || 'https://www.vagaro.com/amezeskinelements';
-    // Show and size the panel BEFORE loading. Loading into a display:none frame
-    // means Vagaro measures a zero-width window and commits to its collapsed
-    // layout, which is how the phone ended up with only a "Click to Book".
+    // Show the panel first so the frame is measured at its real size.
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
-    fitFrame();
-    // Reload only when the target differs — a repeat click on the same service
+    // Re-mount only when the target differs — a repeat tap on the same service
     // keeps the already-loaded widget (and any booking in progress) intact.
-    if (frame.src !== want) {
-      requestAnimationFrame(function(){ frame.src = want; });
-    }
+    if (stage.getAttribute('data-src') !== want) mountFrame(want);
   }
-  // Rotating the phone changes the stage, and the frame has to be re-fitted.
-  window.addEventListener('resize', function(){ if (modal.classList.contains('open')) fitFrame(); });
+
+  // Rotating the phone changes the stage. Re-scale the frame in place rather
+  // than re-mounting it, which would throw away a booking in progress.
+  window.addEventListener('resize', function(){
+    if (!modal.classList.contains('open')) return;
+    var f = stage.querySelector('iframe');
+    if (f) f.setAttribute('style', frameCss());
+  });
   window.closeBook = function(){
     modal.classList.remove('open');
     document.body.style.overflow = '';
