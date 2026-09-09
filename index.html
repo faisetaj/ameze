@@ -561,13 +561,29 @@
   .bm-panel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
     width:min(62rem,94vw);height:min(86vh,60rem);background:#fff;display:flex;flex-direction:column;
     box-shadow:0 30px 90px rgba(0,0,0,.45)}
-  .bm-head{display:flex;align-items:center;gap:1rem;padding:.75rem 1.1rem;border-bottom:1px solid rgba(23,19,20,.12);color:#171314}
-  .bm-head b{font-family:var(--display);font-weight:500}
-  .bm-head .mono{color:#8F4552}
-  .bm-head a{margin-left:auto;font-size:.8rem;color:#8F4552}
-  .bm-close{appearance:none;border:0;background:none;cursor:pointer;font-size:1.5rem;line-height:1;color:#171314;padding:.25rem .5rem}
+  /* The header must stay ONE short row. Left to wrap, each label stacks
+     word-per-line and the bar eats ~150px of height — on a phone that pushed
+     the Vagaro widget (which opens with its own Affirm promo banner) clean
+     off the panel, so the booking UI never appeared. */
+  .bm-head{display:flex;align-items:center;gap:1rem;padding:.75rem 1.1rem;border-bottom:1px solid rgba(23,19,20,.12);color:#171314;flex-wrap:nowrap}
+  .bm-head b{font-family:var(--display);font-weight:500;white-space:nowrap}
+  .bm-head .mono{color:#8F4552;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .bm-head a{margin-left:auto;font-size:.8rem;color:#8F4552;white-space:nowrap;flex:none}
+  .bm-close{appearance:none;border:0;background:none;cursor:pointer;font-size:1.5rem;line-height:1;color:#171314;padding:.25rem .5rem;flex:none}
   .bm-close:hover{color:#8F4552}
-  .bm iframe{flex:1;border:0;width:100%;background:#fff}
+  .bm iframe{flex:1;min-height:0;border:0;width:100%;background:#fff}
+
+  /* Narrow/short viewports: full-bleed, and drop the reassurance label so the
+     row can't be squeezed. Phones don't reach this — they open Vagaro directly
+     (see the booking-modal script) — but a resized desktop window does. */
+  @media(max-width:860px),(max-height:600px){
+    .bm-panel{left:0;top:0;transform:none;width:100%;height:100dvh;max-height:100%}
+    .bm-head .mono{display:none}
+    /* Words go, arrow stays — otherwise the link crowds the close button
+       off the edge and there's no way out of a full-bleed panel. */
+    .bm-head .bm-lbl{display:none}
+    .bm-head a{font-size:1.05rem}
+  }
 
   /* ───────── scroll progress + header state ───────── */
   #sprog{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;pointer-events:none;
@@ -1210,7 +1226,7 @@
   <div class="bm-panel">
     <div class="bm-head">
       <b>Book at Ameze</b><span class="mono">secure · via Vagaro</span>
-      <a href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener">Open in new tab ↗</a>
+      <a href="https://www.vagaro.com/amezeskinelements" target="_blank" rel="noopener" aria-label="Open booking in a new tab"><span class="bm-lbl">Open in new tab </span>↗</a>
       <button class="bm-close" aria-label="Close booking window" onclick="closeBook()">×</button>
     </div>
     <iframe id="bookFrame" title="Ameze Skin Elements booking" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -1258,8 +1274,18 @@
   };
   modal.addEventListener('click', function(e){ if (e.target === modal) closeBook(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeBook(); });
+
+  // Phones get the real Vagaro page, not the embed. Vagaro opens its widget
+  // with a full-width Affirm "book now, pay later" banner and an Open App
+  // interstitial; inside a phone-sized frame those cover the service list and
+  // the calendar, and the booking dead-ends. Its own mobile site handles them
+  // fine at full viewport. Checked per click so rotating the phone is honoured.
+  function canEmbed(){
+    return window.matchMedia('(min-width:861px) and (min-height:601px)').matches;
+  }
   document.querySelectorAll('[data-book]').forEach(function(a){
     a.addEventListener('click', function(e){
+      if (!canEmbed()) return;   // fall through to the link's own target="_blank"
       e.preventDefault();
       openBook(a.getAttribute('href'));
     });
@@ -1327,7 +1353,10 @@
         + '<span class="mono">'+escHtml(s.note||'')+'</span></a>';
     }).join('');
     grid.querySelectorAll('[data-book]').forEach(function(a){
-      a.addEventListener('click', function(e){ e.preventDefault(); openBook(a.getAttribute('href')); });
+      a.addEventListener('click', function(e){
+        if (!canEmbed()) return;   // phones go straight to Vagaro — see canEmbed
+        e.preventDefault(); openBook(a.getAttribute('href'));
+      });
     });
   }).catch(function(){});
 
