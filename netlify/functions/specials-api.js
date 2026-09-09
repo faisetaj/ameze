@@ -21,6 +21,10 @@ const PAGE_PATH = "index.html";
 const START = "<!-- specials:start -->";
 const END = "<!-- specials:end -->";
 const MAX_SPECIALS = 8;
+// Vagaro's scoped booking-widget URLs carry a long encrypted token — the live
+// ones run past 500 characters. Same limit content-api already allows for the
+// menu's booking links, which is why those kept working while these didn't.
+const HREF_MAX = 900;
 const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
 const OK_EXT = ["jpg", "jpeg", "png", "webp"];
 
@@ -253,7 +257,14 @@ function normalise(list) {
     if (!img) throw new Error(`"${title}" needs an image.`);
     if (!/^(img\/|https:\/\/)/.test(img)) throw new Error(`"${title}": image path looks wrong.`);
 
-    const href = trim(s.href, 300) || "https://www.vagaro.com/amezeskinelements/services";
+    // A URL cut mid-token doesn't degrade, it 404s: clamping these to 300 sent
+    // every card to Vagaro's "page doesn't exist" screen. Refuse an over-long
+    // link rather than silently truncate one into a dead end.
+    const rawHref = String(s.href == null ? "" : s.href).trim();
+    if (rawHref.length > HREF_MAX) {
+      throw new Error(`"${title}": that booking link is ${rawHref.length} characters — over the ${HREF_MAX} limit, and cutting it would break the link.`);
+    }
+    const href = trim(s.href, HREF_MAX) || "https://www.vagaro.com/amezeskinelements/services";
     if (!/^https:\/\//.test(href)) throw new Error(`"${title}": the booking link must start with https://`);
 
     const out = {
