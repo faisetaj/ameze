@@ -1275,12 +1275,19 @@
   modal.addEventListener('click', function(e){ if (e.target === modal) closeBook(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeBook(); });
 
-  // Phones get the real Vagaro page, not the embed. Vagaro opens its widget
-  // with a full-width Affirm "book now, pay later" banner and an Open App
-  // interstitial; inside a phone-sized frame those cover the service list and
-  // the calendar, and the booking dead-ends. Its own mobile site handles them
-  // fine at full viewport. Checked per click so rotating the phone is honoured.
+  // Framed on a phone, Vagaro's widget renders its chrome and a lone Book Now
+  // button instead of the service list — a long-standing complaint on Vagaro's
+  // own support thread, not something we can fix from here. Opened directly it
+  // renders the full booking page, so phones hand off rather than embed.
+  // Checked per click, so rotating the phone is honoured.
+  //
+  // That button is a real Vagaro mechanism though (its "Popup or New Tab"
+  // widget type), so ?book=modal forces the embed and ?book=direct forces the
+  // handoff — the two can only honestly be compared on a real device.
+  var bookMode = (location.search.match(/[?&]book=(modal|direct)/) || [])[1] || '';
   function canEmbed(){
+    if (bookMode === 'modal') return true;
+    if (bookMode === 'direct') return false;
     return window.matchMedia('(min-width:861px) and (min-height:601px)').matches;
   }
   document.querySelectorAll('[data-book]').forEach(function(a){
