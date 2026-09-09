@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Widget width test — temporary</title>
+<style>
+  body{margin:0;font:15px/1.5 system-ui,sans-serif;background:#f4f1ef;color:#171314;padding:1rem}
+  h1{font-size:1.15rem;margin:0 0 .35rem}
+  p{margin:0 0 1rem;color:#5b5153;font-size:.9rem}
+  .case{margin:0 0 1.6rem;background:#fff;border:1px solid #ddd6d3;border-radius:6px;overflow:hidden}
+  .case h2{margin:0;padding:.55rem .8rem;font-size:.85rem;font-family:ui-monospace,Menlo,monospace;
+    letter-spacing:.06em;text-transform:uppercase;color:#8F4552;border-bottom:1px solid #eee;background:#faf8f7}
+  /* Each frame is given a different internal viewport width, then scaled down to
+     fit the phone screen. If Vagaro switches layout on width, the wider frames
+     will show the full service list while the narrow one shows only a button. */
+  .vp{position:relative;width:100%;overflow:hidden}
+  .vp iframe{border:0;transform-origin:0 0;display:block;background:#fff}
+</style>
+</head>
+<body>
+<h1>Vagaro widget — which width shows the service list?</h1>
+<p>Each box below loads the same booking widget, but tells it a different screen width.
+Scroll through and note which boxes show the <b>list of services</b> and which show only a
+<b>Book Now</b> button. Text in the wider boxes will look small — that is expected, ignore it.</p>
+
+<div id="cases"></div>
+
+<script>
+/* Temporary diagnostic page. Not linked from the site; delete before merging. */
+var WIDGET = "";           // filled in below from content/vagaro.json
+var WIDTHS = [390, 600, 768, 900, 1100];
+var HEIGHT = 620;          // internal height of each test frame
+
+fetch('content/vagaro.json')
+  .then(function(r){ return r.json(); })
+  .then(function(cfg){
+    WIDGET = (cfg.widgets && (cfg.widgets.promos || cfg.widgets.all)) || '';
+    if (!WIDGET) { document.getElementById('cases').textContent = 'No widget URL found.'; return; }
+    var host = document.getElementById('cases');
+    var avail = document.body.clientWidth - 32;   // page padding
+    WIDTHS.forEach(function(w){
+      var scale = Math.min(1, avail / w);
+      var box = document.createElement('div');
+      box.className = 'case';
+      box.innerHTML =
+        '<h2>frame width ' + w + 'px' + (scale < 1 ? ' (shown at ' + Math.round(scale*100) + '%)' : '') + '</h2>' +
+        '<div class="vp" style="height:' + Math.round(HEIGHT * scale) + 'px">' +
+          '<iframe loading="lazy" width="' + w + '" height="' + HEIGHT + '" ' +
+            'style="transform:scale(' + scale.toFixed(4) + ')" src="' + WIDGET + '"></iframe>' +
+        '</div>';
+      host.appendChild(box);
+    });
+  })
+  .catch(function(){ document.getElementById('cases').textContent = 'Could not load the widget list.'; });
+</script>
+</body>
+</html>
