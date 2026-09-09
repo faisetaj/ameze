@@ -1275,11 +1275,23 @@
   modal.addEventListener('click', function(e){ if (e.target === modal) closeBook(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeBook(); });
 
-  // Phones get the real Vagaro page, not the embed. Vagaro opens its widget
-  // with a full-width Affirm "book now, pay later" banner and an Open App
-  // interstitial; inside a phone-sized frame those cover the service list and
-  // the calendar, and the booking dead-ends. Its own mobile site handles them
-  // fine at full viewport. Checked per click so rotating the phone is honoured.
+  // Phones open Vagaro directly; only roomy viewports get the embed. Checked
+  // per click, so rotating the phone is honoured.
+  //
+  // Framed on iOS, Vagaro's widget collapses to a bare "Click to Book" button
+  // instead of the service list, and tapping it hands off to the same page
+  // anyway — so the embed is pure friction there. Ruled out on a real iPhone
+  // (2026-09-09), in this order: frame width (a plain 600px frame renders the
+  // full list, so width is not it), load order, the fixed overlay and its
+  // backdrop-filter, and mounting the frame with src already in the markup.
+  // Desktop is unaffected and keeps the modal, where the category page renders
+  // properly.
+  //
+  // Two traps for anyone revisiting this. Headless browsers render the widget
+  // the same either way and will tell you the embed works — only a real device
+  // settles it. And masking the handoff (an iframe under her own domain, e.g.
+  // GoDaddy "forward with masking") is the same frame by another name and
+  // fails identically; Vagaro's own guidance is a 301 "Forward Only".
   function canEmbed(){
     return window.matchMedia('(min-width:861px) and (min-height:601px)').matches;
   }
