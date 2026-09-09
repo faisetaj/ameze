@@ -4,107 +4,152 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Widget load test — temporary</title>
+<title>Booking frame isolation test — temporary</title>
 <style>
   body{margin:0;font:15px/1.5 system-ui,sans-serif;background:#f4f1ef;color:#171314;padding:1rem}
   h1{font-size:1.15rem;margin:0 0 .35rem}
   p{margin:0 0 1rem;color:#5b5153;font-size:.9rem}
-  .case{margin:0 0 1.4rem;background:#fff;border:1px solid #ddd6d3;border-radius:6px;overflow:hidden}
-  .case h2{margin:0;padding:.55rem .8rem;font-size:.8rem;font-family:ui-monospace,Menlo,monospace;
+  .case{margin:0 0 1rem;background:#fff;border:1px solid #ddd6d3;border-radius:6px;overflow:hidden}
+  .case h2{margin:0;padding:.55rem .8rem;font-size:.82rem;font-family:ui-monospace,Menlo,monospace;
     letter-spacing:.05em;text-transform:uppercase;color:#8F4552;border-bottom:1px solid #eee;background:#faf8f7}
-  .case .hint{padding:.5rem .8rem;font-size:.82rem;color:#5b5153;border-bottom:1px solid #f0ebe9}
-  button{appearance:none;border:0;background:#D26E8A;color:#fff;font:600 .9rem system-ui;
-    padding:.7rem 1.1rem;margin:.7rem .8rem;border-radius:4px;cursor:pointer}
-  .stage{height:420px;overflow:hidden}
-  .stage iframe{border:0;width:100%;height:420px;display:block;background:#fff}
-  .hidden{display:none}
+  .case .hint{padding:.5rem .8rem;font-size:.82rem;color:#5b5153}
+  button{appearance:none;border:0;background:#D26E8A;color:#fff;font:600 .95rem system-ui;
+    padding:.8rem 1.2rem;margin:0 .8rem .8rem;border-radius:4px;cursor:pointer}
+
+  /* Inline stage, used by the control. */
+  .stage{position:relative;height:420px;overflow:hidden;background:#fff}
+  .stage iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0;background:#fff}
+
+  /* Overlay stages — these copy the real booking modal's structure. */
+  .ov{position:fixed;inset:0;z-index:100;display:none;background:rgba(20,15,17,.62)}
+  .ov.open{display:block}
+  .ov.blur{backdrop-filter:blur(5px)}
+  .ov-panel{position:absolute;left:0;top:0;width:100%;height:100dvh;background:#fff;
+    display:flex;flex-direction:column}
+  .ov-head{display:flex;align-items:center;gap:1rem;padding:.7rem .9rem;border-bottom:1px solid #eee}
+  .ov-head b{font-size:.95rem}
+  .ov-head button{margin:0 0 0 auto;padding:.4rem .8rem;font-size:1.1rem;background:#171314}
+  .ov-stage{position:relative;flex:1;min-height:0;overflow:hidden;background:#fff}
+  .ov-stage iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0;background:#fff}
 </style>
 </head>
 <body>
 <h1>Which of these shows the service list?</h1>
-<p>Each box loads the same widget a different way. Tap <b>Open</b> in each, then say which ones
-show the <b>list of services</b> and which show only a <b>Book Now</b> button.</p>
+<p>Same widget every time. Tap each button, look, then close it and move on.
+Tell me which ones show the <b>list of services</b> and which show only a
+<b>Book Now</b> button.</p>
 
 <div id="cases"></div>
+
+<!-- Overlay used by cases B, C and D — same structure as the real booking modal. -->
+<div class="ov" id="ov">
+  <div class="ov-panel">
+    <div class="ov-head"><b id="ovLabel">Test</b><button onclick="closeOv()">&times;</button></div>
+    <div class="ov-stage" id="ovStage">
+      <!-- Case D reuses this pre-existing empty frame, exactly like the real modal does. -->
+      <iframe id="ovPre"></iframe>
+    </div>
+  </div>
+</div>
 
 <script>
 /* Temporary diagnostic page. Not linked from the site; delete before merging.
 
-   The width theory is dead: a 390px frame renders the full list on her phone.
-   So the difference must be in HOW the booking modal loads its frame. The
-   modal sets src while its container is still display:none, which may leave
-   Vagaro measuring a zero-size window and committing to the button layout.
-   These four cases separate that from the alternatives. */
+   Established so far, all on her iPhone:
+     - a plain 600px frame in normal flow shows the full service list
+     - the real booking modal shows only a Book Now button
+   So it is not the width, and not the load order. These cases separate the
+   two things the modal still does differently: it lives in a fixed overlay
+   with a backdrop-filter, and its iframe exists as about:blank from page load. */
+
+var FRAME_W = 600;
+var URL_ = "";
+
+function sizeInto(stage, frame){
+  var w = stage.clientWidth, h = stage.clientHeight;
+  if (w >= FRAME_W) { frame.style.width='100%'; frame.style.height='100%'; frame.style.transform='none'; return; }
+  var s = w / FRAME_W;
+  frame.style.width = FRAME_W + 'px';
+  frame.style.height = Math.ceil(h / s) + 'px';
+  frame.style.transform = 'scale(' + s.toFixed(4) + ')';
+}
+
+var ov = document.getElementById('ov'), ovStage = document.getElementById('ovStage'),
+    ovPre = document.getElementById('ovPre'), ovLabel = document.getElementById('ovLabel');
+
+window.closeOv = function(){
+  ov.classList.remove('open');
+  ov.classList.remove('blur');
+  ovPre.removeAttribute('src');
+  // drop any frame a case added
+  Array.prototype.slice.call(ovStage.querySelectorAll('iframe')).forEach(function(f){
+    if (f !== ovPre) f.parentNode.removeChild(f);
+  });
+};
+
 var CASES = [
-  { key: "A",
-    label: "A — plain frame, always visible",
-    hint: "Control. This is the one that already worked for you.",
-    run: function(stage, url){ frame(stage, url); } },
+  { label: "A — control, inline on the page",
+    hint: "No overlay at all. This is the one that worked for you.",
+    run: function(){
+      var box = document.getElementById('stageA');
+      box.innerHTML = '';
+      var f = document.createElement('iframe');
+      box.appendChild(f);
+      sizeInto(box, f);
+      f.src = URL_;
+    }, inline: true },
 
-  { key: "B",
-    label: "B — src set while hidden, then shown",
-    hint: "Exactly what the booking window does today.",
-    run: function(stage, url){
-      stage.classList.add('hidden');
-      var f = frame(stage, url);            // src set while the stage is display:none
-      stage.classList.remove('hidden');
-      return f;
+  { label: "B — fixed overlay, with the blur",
+    hint: "Same as the real booking window, including the frosted background.",
+    run: function(){
+      ovLabel.textContent = 'B — overlay with blur';
+      ov.classList.add('open','blur');
+      var f = document.createElement('iframe');
+      ovStage.appendChild(f);
+      sizeInto(ovStage, f);
+      f.src = URL_;
     } },
 
-  { key: "C",
-    label: "C — shown first, then src set",
-    hint: "Same as B but the frame is visible before it starts loading.",
-    run: function(stage, url){
-      stage.classList.remove('hidden');
+  { label: "C — fixed overlay, no blur",
+    hint: "Identical to B but without the frosted background effect.",
+    run: function(){
+      ovLabel.textContent = 'C — overlay, no blur';
+      ov.classList.add('open');
       var f = document.createElement('iframe');
-      stage.appendChild(f);
-      requestAnimationFrame(function(){
-        requestAnimationFrame(function(){ f.src = url; });
-      });
-      return f;
+      ovStage.appendChild(f);
+      sizeInto(ovStage, f);
+      f.src = URL_;
     } },
 
-  { key: "D",
-    label: "D — shown first, and no referrer policy",
-    hint: "Like C, without the referrer setting the booking window uses.",
-    run: function(stage, url){
-      stage.classList.remove('hidden');
-      var f = document.createElement('iframe');
-      f.referrerPolicy = "no-referrer-when-downgrade";
-      stage.appendChild(f);
-      requestAnimationFrame(function(){ f.src = url; });
-      return f;
+  { label: "D — overlay reusing a frame that existed from page load",
+    hint: "The one remaining difference: the real modal's frame is already on the page, empty, before you tap.",
+    run: function(){
+      ovLabel.textContent = 'D — pre-existing frame';
+      ov.classList.add('open');
+      sizeInto(ovStage, ovPre);
+      ovPre.src = URL_;
     } }
 ];
-
-function frame(stage, url){
-  var f = document.createElement('iframe');
-  f.src = url;
-  stage.appendChild(f);
-  return f;
-}
 
 fetch('content/vagaro.json')
   .then(function(r){ return r.json(); })
   .then(function(cfg){
-    var url = (cfg.widgets && (cfg.widgets.promos || cfg.widgets.all)) || '';
-    if (!url) { document.getElementById('cases').textContent = 'No widget URL found.'; return; }
+    URL_ = (cfg.widgets && (cfg.widgets.promos || cfg.widgets.all)) || '';
+    if (!URL_) { document.getElementById('cases').textContent = 'No widget URL found.'; return; }
     var host = document.getElementById('cases');
-    CASES.forEach(function(c){
+    CASES.forEach(function(c, i){
       var box = document.createElement('div');
       box.className = 'case';
       box.innerHTML = '<h2>' + c.label + '</h2><div class="hint">' + c.hint + '</div>';
       var btn = document.createElement('button');
-      btn.textContent = 'Open ' + c.key;
-      var stage = document.createElement('div');
-      stage.className = 'stage';
-      btn.addEventListener('click', function(){
-        btn.disabled = true;
-        btn.textContent = 'loading…';
-        c.run(stage, url);
-      });
+      btn.textContent = 'Open';
+      btn.addEventListener('click', function(){ c.run(); });
       box.appendChild(btn);
-      box.appendChild(stage);
+      if (c.inline) {
+        var st = document.createElement('div');
+        st.className = 'stage'; st.id = 'stageA';
+        box.appendChild(st);
+      }
       host.appendChild(box);
     });
   })
