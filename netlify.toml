@@ -13,6 +13,17 @@
   to = "/reviews.html"
   status = 200
 
+# Service pages — the URLs the SEO work targets, so they stay clean
+[[redirects]]
+  from = "/botox"
+  to = "/botox.html"
+  status = 200
+
+[[redirects]]
+  from = "/microneedling"
+  to = "/microneedling.html"
+  status = 200
+
 # Pretty URLs for the portal pages
 [[redirects]]
   from = "/updates"
