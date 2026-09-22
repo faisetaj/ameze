@@ -117,6 +117,55 @@ const localArtPath = (url, title) => {
   return `img/uploads/${stem}-${h}.${ext === "jpeg" ? "jpg" : ext}`;
 };
 
+// The widget paints each flyer from a 340px thumbnail — soft on a phone once the
+// card shows the whole thing. The upload itself sits beside it on Vagaro's CDN
+// under /Original/ (the only other size they keep; 800x800 and the like 404),
+// typically 1024x1536 and 300–700 KB. Too heavy to commit four of, so it's
+// resized in the Chrome we already run: long edge 1200px, JPEG — the same trick
+// /admin plays on her own uploads. If Original ever stops answering, the
+// thumbnail is fetched instead so a promotion never goes without its art.
+const fullSizeArt = (url) => String(url).replace(/\/(Service|BusinessPackage)\/\d+x\d+\//, "/$1/Original/");
+const thumbnailArt = (url) => String(url).replace(/\/(Service|BusinessPackage)\/Original\//, "/$1/340x340/");
+const FLYER_MAX_EDGE = 1200;
+const FLYER_JPEG_QUALITY = 0.82;
+
+async function flyerShrinker() {
+  const browser = await launchBrowser();
+  const page = await browser.newPage();
+  return {
+    async shrink(buf, mime) {
+      const dataUrl = `data:${mime || "image/jpeg"};base64,${buf.toString("base64")}`;
+      const out = await page.evaluate(async (src, maxEdge, quality) => {
+        const img = new Image();
+        await new Promise((ok, no) => { img.onload = ok; img.onerror = () => no(new Error("image would not decode")); img.src = src; });
+        const scale = Math.min(1, maxEdge / Math.max(img.naturalWidth, img.naturalHeight));
+        const c = document.createElement("canvas");
+        c.width = Math.round(img.naturalWidth * scale);
+        c.height = Math.round(img.naturalHeight * scale);
+        const ctx = c.getContext("2d");
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, c.width, c.height);
+        ctx.drawImage(img, 0, 0, c.width, c.height);
+        return { data: c.toDataURL("image/jpeg", quality), w: c.width, h: c.height };
+      }, dataUrl, FLYER_MAX_EDGE, FLYER_JPEG_QUALITY);
+      return { buf: Buffer.from(out.data.split(",")[1], "base64"), w: out.w, h: out.h };
+    },
+    close: () => browser.close(),
+  };
+}
+
+// Fetch a flyer at full size, falling back to the widget thumbnail, and hand back
+// the resized JPEG ready to commit.
+async function fetchFlyer(src, shrinker) {
+  let r = await fetch(src);
+  if (!r.ok && src !== thumbnailArt(src)) r = await fetch(thumbnailArt(src));
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const raw = Buffer.from(await r.arrayBuffer());
+  if (!raw.length) throw new Error("empty");
+  const { buf, w, h } = await shrinker.shrink(raw, r.headers.get("content-type") || "image/jpeg");
+  return { buf, w, h, rawBytes: raw.length };
+}
+
 const fmtMoney = (cents) =>
   cents % 100 === 0 ? `$${cents / 100}` : `$${(cents / 100).toFixed(2)}`;
 
@@ -124,8 +173,8 @@ const cents = (money) =>
   money ? Math.round(parseFloat(money.replace(/[$,]/g, "")) * 100) : null;
 
 /* ── scrape: the whole catalogue, grouped by category ── */
-async function scrapeCatalogue(url) {
-  const browser = await puppeteer.launch({
+const launchBrowser = () =>
+  puppeteer.launch({
     headless: true,
     executablePath:
       process.env.PUPPETEER_EXECUTABLE_PATH ||
@@ -134,6 +183,9 @@ async function scrapeCatalogue(url) {
         : undefined),
     args: ["--no-sandbox", "--disable-dev-shm-usage"],
   });
+
+async function scrapeCatalogue(url) {
+  const browser = await launchBrowser();
   try {
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 1600 });
@@ -269,7 +321,7 @@ async function scrapeCatalogue(url) {
             }
           }
           if (r.promo) promos.push(r.name);
-          if (r.img && !/\$\{/.test(r.img)) artFor.set(norm(r.name), r.img);
+          if (r.img && !/\$\{/.test(r.img)) artFor.set(norm(r.name), fullSizeArt(r.img));
           const desc = display(r.desc || (old ? old.desc : ""), 10000);
           return {
             name: displayName(r.name, NAME_MAX),
@@ -306,7 +358,7 @@ async function scrapeCatalogue(url) {
       alt: `${cardTitle(it.name, 80)} flyer`,
       href: it.href,
       _src: artFor.get(norm(it.name)) || "",
-    })).map((c) => ({ ...c, img: c._src ? localArtPath(c._src, c.title) : (pc.fallbackImage || "") }));
+    })).map((c) => ({ ...c, img: c._src ? localArtPath(c._src, c.title).replace(/\.\w+$/, ".jpg") : (pc.fallbackImage || "") }));
     const noArt = newSpecials.filter((c) => !c._src).map((c) => c.title);
     if (noArt.length) console.log(`\n   note: no Vagaro photo on ${noArt.join(", ")} — using the fallback image.`);
     if (promoGroup.items.length > (pc.max || 4)) {
@@ -378,11 +430,20 @@ async function scrapeCatalogue(url) {
       const cards = strip(newSpecials);
       fs.writeFileSync(SPECIALS, JSON.stringify(cards, null, 2) + "\n");
       page = applySpecials(page, cards);
-      const missing = cards.filter((c) => !fs.existsSync(path.join(ROOT, c.img)));
+      const missing = newSpecials.filter((c) => c._src && !fs.existsSync(path.join(ROOT, c.img)));
       if (missing.length) {
-        console.log(`   note: ${missing.length} flyer image(s) not downloaded in --write-local:`);
-        missing.forEach((c) => console.log(`     ${c.img}`));
-        console.log("   (--apply fetches them from Vagaro and commits them)");
+        const shrinker = await flyerShrinker();
+        try {
+          for (const c of missing) {
+            try {
+              const { buf, w, h, rawBytes } = await fetchFlyer(c._src, shrinker);
+              fs.writeFileSync(path.join(ROOT, c.img), buf);
+              console.log(`   flyer ${c.img} — ${w}x${h}, ${Math.round(buf.length / 1024)} KB (from ${Math.round(rawBytes / 1024)} KB)`);
+            } catch (e) {
+              console.log(`   !! flyer for "${c.title}" would not download (${e.message})`);
+            }
+          }
+        } finally { await shrinker.close(); }
       }
     }
     fs.writeFileSync(PAGE, page);
@@ -413,14 +474,15 @@ async function scrapeCatalogue(url) {
     // A flyer that won't download keeps whatever the card already had.
     const byPath = new Map(oldSpecials.map((c) => [c.img, true]));
     const cards = [];
+    const wanted = newSpecials.filter((c) => c._src && !byPath.has(c.img));
+    const shrinker = wanted.length ? await flyerShrinker() : null;
+    try {
     for (const c of newSpecials) {
       const { _src, ...card } = c;
       if (_src && !byPath.has(card.img)) {
         try {
-          const r = await fetch(_src);
-          if (!r.ok) throw new Error(`HTTP ${r.status}`);
-          const buf = Buffer.from(await r.arrayBuffer());
-          if (!buf.length) throw new Error("empty");
+          const { buf, w, h, rawBytes } = await fetchFlyer(_src, shrinker);
+          console.log(`   flyer ${card.img} — ${w}x${h}, ${Math.round(buf.length / 1024)} KB (from ${Math.round(rawBytes / 1024)} KB)`);
           card.upload = { name: card.img.split("/").pop(), path: card.img, data: buf.toString("base64") };
         } catch (e) {
           const prev = oldSpecials.find((o) => norm(o.title) === norm(card.title));
@@ -431,6 +493,7 @@ async function scrapeCatalogue(url) {
       }
       cards.push(card);
     }
+    } finally { if (shrinker) await shrinker.close(); }
 
     const res = await fetch(`${base}/.netlify/functions/specials-api`, {
       method: "POST",
