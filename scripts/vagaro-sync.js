@@ -86,6 +86,16 @@ const displayName = (s, max) =>
 // The card note is a short line under the price. Vagaro's descriptions are long
 // sales copy, so take the first sentence and cap it on a word boundary — never
 // invent copy, and never cut mid-word.
+// The card runs the whole description now — she writes the promo terms into it
+// (units, add-on pricing, end date), and the first sentence alone was hiding
+// exactly that. Whitespace collapsed; a runaway one is cut on a word boundary.
+const NOTE_MAX = 1000;
+const fullNote = (desc, max) => {
+  let t = String(desc || "").replace(/\s+/g, " ").trim();
+  if (t.length > max) t = t.slice(0, max).replace(/\s+\S*$/, "").replace(/[\s,;:.\-–—]+$/, "") + "…";
+  return t;
+};
+
 const firstSentence = (desc, max) => {
   const t = String(desc || "").replace(/\s+/g, " ").trim();
   if (!t) return "";
@@ -302,6 +312,7 @@ async function scrapeCatalogue(url) {
   // schema is name/price/desc/href, and an extra field would both be stripped by
   // content-api and make every run look like a change.
   const artFor = new Map();
+  const descFor = new Map();   // full description per service — the menu row is capped, the promo card is not
   const groups = catalogue
     .filter((c) => c.name && c.rows.length && !hidden.has(norm(c.name)))
     .map((c) => {
@@ -323,6 +334,7 @@ async function scrapeCatalogue(url) {
           if (r.promo) promos.push(r.name);
           if (r.img && !/\$\{/.test(r.img)) artFor.set(norm(r.name), fullSizeArt(r.img));
           const desc = display(r.desc || (old ? old.desc : ""), 10000);
+          descFor.set(norm(r.name), desc);
           return {
             name: displayName(r.name, NAME_MAX),
             price: priceText,
@@ -353,7 +365,7 @@ async function scrapeCatalogue(url) {
     newSpecials = promoGroup.items.slice(0, pc.max || 4).map((it) => ({
       title: cardTitle(it.name, 80),
       price: it.price,
-      note: firstSentence(it.desc, 110),
+      note: fullNote(descFor.get(norm(it.name)) || it.desc, NOTE_MAX),
       img: "",
       alt: `${cardTitle(it.name, 80)} flyer`,
       href: it.href,
