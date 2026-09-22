@@ -425,7 +425,9 @@
   .offer .c{display:flex;justify-content:space-between;gap:1rem;margin-top:.95rem;align-items:baseline}
   .offer .c b{font-family:var(--display);font-weight:500;font-size:1.05rem;letter-spacing:0}
   .offer .c span{font-family:var(--mono);font-size:.84rem;white-space:nowrap;font-feature-settings:"tnum";color:var(--rose-deep)}
-  .offer .mono{display:block;margin-top:.3rem;color:var(--muted)}
+  /* The note carries her full promo description (terms, units, end date), so it
+     reads as body copy — the mono caps treatment is for one-line labels only. */
+  .offer .mono{display:block;margin-top:.45rem;color:var(--muted);font-family:var(--sans);font-size:.9rem;line-height:1.55;letter-spacing:0;text-transform:none}
 
   /* ───────── studio photo band ───────── */
   .band{display:grid;grid-template-columns:1fr;gap:1.1rem;margin-top:.5rem}

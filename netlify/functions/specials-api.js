@@ -21,6 +21,7 @@ const PAGE_PATH = "index.html";
 const START = "<!-- specials:start -->";
 const END = "<!-- specials:end -->";
 const MAX_SPECIALS = 8;
+const NOTE_MAX = 1000;   // the whole Vagaro description, not a one-line caption (was 140)
 // Vagaro's scoped booking-widget URLs carry a long encrypted token — the live
 // ones run past 500 characters. Same limit content-api already allows for the
 // menu's booking links, which is why those kept working while these didn't.
@@ -270,7 +271,7 @@ function normalise(list) {
     const out = {
       title,
       price,
-      note: trim(s.note, 140),
+      note: trim(s.note, NOTE_MAX),
       img,
       alt: trim(s.alt, 160) || `${title} special flyer`,
       href,
