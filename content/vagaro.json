@@ -2,15 +2,21 @@
   "_comment": [
     "Vagaro is the single source of truth for the treatment menu: the daily sync",
     "mirrors her live catalogue (categories, services, prices, descriptions).",
-    "widgets: stateless permanent booking-widget URLs. They scope which category",
-    "the booking modal opens on. Regenerate in Vagaro -> Settings -> Booking Widget.",
-    "'all' is the unscoped widget - the catalogue source for the sync, and the",
-    "fallback link for any category without a scoped widget of its own.",
+    "catalogue: her public Vagaro services page. The sync reads the catalogue from",
+    "the feed behind it, which always lists every service she offers online.",
+    "widgets: booking-widget URLs. A widget freezes the services that existed when",
+    "it was made (edits flow through; brand-new services never appear), so they",
+    "only scope which category the booking modal opens on. 'live' is not a widget:",
+    "it is her live services page, for categories whose services change often.",
+    "'all' is the unscoped widget - the fallback link for any category without a",
+    "scoped widget, and the catalogue source only if 'catalogue' is removed.",
     "categoryWidgets: normalized Vagaro category name -> widgets key, for row links.",
     "hide: normalized category/service names that are bookable line items but not",
     "menu material (fees, internal bookkeeping rows)."
   ],
+  "catalogue": "https://www.vagaro.com/amezeskinelements/services",
   "widgets": {
+    "live": "https://www.vagaro.com/amezeskinelements/services",
     "injectables": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy",
     "lips": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ68smmNEH6rTddZZW4BdV5gzCEqy60PnQmTqScHf7Oju",
     "dissolve": null,
@@ -27,7 +33,7 @@
     "microneedling": "micro",
     "chemical peels": "peels",
     "skincare richmond tx location": "facials",
-    "monthly promotions and discounts": "promos",
+    "monthly promotions and discounts": "live",
     "bridal glow menus": "promos"
   },
   "promoCards": {
