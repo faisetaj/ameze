@@ -6,9 +6,13 @@
  * description there, and the next sync carries it to the site's treatment menu.
  * Categories become the menu tabs, in Vagaro's order; services become the rows.
  *
- * Vagaro's public API has no service catalogue, so the source is the booking
- * widget: a stateless permanent URL that renders her live services grouped by
- * category, with prices (promo-aware) and descriptions.
+ * Vagaro's official API has no service catalogue. The source is the feed behind
+ * her public Vagaro services page, which lists every service she currently
+ * offers online, grouped by category, with prices (promo-aware), descriptions
+ * and photos. Booking widgets freeze the services that existed when they were
+ * made, so a new promotion never showed up in one until she minted another;
+ * they now only scope the booking modal. The widget scraper remains as the
+ * fallback source when vagaro.json has no "catalogue" page.
  *
  *   node scripts/vagaro-sync.js                   # dry run, prints what would change
  *   node scripts/vagaro-sync.js --apply           # publish through content-api (the Action)
@@ -71,9 +75,18 @@ const display = (s, max) =>
     .trim()
     .slice(0, max);
 
-// Names only: the widget mangles some of her emoji into literal "?" marks
-// ("?? SPECIAL ??", "Facial?") — strip them from the edges, where no real
-// question mark belongs. Descriptions keep theirs.
+// Vagaro mangles some of her emoji into literal "?" marks ("?? SPECIAL ??").
+// In descriptions they sit in front of list items ("?? Luxe Lift"), and once the
+// line breaks are collapsed they are the only thing separating those items, so a
+// free-standing run becomes a middle dot rather than vanishing (none after a
+// colon or at the start). A real question mark is attached to its word and stays.
+const descMarks = (s) =>
+  String(s || "")
+    .replace(/(^|\s)\?+(?=\s|$)/g, "$1·")
+    .replace(/^\s*·\s*/, "")
+    .replace(/:\s*·/g, ":");
+
+// Names: strip the marks from the edges, where no real question mark belongs.
 const displayName = (s, max) =>
   display(
     String(s || "")
@@ -263,14 +276,66 @@ async function scrapeCatalogue(url) {
   }
 }
 
+// Her public services page fetches its whole catalogue as one JSON response.
+// Load the page the way any visitor's browser does and keep that response,
+// rather than calling the endpoint directly, so the request is exactly what
+// Vagaro serves to the public and bot protection is detected the same way.
+// Rows come out in the widget scraper's shape, so everything downstream is
+// unchanged.
+const FEED = /\/websiteapi\/homepage\/getshopdetailcompositeservice/i;
+const money = (n) => `$${Number(n).toFixed(2)}`;
+
+async function readPublicCatalogue(url) {
+  const browser = await launchBrowser();
+  try {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
+    const feed = page.waitForResponse((r) => FEED.test(r.url()) && r.status() === 200, { timeout: 60000 });
+    feed.catch(() => {});
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+    let data;
+    try {
+      data = await (await feed).json();
+    } catch {
+      const html = await page.content();
+      if (/Request unsuccessful|Incapsula incident|\bincident ID\b/i.test(html) || html.length < 5000) {
+        throw new Error("blocked by Vagaro's bot protection — backing off, not working around it");
+      }
+      throw new Error("her services page never loaded its catalogue — Vagaro may have changed the page");
+    }
+    if (!Array.isArray(data.Services)) throw new Error("catalogue response has no Services list — Vagaro may have changed its shape");
+    return data.Services.map((c) => ({
+      name: String(c.ServiceCategoryTitle || "").replace(/\s+/g, " ").trim(),
+      rows: (c.ServiceList || [])
+        .filter((s) => s.ShowOnline !== false)
+        .map((s) => {
+          const promo = s.ServiceNewPrice > 0 && s.ServiceNewPrice < s.Price;
+          return {
+            name: String(s.ServiceTitle || "").replace(/\s+/g, " ").trim(),
+            // A price she hides online stays hidden: blank, so the row is skipped.
+            price: s.IsShowPriceOnline === false ? "" : money(promo ? s.ServiceNewPrice : s.Price),
+            starting: !!s.IsShowPriceAsStartingPoint,
+            promo,
+            desc: String(s.ServiceDesc || "").replace(/\s+/g, " ").trim(),
+            img: s.ServicePhotoURL || "",
+          };
+        }),
+    }));
+  } finally {
+    await browser.close();
+  }
+}
+
 (async () => {
   const cfg = read(VAGARO);
   const site = read(SITE);
-  if (!cfg.widgets.all) throw new Error('content/vagaro.json needs an "all" widget — it is the catalogue source');
+  if (!cfg.catalogue && !cfg.widgets.all) throw new Error('content/vagaro.json needs a "catalogue" page or an "all" widget');
 
   let catalogue;
   try {
-    catalogue = FIXTURES ? read(FIXTURES) : await scrapeCatalogue(cfg.widgets.all);
+    catalogue = FIXTURES ? read(FIXTURES)
+      : cfg.catalogue ? await readPublicCatalogue(cfg.catalogue)
+      : await scrapeCatalogue(cfg.widgets.all);
   } catch (e) {
     console.log(`!! ${e.message}`);
     console.log("   Refusing to publish. The site keeps its current menu.");
@@ -333,7 +398,7 @@ async function scrapeCatalogue(url) {
           }
           if (r.promo) promos.push(r.name);
           if (r.img && !/\$\{/.test(r.img)) artFor.set(norm(r.name), fullSizeArt(r.img));
-          const desc = display(r.desc || (old ? old.desc : ""), 10000);
+          const desc = display(descMarks(r.desc || (old ? old.desc : "")), 10000);
           descFor.set(norm(r.name), desc);
           return {
             name: displayName(r.name, NAME_MAX),
