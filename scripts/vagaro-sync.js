@@ -11,7 +11,8 @@
  * offers online, grouped by category, with prices (promo-aware), descriptions
  * and photos. Booking widgets freeze the services that existed when they were
  * made, so a new promotion never showed up in one until she minted another;
- * they now only scope the booking modal. The widget scraper remains as the
+ * they now only scope the booking modal. Promotions skip widgets entirely and
+ * open her booking page with the service already chosen. The widget scraper remains as the
  * fallback source when vagaro.json has no "catalogue" page.
  *
  *   node scripts/vagaro-sync.js                   # dry run, prints what would change
@@ -318,6 +319,7 @@ async function readPublicCatalogue(url) {
             promo,
             desc: String(s.ServiceDesc || "").replace(/\s+/g, " ").trim(),
             img: s.ServicePhotoURL || "",
+            id: s.ServiceID || null,
           };
         }),
     }));
@@ -367,6 +369,17 @@ async function readPublicCatalogue(url) {
     const key = (cfg.categoryWidgets || {})[norm(catName)];
     return (key && cfg.widgets[key]) || cfg.widgets.all;
   };
+  // A category mapped to "live" skips widgets altogether: each row opens her
+  // booking page with that exact service already chosen (?serviceid=, the same
+  // parameter Vagaro's own Google booking links use). A row without an id (the
+  // widget fallback source has none) opens the booking page unselected.
+  const hrefFor = (catName, row) => {
+    const key = (cfg.categoryWidgets || {})[norm(catName)];
+    if (key === "live" && cfg.widgets.live) {
+      return row.id ? `${cfg.widgets.live}?serviceid=${encodeURIComponent(row.id)}` : cfg.widgets.live;
+    }
+    return widgetFor(catName);
+  };
 
   /* ── build the new menu ── */
   // cfg.hide lists normalized category/service names that are bookable line
@@ -404,7 +417,7 @@ async function readPublicCatalogue(url) {
             name: displayName(r.name, NAME_MAX),
             price: priceText,
             desc: desc.length > DESC_MAX ? desc.slice(0, DESC_MAX - 1).trimEnd() + "…" : desc,
-            href: widgetFor(c.name),
+            href: hrefFor(c.name, r),
           };
         })
         .filter(Boolean);

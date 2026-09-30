@@ -7,7 +7,8 @@
     "widgets: booking-widget URLs. A widget freezes the services that existed when",
     "it was made (edits flow through; brand-new services never appear), so they",
     "only scope which category the booking modal opens on. 'live' is not a widget:",
-    "it is her live services page, for categories whose services change often.",
+    "it is her live booking page. Rows in a category mapped to 'live' open it with",
+    "their own service already chosen (?serviceid=), so new promotions just work.",
     "'all' is the unscoped widget - the fallback link for any category without a",
     "scoped widget, and the catalogue source only if 'catalogue' is removed.",
     "categoryWidgets: normalized Vagaro category name -> widgets key, for row links.",
@@ -16,7 +17,7 @@
   ],
   "catalogue": "https://www.vagaro.com/amezeskinelements/services",
   "widgets": {
-    "live": "https://www.vagaro.com/amezeskinelements/services",
+    "live": "https://www.vagaro.com/amezeskinelements/book-now",
     "injectables": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy",
     "lips": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ68smmNEH6rTddZZW4BdV5gzCEqy60PnQmTqScHf7Oju",
     "dissolve": null,
