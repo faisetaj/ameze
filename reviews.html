@@ -83,12 +83,20 @@
   .cta-band h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1.4rem}
   .cta-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
 
-  footer{border-top:1px solid var(--line);background:var(--paper-2);padding-block:2.5rem;margin-top:2rem}
+  footer{border-top:1px solid var(--line);background:var(--paper-2);padding-block:2.5rem 6.5rem;margin-top:2rem}
+  /* bottom padding clears the floating Cherry button so the last colophon line can scroll above it */
   footer nav{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin-bottom:1.2rem}
   footer nav a{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
     color:var(--muted);text-decoration:none}
   footer nav a:hover{color:var(--rose-deep)}
   footer p{font-size:.8rem;color:var(--muted)}
+  /* Cherry's widget pins its payment-option cards to a fixed height on phones (88px; 172px when
+     open in the floating panel), cutting off "for 24 months" and the plan details once a line
+     wraps. Collapsed cards hold only their header, so sizing them to content is safe. */
+  @media (max-width:480px){
+    body [class*="calculator-month_option_container"]{height:auto}
+    body [class*="calculator-floating_container"] [class*="calculator-selected_month_option"]{height:auto !important}
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -180,12 +188,60 @@
 <footer>
   <div class="wrap">
     <nav aria-label="Footer">
-      <a href="/#menu">Services</a><a href="/botox">Botox</a><a href="/microneedling">Microneedling</a><a href="/#offers">Offers</a><a href="/about">About</a><a href="/reviews">Reviews</a><a href="/#membership">Membership</a><a href="/#protocol">Aftercare</a><a href="/#visit">Locations</a>
+      <a href="/#menu">Services</a><a href="/botox">Botox</a><a href="/microneedling">Microneedling</a><a href="/#offers">Offers</a><a href="/about">About</a><a href="/reviews">Reviews</a><a href="/#membership">Membership</a><a href="/payment-plans">Payment plans</a><a href="/#protocol">Aftercare</a><a href="/#visit">Locations</a>
     </nav>
     <p>© 2026 Ameze Skin Elements, LLC · Houston &amp; Richmond, Texas · (832) 775-6965 · Designed &amp; administered by <a href="https://faiseltajiran.com" target="_blank" rel="noopener">Faisel Tajiran</a><br>
     Booking &amp; scheduling powered by Vagaro. Financing by Cherry Technologies and Synchrony (CareCredit), subject to approval.<br>
     Individual results vary. All injectable treatments require a good-faith exam and are performed under medical protocols. Pregnant or breastfeeding clients are not candidates for neurotoxin treatment.</p>
   </div>
 </footer>
+<!-- CHERRY WIDGET BEGIN: floating payment-plan button. Cherry is the primary financing option
+     (Brenda, 2026-10-01); full widget lives on /payment-plans. Bottom-left because the homepage's
+     email pill owns bottom-right; zIndex 96 sits over the email pill (.nl, 95) and under the booking modal (.bm, 100). -->
+<script>
+    (function (w, d, s, o, f, js, fjs) {
+        w[o] = w[o] || function () {
+            (w[o].q = w[o].q || []).push(arguments);
+        };
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+        js.id = o;
+        js.src = f;
+        js.async = 1;
+        fjs.parentNode.insertBefore(js, fjs);
+    })(window, document, "script", "_hw", "https://files.withcherry.com/widgets/widget.js");
+    _hw("init", {
+        debug: false,
+        variables: {
+            slug: "ameze-skin-elements",
+            name: "Ameze Skin Elements",
+            images: [26],
+            customLogo: "",
+            defaultPurchaseAmount: 750,
+            customImage: "",
+            imageCategory: "medspa",
+            language: "en",
+        },
+        styles: {
+            primaryColor: "#9E4F5D",
+            secondaryColor: "#9E4F5D10",
+            fontFamily: "Inter",
+            headerFontFamily: "Jost",
+            floatingEstimator: {
+                position: "bottom-left",
+                offset: {
+                    x: "0px",
+                    y: "0px"
+                },
+                zIndex: 96,
+                ctaFontFamily: "Inter",
+                bodyFontFamily: "Inter",
+                ctaColor: "#9E4F5D",
+                ctaTextColor: "#FFFFFF"
+            }
+        }
+    }, ["floatingEstimator"]);
+</script>
+<div id="floatingEstimator"></div>
+<!-- CHERRY WIDGET END -->
 </body>
 </html>

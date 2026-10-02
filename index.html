@@ -552,7 +552,8 @@
   .fin .b1{opacity:.5}
 
   /* ───────── footer ───────── */
-  footer{border-top:1px solid var(--line);padding-block:3rem 3.5rem;background:var(--paper-2)}
+  footer{border-top:1px solid var(--line);padding-block:3rem 6.5rem;background:var(--paper-2)}
+  /* bottom padding clears the floating Cherry button so the last colophon line can scroll above it */
   .colo{display:grid;grid-template-columns:1fr;gap:2.5rem}
   .colo .brandline img{width:3rem}
   .colo p{font-family:var(--mono);font-size:.76rem;line-height:1.85;letter-spacing:.02em;color:var(--muted);max-width:46rem}
@@ -610,6 +611,9 @@
   .nl{position:fixed;right:1rem;bottom:1rem;z-index:95;display:flex;justify-content:flex-end;
     max-width:min(23rem,calc(100vw - 2rem))}
   .nl[hidden]{display:none}
+  /* The Cherry "Pay over time" button (z 96, bottom-left) covers the pill, but the open card
+     spans a phone's width and must cover the button instead. */
+  .nl.open{z-index:97}
   .nl-card{
     position:relative;width:min(23rem,calc(100vw - 2rem));
     background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);
@@ -660,6 +664,13 @@
   }
   @media (prefers-reduced-motion: reduce){ .nl-pill{animation:none} }
   @media(max-width:520px){ .nl{left:1rem;right:1rem;max-width:none} }
+  /* Cherry's widget pins its payment-option cards to a fixed height on phones (88px; 172px when
+     open in the floating panel), cutting off "for 24 months" and the plan details once a line
+     wraps. Collapsed cards hold only their header, so sizing them to content is safe. */
+  @media (max-width:480px){
+    body [class*="calculator-month_option_container"]{height:auto}
+    body [class*="calculator-floating_container"] [class*="calculator-selected_month_option"]{height:auto !important}
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -1114,7 +1125,7 @@
           <li>Plans sized to the treatment — from a peel to a full plan</li>
           <li>Use it same-day at checkout</li>
         </ul>
-        <a class="btn btn-ink" href="https://www.amezeskinelements.com/cherry" target="_blank" rel="noopener">Check your rate</a>
+        <a class="btn btn-ink" href="https://amezeskinelements.com/payment-plans#cherry" target="_blank" rel="noopener">Check your rate</a>
       </div>
       <div class="plan rv">
         <span class="mono tag">CareCredit</span>
@@ -1125,7 +1136,7 @@
           <li>Works alongside Allē Rewards points on Botox®</li>
           <li>*Subject to credit approval; terms apply</li>
         </ul>
-        <a class="btn btn-ink" href="https://www.amezeskinelements.com/payment-plan-carecredit" target="_blank" rel="noopener">Learn more</a>
+        <a class="btn btn-ink" href="https://amezeskinelements.com/payment-plans#carecredit" target="_blank" rel="noopener">Learn more</a>
       </div>
       <!-- cms:membership:end -->
     </div>
@@ -1229,7 +1240,7 @@
     </div>
     <div>
       <nav aria-label="Footer">
-        <a href="#menu">Services</a><a href="/botox">Botox</a><a href="/microneedling">Microneedling</a><a href="#offers">Offers</a><a href="#studio">Studio</a><a href="/about">About</a><a href="/reviews">Reviews</a><a href="#membership">Membership</a><a href="#protocol">Aftercare</a><a href="#visit">Locations</a><a data-book href="https://www.vagaro.com/amezeskinelements/book-now" target="_blank" rel="noopener">Book</a>
+        <a href="#menu">Services</a><a href="/botox">Botox</a><a href="/microneedling">Microneedling</a><a href="#offers">Offers</a><a href="#studio">Studio</a><a href="/about">About</a><a href="/reviews">Reviews</a><a href="#membership">Membership</a><a href="/payment-plans">Payment plans</a><a href="#protocol">Aftercare</a><a href="#visit">Locations</a><a data-book href="https://www.vagaro.com/amezeskinelements/book-now" target="_blank" rel="noopener">Book</a>
       </nav>
       <p style="margin-top:1.5rem">© 2026 Ameze Skin Elements, LLC · Houston &amp; Richmond, Texas · (832) 775-6965 · Designed &amp; administered by <a href="https://faiseltajiran.com" target="_blank" rel="noopener">Faisel Tajiran</a><br>
       Booking &amp; scheduling powered by Vagaro. Financing by Cherry Technologies and Synchrony (CareCredit), subject to approval.<br>
@@ -1574,5 +1585,53 @@
   }
 })();
 </script>
+<!-- CHERRY WIDGET BEGIN: floating payment-plan button. Cherry is the primary financing option
+     (Brenda, 2026-10-01); full widget lives on /payment-plans. Bottom-left because the homepage's
+     email pill owns bottom-right; zIndex 96 sits over the email pill (.nl, 95) and under the booking modal (.bm, 100). -->
+<script>
+    (function (w, d, s, o, f, js, fjs) {
+        w[o] = w[o] || function () {
+            (w[o].q = w[o].q || []).push(arguments);
+        };
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+        js.id = o;
+        js.src = f;
+        js.async = 1;
+        fjs.parentNode.insertBefore(js, fjs);
+    })(window, document, "script", "_hw", "https://files.withcherry.com/widgets/widget.js");
+    _hw("init", {
+        debug: false,
+        variables: {
+            slug: "ameze-skin-elements",
+            name: "Ameze Skin Elements",
+            images: [26],
+            customLogo: "",
+            defaultPurchaseAmount: 750,
+            customImage: "",
+            imageCategory: "medspa",
+            language: "en",
+        },
+        styles: {
+            primaryColor: "#9E4F5D",
+            secondaryColor: "#9E4F5D10",
+            fontFamily: "Inter",
+            headerFontFamily: "Jost",
+            floatingEstimator: {
+                position: "bottom-left",
+                offset: {
+                    x: "0px",
+                    y: "0px"
+                },
+                zIndex: 96,
+                ctaFontFamily: "Inter",
+                bodyFontFamily: "Inter",
+                ctaColor: "#9E4F5D",
+                ctaTextColor: "#FFFFFF"
+            }
+        }
+    }, ["floatingEstimator"]);
+</script>
+<div id="floatingEstimator"></div>
+<!-- CHERRY WIDGET END -->
 </body>
 </html>
