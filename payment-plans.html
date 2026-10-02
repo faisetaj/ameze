@@ -70,7 +70,8 @@
   .lead .intro b{color:var(--ink);font-weight:600}
   .jump{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}
 
-  section{padding-block:clamp(1.6rem,4vw,2.8rem);scroll-margin-top:4rem}
+  /* --hdr is the sticky header's real height (set below); on phones its nav stacks to ~150px */
+  section{padding-block:clamp(1.6rem,4vw,2.8rem);scroll-margin-top:calc(var(--hdr,4rem) + 1rem)}
   .kicker{color:var(--rose-deep);margin-bottom:.9rem}
   .provider h2{font-size:clamp(1.6rem,3.4vw,2.2rem)}
   .provider .note{max-width:46rem;margin-top:.8rem;color:var(--muted)}
@@ -203,5 +204,25 @@
     Individual results vary. All injectable treatments require a good-faith exam and are performed under medical protocols. Pregnant or breastfeeding clients are not candidates for neurotoxin treatment.</p>
   </div>
 </footer>
+<script>
+  // Section 05's buttons link here as #cherry / #carecredit. The browser jumps before Cherry's
+  // widget renders (~2,000px), which strands #carecredit mid-Cherry, so keep the target in view
+  // while the widgets settle, and stop the moment the visitor scrolls on their own.
+  (function(){
+    var root = document.documentElement, bar = document.querySelector('header.bar');
+    function hdr(){ root.style.setProperty('--hdr', bar.offsetHeight + 'px'); }
+    hdr(); addEventListener('resize', hdr);
+
+    var el = location.hash && document.getElementById(location.hash.slice(1));
+    if (!el || !window.ResizeObserver) return;
+    var ro = new ResizeObserver(function(){ el.scrollIntoView(); });
+    function stop(){ ro.disconnect(); }
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(t){
+      addEventListener(t, stop, {once: true, passive: true});
+    });
+    ro.observe(document.getElementById('cherry'));
+    setTimeout(stop, 10000);
+  })();
+</script>
 </body>
 </html>
