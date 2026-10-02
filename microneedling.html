@@ -258,12 +258,60 @@
 <footer>
   <div class="wrap">
     <nav aria-label="Footer">
-      <a href="/#menu">Services</a><a href="/botox">Botox</a><a href="/microneedling">Microneedling</a><a href="/#offers">Offers</a><a href="/about">About</a><a href="/reviews">Reviews</a><a href="/#membership">Membership</a><a href="/#protocol">Aftercare</a><a href="/#visit">Locations</a>
+      <a href="/#menu">Services</a><a href="/botox">Botox</a><a href="/microneedling">Microneedling</a><a href="/#offers">Offers</a><a href="/about">About</a><a href="/reviews">Reviews</a><a href="/#membership">Membership</a><a href="/payment-plans">Payment plans</a><a href="/#protocol">Aftercare</a><a href="/#visit">Locations</a>
     </nav>
     <p>© 2026 Ameze Skin Elements, LLC · Houston &amp; Richmond, Texas · (832) 775-6965 · Designed &amp; administered by <a href="https://faiseltajiran.com" target="_blank" rel="noopener">Faisel Tajiran</a><br>
     Booking &amp; scheduling powered by Vagaro. Financing by Cherry Technologies and Synchrony (CareCredit), subject to approval.<br>
     Individual results vary. All injectable treatments require a good-faith exam and are performed under medical protocols. Pregnant or breastfeeding clients are not candidates for neurotoxin treatment.</p>
   </div>
 </footer>
+<!-- CHERRY WIDGET BEGIN: floating payment-plan button. Cherry is the primary financing option
+     (Brenda, 2026-10-01); full widget lives on /payment-plans. Bottom-left because the homepage's
+     email pill owns bottom-right; zIndex 96 sits over the email pill (.nl, 95) and under the booking modal (.bm, 100). -->
+<script>
+    (function (w, d, s, o, f, js, fjs) {
+        w[o] = w[o] || function () {
+            (w[o].q = w[o].q || []).push(arguments);
+        };
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+        js.id = o;
+        js.src = f;
+        js.async = 1;
+        fjs.parentNode.insertBefore(js, fjs);
+    })(window, document, "script", "_hw", "https://files.withcherry.com/widgets/widget.js");
+    _hw("init", {
+        debug: false,
+        variables: {
+            slug: "ameze-skin-elements",
+            name: "Ameze Skin Elements",
+            images: [26],
+            customLogo: "",
+            defaultPurchaseAmount: 750,
+            customImage: "",
+            imageCategory: "medspa",
+            language: "en",
+        },
+        styles: {
+            primaryColor: "#9E4F5D",
+            secondaryColor: "#9E4F5D10",
+            fontFamily: "Inter",
+            headerFontFamily: "Jost",
+            floatingEstimator: {
+                position: "bottom-left",
+                offset: {
+                    x: "0px",
+                    y: "0px"
+                },
+                zIndex: 96,
+                ctaFontFamily: "Inter",
+                bodyFontFamily: "Inter",
+                ctaColor: "#9E4F5D",
+                ctaTextColor: "#FFFFFF"
+            }
+        }
+    }, ["floatingEstimator"]);
+</script>
+<div id="floatingEstimator"></div>
+<!-- CHERRY WIDGET END -->
 </body>
 </html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="porcelain">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Plans — Ameze Skin Elements, Houston TX</title>
+<link rel="canonical" href="https://amezeskinelements.com/payment-plans">
+<meta name="description" content="Split your treatment at Ameze Skin Elements into smaller payments. Cherry payment plans with no hard credit check to see your options, and CareCredit accepted.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ameze Skin Elements">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://amezeskinelements.com/payment-plans">
+<meta property="og:title" content="Payment Plans — Ameze Skin Elements">
+<meta property="og:description" content="Split your treatment into smaller payments. Cherry payment plans with no hard credit check to see your options, and CareCredit accepted.">
+<meta property="og:image" content="https://amezeskinelements.com/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Treatment room at Ameze Skin Elements, Houston">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Payment Plans — Ameze Skin Elements">
+<meta name="twitter:description" content="Split your treatment into smaller payments. Cherry payment plans with no hard credit check to see your options, and CareCredit accepted.">
+<meta name="twitter:image" content="https://amezeskinelements.com/img/og-cover.jpg">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,300..700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Porcelain tokens — mirrors index.html's [data-theme="porcelain"] block. */
+  :root{
+    --paper:#FDF7F7; --paper-2:#FFFFFF;
+    --ink:#1A1315; --muted:#77595E;
+    --rose:#C4707E; --rose-deep:#9E4F5D; --rose-lt:#E3A6AF; --gold:#DFB59A;
+    --line:rgba(26,19,21,.12);
+    --btn-grad:linear-gradient(100deg,#C4707E,#DFB59A,#F0CDD3,#C4707E);
+    --btn-ink:#FFFFFF;
+    --display:"Jost",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:64rem;margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2.5rem)}
+  .mono{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
+  h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.02em;line-height:1.08}
+  em.shimmer{font-style:italic;color:var(--rose-deep)}
+  a{color:var(--rose-deep)}
+
+  header.bar{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);
+    background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(10px)}
+  .bar .wrap{display:flex;align-items:center;gap:1.1rem;padding-block:.7rem}
+  .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink);
+    font-family:var(--display);font-weight:500}
+  .brand img{width:1.9rem}
+  .bar nav{display:flex;gap:1.1rem;margin-left:auto;flex-wrap:wrap}
+  .bar nav a{font-family:var(--mono);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none}
+  .bar nav a:hover,.bar nav a[aria-current]{color:var(--rose-deep)}
+  .btn{font-size:.9rem;font-weight:600;text-decoration:none;padding:.65rem 1.2rem;border:0;
+    background:var(--btn-grad);color:var(--btn-ink);white-space:nowrap;
+    transition:transform .15s,box-shadow .25s;display:inline-block}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(196,112,126,.3)}
+  .btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+
+  .lead{padding-block:clamp(3rem,7vw,5.5rem) clamp(1.5rem,4vw,2.5rem)}
+  .lead h1{font-size:clamp(2.4rem,6vw,4rem);max-width:20ch}
+  .lead .intro{max-width:46rem;margin-top:1.4rem;font-size:1.06rem;color:var(--muted)}
+  .lead .intro b{color:var(--ink);font-weight:600}
+  .jump{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}
+
+  section{padding-block:clamp(1.6rem,4vw,2.8rem);scroll-margin-top:4rem}
+  .kicker{color:var(--rose-deep);margin-bottom:.9rem}
+  .provider h2{font-size:clamp(1.6rem,3.4vw,2.2rem)}
+  .provider .note{max-width:46rem;margin-top:.8rem;color:var(--muted)}
+  /* Cherry's widget brings its own card layout; this only frames it. */
+  .embed{margin-top:1.4rem}
+  .carecredit{border-top:1px solid var(--line);background:var(--paper-2)}
+
+  .cta-band{text-align:center;padding-block:clamp(2.5rem,6vw,4rem)}
+  .cta-band h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1.4rem}
+  .cta-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+  .mono-num{font-variant-numeric:tabular-nums}
+
+  footer{border-top:1px solid var(--line);background:var(--paper-2);padding-block:2.5rem}
+  footer nav{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin-bottom:1.2rem}
+  footer nav a{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none}
+  footer nav a:hover{color:var(--rose-deep)}
+  footer p{font-size:.8rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="img/logo.png" alt="Ameze Skin Elements monogram"><span>Ameze Skin Elements</span></a>
+    <nav aria-label="Primary">
+      <a href="/#menu">Services</a>
+      <a href="/about">About</a>
+      <a href="/reviews">Reviews</a>
+      <a href="/#visit">Visit</a>
+    </nav>
+    <a class="btn" href="https://www.vagaro.com/amezeskinelements/book-now" target="_blank" rel="noopener">Book now</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap lead">
+    <p class="mono" style="color:var(--rose-deep);margin-bottom:1rem">Ways to pay</p>
+    <h1>Payment <em class="shimmer">plans.</em></h1>
+    <p class="intro">Split your treatment into smaller payments. <b>Cherry</b> is our primary payment
+      plan: apply in about a minute, with no hard credit check to see your options.
+      <b>CareCredit</b> is accepted too.</p>
+    <div class="jump">
+      <a class="btn" href="#cherry">Pay over time with Cherry</a>
+      <a class="btn ghost" href="#carecredit">Use CareCredit</a>
+    </div>
+  </div>
+
+  <!-- Cherry is the primary financing option: it stays first on this page and everywhere else. -->
+  <section id="cherry" class="provider">
+    <div class="wrap">
+      <p class="mono kicker">01 · Cherry — our primary payment plan</p>
+      <div class="embed">
+<!-- CHERRY WIDGET BEGIN -->
+<script>
+    (function (w, d, s, o, f, js, fjs) {
+        w[o] = w[o] || function () {
+            (w[o].q = w[o].q || []).push(arguments);
+        };
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+        js.id = o;
+        js.src = f;
+        js.async = 1;
+        fjs.parentNode.insertBefore(js, fjs);
+    })(window, document, "script", "_hw", "https://files.withcherry.com/widgets/widget.js");
+    _hw("init", {
+        debug: false,
+        variables: {
+            slug: "ameze-skin-elements",
+            name: "Ameze Skin Elements",
+            images: [26],
+            customLogo: "",
+            defaultPurchaseAmount: 750,
+            customImage: "",
+            imageCategory: "medspa",
+            language: "en",
+        },
+        styles: {
+            primaryColor: "#9E4F5D",
+            secondaryColor: "#9E4F5D10",
+            fontFamily: "Inter",
+            headerFontFamily: "Jost",
+        }
+    }, ["hero","calculator","howitworks","faq"]);
+</script>
+<div id="all"></div>
+      <div id="hero"></div>
+      <div id="calculator"></div>
+      <div id="howitworks"></div>
+      <div id="testimony"></div>
+      <div id="faq"></div>
+<!-- CHERRY WIDGET END -->
+      </div>
+    </div>
+  </section>
+
+  <section id="carecredit" class="provider carecredit">
+    <div class="wrap">
+      <p class="mono kicker">02 · CareCredit</p>
+      <h2>Already have CareCredit?</h2>
+      <p class="note">The health and wellness credit card is accepted here, and it works alongside
+        Allē Rewards points on Botox®. Subject to credit approval; terms apply.</p>
+      <div class="embed">
+<div id="care-credit-widget"> <script>var syfWidgetObject = {}; syfWidgetObject.flowType = "GENERIC"; syfWidgetObject.subFlowType = "CARECREDIT"; syfWidgetObject.syfMerchantId = "5348121301938542"; window.addEventListener("DOMContentLoaded", async () => await _syfSpyInit()); const _syfSpyInit = async () => { var scriptElement = document.createElement("script"); scriptElement.type = "text/javascript"; scriptElement.src = 'https://pdpone.syfpos.com/mpp/UniFi.js'; scriptElement.id = 'syfMPPScript'; document.head.insertAdjacentElement("afterBegin", scriptElement); }</script> </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band wrap">
+    <h2>Ready when <em class="shimmer">you are.</em></h2>
+    <div class="cta-row">
+      <a class="btn" href="https://www.vagaro.com/amezeskinelements/book-now" target="_blank" rel="noopener">Book an appointment</a>
+      <a class="btn ghost mono-num" href="tel:+18327756965">Call (832) 775-6965</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="/#menu">Services</a><a href="/botox">Botox</a><a href="/microneedling">Microneedling</a><a href="/#offers">Offers</a><a href="/about">About</a><a href="/reviews">Reviews</a><a href="/#membership">Membership</a><a href="/payment-plans">Payment plans</a><a href="/#protocol">Aftercare</a><a href="/#visit">Locations</a>
+    </nav>
+    <p>© 2026 Ameze Skin Elements, LLC · Houston &amp; Richmond, Texas · (832) 775-6965 · Designed &amp; administered by <a href="https://faiseltajiran.com" target="_blank" rel="noopener">Faisel Tajiran</a><br>
+    Booking &amp; scheduling powered by Vagaro. Financing by Cherry Technologies and Synchrony (CareCredit), subject to approval.<br>
+    Individual results vary. All injectable treatments require a good-faith exam and are performed under medical protocols. Pregnant or breastfeeding clients are not candidates for neurotoxin treatment.</p>
+  </div>
+</footer>
+</body>
+</html>
