@@ -552,7 +552,8 @@
   .fin .b1{opacity:.5}
 
   /* ───────── footer ───────── */
-  footer{border-top:1px solid var(--line);padding-block:3rem 3.5rem;background:var(--paper-2)}
+  footer{border-top:1px solid var(--line);padding-block:3rem 6.5rem;background:var(--paper-2)}
+  /* bottom padding clears the floating Cherry button so the last colophon line can scroll above it */
   .colo{display:grid;grid-template-columns:1fr;gap:2.5rem}
   .colo .brandline img{width:3rem}
   .colo p{font-family:var(--mono);font-size:.76rem;line-height:1.85;letter-spacing:.02em;color:var(--muted);max-width:46rem}
@@ -663,6 +664,13 @@
   }
   @media (prefers-reduced-motion: reduce){ .nl-pill{animation:none} }
   @media(max-width:520px){ .nl{left:1rem;right:1rem;max-width:none} }
+  /* Cherry's widget pins its payment-option cards to a fixed height on phones (88px; 172px when
+     open in the floating panel), cutting off "for 24 months" and the plan details once a line
+     wraps. Collapsed cards hold only their header, so sizing them to content is safe. */
+  @media (max-width:480px){
+    body [class*="calculator-month_option_container"]{height:auto}
+    body [class*="calculator-floating_container"] [class*="calculator-selected_month_option"]{height:auto !important}
+  }
 </style>
 <script type="application/ld+json">
 {

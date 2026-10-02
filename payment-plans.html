@@ -89,6 +89,11 @@
     color:var(--muted);text-decoration:none}
   footer nav a:hover{color:var(--rose-deep)}
   footer p{font-size:.8rem;color:var(--muted)}
+  /* Cherry's widget pins its payment-option cards to 88px on phones, cutting off "for 24 months"
+     once a line wraps. Collapsed cards hold only their header, so sizing them to content is safe. */
+  @media (max-width:480px){
+    body [class*="calculator-month_option_container"]{height:auto}
+  }
 </style>
 </head>
 <body>
