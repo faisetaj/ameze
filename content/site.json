@@ -6,12 +6,6 @@
         "note": "Neurotoxin artistry for the face, jaw and neck. Good-faith exam $39, credited toward treatment.",
         "items": [
           {
-            "name": "Daxxify (GFE)",
-            "price": "$39",
-            "desc": "Consultation exam fee",
-            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
-          },
-          {
             "name": "Botox",
             "price": "from $270",
             "desc": "Botox is a temporary prescription medicine injected into muscles to enhance and smoothen the appearance of frown lines between the eyebrows in individuals aged 18 to 65.",
@@ -27,12 +21,6 @@
             "name": "Platysma Bands",
             "price": "$384",
             "desc": "Platysma Bands treatment involves the precise injection of Botox into targeted areas of the platysma muscle, promoting muscle relaxation and minimizing the visibility of neck bands. This non-surgical approach offers an effective solution for individuals seeking a smoother, more youthful neck appear…",
-            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
-          },
-          {
-            "name": "Botox (GFE)",
-            "price": "$39",
-            "desc": "Consultation exam fee.",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ5R+PzcmLd66Y/kfJVJDh7HXpl/1zFOe0fLSJAth4MZy"
           },
           {
@@ -216,16 +204,16 @@
             "href": "https://www.vagaro.com/amezeskinelements/book-now?serviceid=38565676"
           },
           {
-            "name": "LABOR DAY SPECIALS ARE HERE!",
-            "price": "$320",
-            "desc": "Celebrate Labor Day with exclusive specials at Ameze Skin Elements, featuring 40 units of Botox for $320, $100 off fillers, and 30% off BioRePeel treatments. Enjoy additional discounts on microneedling, Daxxify, and facials to enhance your beauty and refresh your glow this September.",
-            "href": "https://www.vagaro.com/amezeskinelements/book-now?serviceid=40895980"
-          },
-          {
             "name": "Limited-Time Tox Special",
             "price": "$159",
             "desc": "Experience a rejuvenated appearance with our Limited-Time Tox Special, featuring 20 units of Botox for only $159 or 40 units of Daxxify for just $249. Additional units are available at $10 per unit for Botox and $6 per unit for Daxxify, but hurry—this exclusive offer ends September 30, 2026, and re…",
             "href": "https://www.vagaro.com/amezeskinelements/book-now?serviceid=41187713"
+          },
+          {
+            "name": "October Fall Beauty Month",
+            "price": "$222",
+            "desc": "Experience the October Fall Beauty Month at Ameze Skin Elements with exclusive specials, including 40 units of Daxxify for $222 and 30 units of Botox for $333. Treat yourself to a seasonal refresh and schedule your consultation today in Houston, TX/ Richmond TX—direct message us to book your appoin…",
+            "href": "https://www.vagaro.com/amezeskinelements/book-now?serviceid=41491069"
           }
         ]
       },
@@ -249,6 +237,24 @@
             "name": "Dermaplaning",
             "price": "$69",
             "desc": "Derma planing is a cosmetic procedure that gently exfoliates the skin by removing dead skin cells and fine vellus hair, resulting in a smoother and more radiant complexion. This treatment not only enhances the effectiveness of skincare products but also provides a flawless canvas for makeup applica…",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ4RItt2lTdLnMkL3/FI5sbehxW/uYMOX+ofmeUznfXrZpE1WGA3WyG8oCwVrzSZJP8fcZdV4oltmI1fIvq5KvUE="
+          }
+        ]
+      },
+      {
+        "name": "Exam Fee.",
+        "note": "",
+        "items": [
+          {
+            "name": "Daxxify (GFE)",
+            "price": "$39",
+            "desc": "Consultation exam fee",
+            "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ4RItt2lTdLnMkL3/FI5sbehxW/uYMOX+ofmeUznfXrZpE1WGA3WyG8oCwVrzSZJP8fcZdV4oltmI1fIvq5KvUE="
+          },
+          {
+            "name": "Botox (GFE)",
+            "price": "$39",
+            "desc": "Consultation exam fee.",
             "href": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVJA5AxWB9+26AlN9gSgfrdZBdPGdw6OnZWeB/IefBZvuMkApJAYyIzloW75fw4oepyOwLgEdK/vFktZRyNpDokwFn1LVrTwmKW2TiqPcOgHhqi6XNqpz8ZPdaUFJ9hpgHymPCNncuqCedvfDK2RiOBl1OyEjQOyE4bdafkwBOLG3VBdMi5W2bl87MFoazmPwAp6ZZcO5pRpnFRZTfqzkFYLvcYLTlovt1hvg/A3GjiBUgpPM+daz1YagCQDXUHmMPHqnSrYfCHvi+nKn1v0utmGKKTRtj7GB0BRXmK544rdKfhhUkkWKEaZjET4ZcR6+Ph111gCmswvQNgyFC6guyO0QJTryVVyKCOuyqgsGZfMrnd5cCNvWD0bPof1JJ5/FJ4RItt2lTdLnMkL3/FI5sbehxW/uYMOX+ofmeUznfXrZpE1WGA3WyG8oCwVrzSZJP8fcZdV4oltmI1fIvq5KvUE="
           }
         ]
