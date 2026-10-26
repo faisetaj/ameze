@@ -25,7 +25,7 @@
  *   - a short read (few rows or categories) is a broken render, not a pruned menu
  *   - if most of the current menu would vanish, refuse and ask a human
  *   - $0 / missing / unparseable prices are skipped and reported
- *   - a price swing beyond MAX_SWING on an existing row keeps the old price and reports
+ *   - Vagaro's price always wins; a move beyond BIG_SWING is published and listed in the log
  */
 
 const fs = require("fs");
@@ -52,7 +52,7 @@ const SITE = path.join(ROOT, "content", "site.json");
 const SPECIALS = path.join(ROOT, "content", "specials.json");
 const PAGE = path.join(ROOT, "index.html");
 
-const MAX_SWING = 0.4;   // 40% price move on an existing row — a human looks first
+const BIG_SWING = 0.4;   // 40%+ price move on an existing row — published, but called out in the log
 const MIN_ROWS = 20;     // fewer service rows than this = partial render
 const MIN_CATS = 3;      // fewer categories than this = partial render
 const MIN_KEEP = 0.6;    // if less than 60% of current rows survive, refuse to publish
@@ -385,7 +385,7 @@ async function readPublicCatalogue(url) {
   // cfg.hide lists normalized category/service names that are bookable line
   // items but not menu material (e.g. the no-show fee).
   const hidden = new Set((cfg.hide || []).map(norm));
-  const skipped = [], held = [], promos = [];
+  const skipped = [], bigMoves = [], promos = [];
   // norm(service) -> flyer URL. Kept beside the menu, never inside it: the menu
   // schema is name/price/desc/href, and an extra field would both be stripped by
   // content-api and make every run look like a change.
@@ -404,9 +404,8 @@ async function readPublicCatalogue(url) {
           if (old) {
             const oldNum = (String(old.price).match(/[\d.]+/) || [])[0];
             const swing = oldNum ? Math.abs(cts / 100 - parseFloat(oldNum)) / parseFloat(oldNum) : 0;
-            if (swing > MAX_SWING) {
-              held.push(`${r.name}: ${old.price} -> ${priceText} (${Math.round(swing * 100)}% swing — kept old price)`);
-              priceText = old.price;
+            if (swing > BIG_SWING) {
+              bigMoves.push(`${r.name}: ${old.price} -> ${priceText} (${Math.round(swing * 100)}% move)`);
             }
           }
           if (r.promo) promos.push(r.name);
@@ -468,7 +467,7 @@ async function readPublicCatalogue(url) {
   if (added.length) added.forEach((a) => console.log(`   + ${a}`));
   if (removed.length) removed.forEach((r) => console.log(`   - ${r}`));
   if (promos.length) console.log(`   ${promos.length} on promo pricing: ${promos.join(", ")}`);
-  if (held.length) { console.log("\n=== held (large swing, kept old price) ==="); held.forEach((h) => console.log("   " + h)); }
+  if (bigMoves.length) { console.log("\n=== large price moves (published as Vagaro has them) ==="); bigMoves.forEach((h) => console.log("   " + h)); }
   if (skipped.length) { console.log("\n=== skipped rows ==="); skipped.forEach((s) => console.log("   " + s)); }
 
   if (keepRatio < MIN_KEEP && !process.env.FORCE_SYNC) {
