@@ -20,6 +20,7 @@
  *   node scripts/vagaro-sync.js --write-local     # write content/site.json + index.html here
  *   node scripts/vagaro-sync.js --dump cat.json   # save the scraped catalogue (fixture/debug)
  *   node scripts/vagaro-sync.js --fixtures cat.json  # run from a saved catalogue, no Chrome
+ *   node scripts/vagaro-sync.js --headful         # real Chrome window; use when headless is blocked
  *
  * Guards, because this publishes to a live medical-aesthetics site:
  *   - a short read (few rows or categories) is a broken render, not a pruned menu
@@ -197,9 +198,15 @@ const cents = (money) =>
   money ? Math.round(parseFloat(money.replace(/[$,]/g, "")) * 100) : null;
 
 /* ── scrape: the whole catalogue, grouped by category ── */
+// Since 2026-10-26 Vagaro's Incapsula answers headless Chrome's first XHR with a
+// 403, so the page's script dies before it ever asks for the catalogue. The same
+// Chrome in a real window loads everything. --headful (or VAGARO_HEADFUL=1 for a
+// CI runner under xvfb) opens that window instead of a headless one — the same
+// browser build, nothing spoofed.
+const HEADFUL = process.argv.includes("--headful") || process.env.VAGARO_HEADFUL === "1";
 const launchBrowser = () =>
   puppeteer.launch({
-    headless: true,
+    headless: !HEADFUL,
     executablePath:
       process.env.PUPPETEER_EXECUTABLE_PATH ||
       (fs.existsSync("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
@@ -293,16 +300,25 @@ async function readPublicCatalogue(url) {
     await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
     const feed = page.waitForResponse((r) => FEED.test(r.url()) && r.status() === 200, { timeout: 60000 });
     feed.catch(() => {});
+    // Any Vagaro request the page makes that comes back 4xx/5xx is the real
+    // story when the feed never arrives — log it so the next failure is
+    // readable from the Action log without a local repro.
+    const refused = [];
+    page.on("response", (r) => {
+      if (/vagaro\.com/i.test(r.url()) && r.status() >= 400) refused.push(`${r.status()} ${r.url().split("?")[0]}`);
+    });
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
     let data;
     try {
       data = await (await feed).json();
     } catch {
       const html = await page.content();
-      if (/Request unsuccessful|Incapsula incident|\bincident ID\b/i.test(html) || html.length < 5000) {
-        throw new Error("blocked by Vagaro's bot protection — backing off, not working around it");
+      const detail = `page ${html.length} bytes, title "${(await page.title()).slice(0, 60)}"` +
+        (refused.length ? `, refused: ${[...new Set(refused)].slice(0, 5).join(" ; ")}` : "");
+      if (/Request unsuccessful|Incapsula incident|\bincident ID\b/i.test(html) || html.length < 5000 || refused.some((x) => /^403 /.test(x))) {
+        throw new Error(`blocked by Vagaro's bot protection — backing off, not working around it (${detail}). Try --headful: a real Chrome window is not blocked.`);
       }
-      throw new Error("her services page never loaded its catalogue — Vagaro may have changed the page");
+      throw new Error(`her services page never loaded its catalogue — Vagaro may have changed the page (${detail})`);
     }
     if (!Array.isArray(data.Services)) throw new Error("catalogue response has no Services list — Vagaro may have changed its shape");
     return data.Services.map((c) => ({

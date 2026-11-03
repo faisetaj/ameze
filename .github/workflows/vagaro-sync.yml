@@ -21,6 +21,9 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: write
     steps:
       - uses: actions/checkout@v5
 
@@ -28,18 +31,42 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install Puppeteer
-        run: npm install puppeteer@24 --no-save --no-audit --no-fund
+      # Chrome runs in a real window on a virtual display (xvfb) rather than
+      # headless: since 2026-10-26 Vagaro's services page only completes its
+      # catalogue load for a windowed browser. Same Chrome build either way.
+      - name: Install Puppeteer and a virtual display
+        run: |
+          sudo apt-get install -y -qq xvfb > /dev/null
+          npm install puppeteer@24 --no-save --no-audit --no-fund
 
       - name: Sync
         env:
           SITE_URL: ${{ vars.SITE_URL }}
           CMS_KEY: ${{ secrets.CMS_KEY }}
+          VAGARO_HEADFUL: "1"
         # Scheduled runs publish; manual runs default to a dry run so the diff can
-        # be inspected first. Flip DRY_RUN_ONLY below to pause publishing entirely.
+        # be inspected first.
         run: |
           if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.apply }}" = "true" ]; then
-            node scripts/vagaro-sync.js --apply
+            xvfb-run -a node scripts/vagaro-sync.js --apply
           else
-            node scripts/vagaro-sync.js
+            xvfb-run -a node scripts/vagaro-sync.js
+          fi
+
+      # A sync that fails quietly leaves the site on last month's promotions for
+      # weeks (it did, 2026-10-26 → 11-03). Keep one open issue per outage so a
+      # person sees it the first morning, not when the client texts.
+      - name: Open or update a "sync failing" issue
+        if: failure() && github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="Vagaro sync is failing"
+          body="The daily Vagaro sync failed on $(date -u +%Y-%m-%d). The site keeps its last published menu and specials until it succeeds again. Log: $RUN_URL"
+          n=$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ -n "$n" ]; then
+            gh issue comment "$n" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
           fi
