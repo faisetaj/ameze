@@ -21,6 +21,9 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: write
     steps:
       - uses: actions/checkout@v5
 
@@ -42,4 +45,22 @@ jobs:
             node scripts/vagaro-sync.js --apply
           else
             node scripts/vagaro-sync.js
+          fi
+
+      # A sync that fails quietly leaves the site on last month's promotions for
+      # weeks (it did, 2026-10-26 → 11-03). Keep one open issue per outage so a
+      # person sees it the first morning, not when the client texts.
+      - name: Open or update a "sync failing" issue
+        if: failure() && github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="Vagaro sync is failing"
+          body="The daily Vagaro sync failed on $(date -u +%Y-%m-%d). The site keeps its last published menu and specials until it succeeds again. Log: $RUN_URL"
+          n=$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ -n "$n" ]; then
+            gh issue comment "$n" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
           fi
