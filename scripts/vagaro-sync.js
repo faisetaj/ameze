@@ -204,16 +204,30 @@ const cents = (money) =>
 // CI runner under xvfb) opens that window instead of a headless one — the same
 // browser build, nothing spoofed.
 const HEADFUL = process.argv.includes("--headful") || process.env.VAGARO_HEADFUL === "1";
-const launchBrowser = () =>
-  puppeteer.launch({
-    headless: !HEADFUL,
-    executablePath:
-      process.env.PUPPETEER_EXECUTABLE_PATH ||
-      (fs.existsSync("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
-        ? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-        : undefined),
-    args: ["--no-sandbox", "--disable-dev-shm-usage"],
-  });
+// A windowed Chrome on a cold CI runner can take longer than Puppeteer's 30s
+// default to come up (2026-11-04: "Timed out ... waiting for the WS endpoint").
+// Give it 2 minutes, and if it still fails, try once more with Chrome's own
+// output in the log. Launching never touches Vagaro, so the retry costs no
+// extra traffic there.
+const launchOptions = (dumpio) => ({
+  headless: !HEADFUL,
+  executablePath:
+    process.env.PUPPETEER_EXECUTABLE_PATH ||
+    (fs.existsSync("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+      ? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+      : undefined),
+  args: ["--no-sandbox", "--disable-dev-shm-usage"],
+  timeout: 120000,
+  dumpio,
+});
+const launchBrowser = async () => {
+  try {
+    return await puppeteer.launch(launchOptions(false));
+  } catch (e) {
+    console.log(`   Chrome did not start (${e.message}) — retrying once with Chrome's output shown`);
+    return puppeteer.launch(launchOptions(true));
+  }
+};
 
 async function scrapeCatalogue(url) {
   const browser = await launchBrowser();
